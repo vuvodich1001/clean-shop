@@ -92,5 +92,4 @@ class BookModel extends BaseModel{
 
         return $books;
     }
-}  
-?>
+}

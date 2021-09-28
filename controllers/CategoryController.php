@@ -1,6 +1,6 @@
 <?php
 
-class CategoryController extends BaseController{
+class CategoryController extends BaseController {
     private $categoryModel;
 
     public function __construct() {
@@ -13,14 +13,14 @@ class CategoryController extends BaseController{
     }
 
     public function createCategory() {
-       $name = $_POST['name'];
-       $data = [
-           'name' => $name
-       ];
+        $name = $_POST['name'];
+        $data = [
+            'name' => $name
+        ];
 
-       $this->categoryModel->createCategory($data);
-       $categories = $this->categoryModel->getAll();
-       return $this->view('admin.categories.show', ['categories' => $categories]);
+        $this->categoryModel->createCategory($data);
+        $categories = $this->categoryModel->getAll();
+        return $this->view('admin.categories.show', ['categories' => $categories]);
     }
 
     public function deleteCategory() {
@@ -39,11 +39,11 @@ class CategoryController extends BaseController{
     public function updateCategory() {
         $id = $_GET['id'];
         $name = $_POST['name'];
-       $data = [
-           'name' => $name
-       ];
-       $this->categoryModel->updateCategory($id, $data);
-       $categories = $this->categoryModel->getAll();
-       return $this->view('admin.categories.show', ['categories' => $categories]);
+        $data = [
+            'name' => $name
+        ];
+        $this->categoryModel->updateCategory($id, $data);
+        $categories = $this->categoryModel->getAll();
+        return $this->view('admin.categories.show', ['categories' => $categories]);
     }
 }

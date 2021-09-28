@@ -1,10 +1,10 @@
-    <?php $this->view('partitions.frontend.header');?>
+    <?php $this->view('partitions.frontend.header'); ?>
     <div class="grid wide">
         <div class="row container">
             <div class="col l-2">
-                <?php 
+                <?php
                 $this->view('partitions.frontend.sidebar');
-            ?>
+                ?>
             </div>
 
             <div class="col l-10">
@@ -36,10 +36,10 @@
                 <div class="pagination">
                     <ul>
                         <li><a href=""><i class="fas fa-angle-left"></i></a></li>
-                        <?php for($i = 1; $i <= $num; $i++){ ?>
-                        <li>
-                            <a class="page-item-link" href=""><?php echo $i;?></a>
-                        </li>
+                        <?php for ($i = 1; $i <= $num; $i++) { ?>
+                            <li>
+                                <a class="page-item-link" href=""><?php echo $i; ?></a>
+                            </li>
                         <?php } ?>
                         <li><a href=""><i class="fas fa-angle-right"></i></a></li>
                     </ul>
@@ -47,4 +47,4 @@
             </div>
         </div>
     </div>
-    <?php $this->view('partitions.frontend.footer');?>
+    <?php $this->view('partitions.frontend.footer'); ?>

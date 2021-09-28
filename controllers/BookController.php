@@ -1,11 +1,9 @@
 <?php
-class BookController extends BaseController
-{
+class BookController extends BaseController {
 
     private $bookModel;
     private $categoryModel;
-    public function __construct()
-    {
+    public function __construct() {
         $this->loadModel('BookModel');
         $this->loadModel('CategoryModel');
         $this->bookModel = new BookModel();
@@ -13,8 +11,7 @@ class BookController extends BaseController
     }
 
     // admin
-    public function index()
-    {
+    public function index() {
         // $order = [
         //     'column' => 'book_id',
         //     'order' => 'desc'
@@ -24,8 +21,7 @@ class BookController extends BaseController
         return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories]);
     }
 
-    function insertFile($selector)
-    {
+    function insertFile($selector) {
         $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/admin/uploads/';
         $file_error = $_FILES[$selector]['error'];
         if ($file_error == UPLOAD_ERR_OK) {
@@ -35,8 +31,7 @@ class BookController extends BaseController
         }
     }
 
-    public function createBook()
-    {
+    public function createBook() {
         $category = $_POST['category'];
         $title = $_POST['title'];
         $author = $_POST['author'];
@@ -59,8 +54,7 @@ class BookController extends BaseController
         return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories]);
     }
 
-    public function updateBook()
-    {
+    public function updateBook() {
         // $id = $_GET['id'];
         // $data = [
         //     'title' => 'advanced PHP',
@@ -71,8 +65,7 @@ class BookController extends BaseController
         // $this->bookModel->update($id ,$data);
     }
 
-    public function deleteBook()
-    {
+    public function deleteBook() {
         $id = $_GET['id'];
         $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/admin/uploads/';
         $image = $this->bookModel->getById($id)['image'];
@@ -83,29 +76,25 @@ class BookController extends BaseController
         return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories]);
     }
 
-    public function show()
-    {
+    public function show() {
         $this->view('frontend.Books.show');
     }
 
     // frontend
-    public function getByCategory()
-    {
+    public function getByCategory() {
         $categoryName = $_GET['category'];
         $books = $this->bookModel->getByCategory($categoryName);
         echo json_encode($books);
     }
 
-    public function filterBook()
-    {
+    public function filterBook() {
         $sortby = $_GET['sortby'];
         $categoryName = $_GET['category'];
         $books = $this->bookModel->filterBook($sortby, $categoryName);
         echo json_encode($books);
     }
 
-    public function bookDetail()
-    {
+    public function bookDetail() {
         $bookId = $_GET['id'];
         $book = $this->bookModel->getById($bookId);
         $categoryName  = $this->bookModel->getCategoryNameById($bookId);
@@ -113,16 +102,14 @@ class BookController extends BaseController
         $this->view('frontend.home.detail', ['book' => $book, 'bookRelates' => $bookRelates]);
     }
 
-    public function pagination()
-    {
+    public function pagination() {
         $page = $_GET['page'];
         $category = $_GET['category'];
         $books =  $this->bookModel->pagination($page, $category);
         echo json_encode($books);
     }
 
-    public function searchBook()
-    {
+    public function searchBook() {
         $name = $_GET['name'];
         $books = $this->bookModel->searchBook($name);
         echo json_encode($books);

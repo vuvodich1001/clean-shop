@@ -5,5 +5,3 @@ class AdminController extends BaseController{
         $this->view('admin.index');
     }
 }
-
-?>
