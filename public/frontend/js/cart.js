@@ -4,9 +4,9 @@ function removeCartItem() {
     if (cartItems) {
         cartItems.forEach(cartItem => {
             cartItem.onclick = function (e) {
-                let id = e.target.parentElement.parentElement.querySelector('.cart-item-id');
+                let bookId = e.target.parentElement.parentElement.querySelector('.cart-item-id');
                 e.target.parentElement.parentElement.remove();
-                fetch('index.php?controller=cart&action=deleteCartItem&id=' + id.innerText);
+                fetch('index.php?controller=cart&action=deleteCartItem&id=' + bookId.getAttribute('book-id'));
             }
         })
     }

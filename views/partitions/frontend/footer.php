@@ -52,40 +52,48 @@
 
 <!-- slick slider and jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
-    integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-Validator({
-    form: '#form-login',
-    rules: [
-        isRequired('#username'),
-        isRequired('#password'),
-        minLength('#password', 6)
-    ]
-})
+    Validator({
+        form: '#form-login',
+        rules: [
+            isRequired('#username'),
+            isRequired('#password'),
+            minLength('#password', 6)
+        ]
+    })
 
-Validator({
-    form: '#form-register',
-    rules: [
-        isRequired('#name'),
-        isEmail('#email'),
-        isRequired('#phone'),
-        isRequired('#rpassword'),
-        minLength('#rpassword', 6)
-    ]
-})
+    Validator({
+        form: '#form-register',
+        rules: [
+            isRequired('#name'),
+            isEmail('#email'),
+            isRequired('#phone'),
+            isRequired('#rpassword'),
+            minLength('#rpassword', 6)
+        ]
+    })
 
-// slider
-let bookSlider = document.querySelector('.book-slider');
-if (bookSlider) {
-    console.log('test');
-    $('.book-slider').slick({
-        infinite: true,
-        slidesToShow: 6,
-        slidesToScroll: 6
-    });
-}
+    // book-slider
+    let bookSlider = document.querySelector('.book-slider');
+    if (bookSlider) {
+        $('.book-slider').slick({
+            infinite: true,
+            slidesToShow: 6,
+            slidesToScroll: 6
+        });
+    }
+
+    // banner-slider
+    if ($('.slider')) {
+        $('.slider').slick({
+            // dots: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            // autoplay: true,
+            // autoplaySpeed: 2000,
+        });
+    }
 </script>
 </body>
 

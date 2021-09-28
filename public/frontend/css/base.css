@@ -61,7 +61,26 @@ html {
   border: 1px solid red;
 }
 
-.slick-next:before,
-.slick-prev:before {
+/* rewrite slider */
+.slider .slick-next {
+  right: 4px;
+}
+.slider .slick-prev {
+  left: 0;
+  z-index: 10;
+}
+.slider .slick-next:before,
+.slider .slick-prev:before {
+  font-size: 25px;
+  color: #fff;
+}
+
+.book-slider .slick-next:before,
+.book-slider .slick-prev:before {
+  font-size: 25px;
   color: #333;
+}
+
+.slick-dots {
+  margin-bottom: 30px;
 }

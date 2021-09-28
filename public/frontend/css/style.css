@@ -293,7 +293,7 @@ main {
 }
 
 .container {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .sidebar {
@@ -411,7 +411,8 @@ main {
 /* pagination */
 
 .pagination {
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  margin-top: 10px;
   display: flex;
   justify-content: center;
 }
@@ -558,6 +559,8 @@ main {
 table {
   border: 1px solid #333;
   width: 100%;
+  background-color: var(--white-color);
+  border-radius: 3px;
 }
 
 th,
@@ -569,6 +572,7 @@ td {
 td img {
   width: 100px;
   height: 120px;
+  border-radius: 3px;
 }
 
 .btn-minus,
@@ -618,4 +622,49 @@ td img {
 .comment {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+/* slider dashboard */
+
+.banner {
+  padding-top: 8px;
+}
+
+.banner-item {
+  height: 83px;
+  background-image: linear-gradient(
+    to right,
+    rgb(0, 126, 254),
+    rgb(6, 195, 254)
+  );
+  text-align: center;
+  padding-top: 20px;
+  border-radius: 3px;
+  color: var(--white-color);
+}
+
+.slider-item {
+  padding: 10px 30px;
+  color: var(--white-color);
+  border-radius: 3px;
+}
+
+.slider-item p {
+  line-height: 26px;
+}
+
+.slider-item-free-ship {
+  background-image: linear-gradient(
+    to right,
+    rgb(118, 18, 255),
+    rgb(5, 178, 255)
+  );
+}
+
+.slider-item-voucher {
+  background-image: linear-gradient(
+    to right,
+    rgb(254, 33, 94),
+    rgb(255, 148, 2)
+  );
 }

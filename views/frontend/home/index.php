@@ -1,7 +1,32 @@
     <?php $this->view('partitions.frontend.header'); ?>
     <div class="grid wide">
+        <div class="row sm-gutter banner">
+            <div class="col l-8 c-12">
+                <div class="row sm-gutter slider">
+                    <div class="col l-12">
+                        <div class="slider-item slider-item-free-ship">
+                            <h1>Mã giảm giá</h1>
+                            <p>PreeShip trên mọi tỉnh thành</p>
+                        </div>
+                    </div>
+
+                    <div class="col l-12">
+                        <div class="slider-item slider-item-voucher">
+                            <h1>Đăng ký để nhận voucher</h1>
+                            <p>Nhận voucher liền tay rước quà về nhà</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col l-4 c-12">
+                <div class="banner-item">
+                    <h1>Săn sale sập sàn</h1>
+                </div>
+            </div>
+        </div>
         <div class="row container">
-            <div class="col l-2">
+            <div class="col l-2 c-0">
                 <?php
                 $this->view('partitions.frontend.sidebar');
                 ?>
