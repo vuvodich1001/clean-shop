@@ -21,7 +21,12 @@ class BookController extends BaseController {
         return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories]);
     }
 
-    function insertFile($selector) {
+    public function getAllBook() {
+        $books = $this->bookModel->getAll();
+        echo json_encode($books);
+    }
+
+    private function insertFile($selector) {
         $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/admin/uploads/';
         $file_error = $_FILES[$selector]['error'];
         if ($file_error == UPLOAD_ERR_OK) {
@@ -32,13 +37,12 @@ class BookController extends BaseController {
     }
 
     public function createBook() {
-        $category = $_POST['category'];
         $title = $_POST['title'];
         $author = $_POST['author'];
         $price = $_POST['price'];
         $image = basename($_FILES['image']['name']);
         $description = $_POST['description'];
-        $categoryId = $this->categoryModel->findIndexByCategoryName($category);
+        $categoryId = $_POST['category'];
         $this->insertFile('image');
         $data = [
             'category_id' => $categoryId,
@@ -50,19 +54,28 @@ class BookController extends BaseController {
         ];
         $this->bookModel->createBook($data);
         $books = $this->bookModel->getAll();
-        $categories = $this->categoryModel->getAll();
-        return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories]);
+        // $categories = $this->categoryModel->getAll();
+        // return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories]);
+        echo json_encode($books);
     }
 
     public function updateBook() {
-        // $id = $_GET['id'];
-        // $data = [
-        //     'title' => 'advanced PHP',
-        //     'author' => 'vunguyen',
-        //     'image' => null,
-        //     'description' => 1
-        // ];
-        // $this->bookModel->update($id ,$data);
+        $id = $_GET['id'];
+        $categoryId = $_POST['category'];
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $price = $_POST['price'];
+        $description = $_POST['description'];
+        $data = [
+            'category_id' => $categoryId,
+            'title' => $title,
+            'author' =>  $author,
+            'price' => $price,
+            'description' => $description
+        ];
+        $this->bookModel->updateBook($id, $data);
+        $books = $this->bookModel->getAll();
+        echo json_encode($books);
     }
 
     public function deleteBook() {
@@ -72,8 +85,9 @@ class BookController extends BaseController {
         $this->bookModel->deleteBook($id);
         unlink($uploads_dir . $image);
         $books = $this->bookModel->getAll();
-        $categories = $this->categoryModel->getAll();
-        return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories]);
+        // $categories = $this->categoryModel->getAll();
+        // return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories]);
+        echo json_encode($books);
     }
 
     public function show() {

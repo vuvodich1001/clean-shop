@@ -5,15 +5,21 @@
                 <div class="row sm-gutter slider">
                     <div class="col l-12">
                         <div class="slider-item slider-item-free-ship">
-                            <h1>Mã giảm giá</h1>
-                            <p>PreeShip trên mọi tỉnh thành</p>
+                            <div>
+                                <h1>Mã giảm giá</h1>
+                                <p>PreeShip trên mọi tỉnh thành</p>
+                            </div>
+                            <button class="btn-receive-coupon">Nhận ngay</button>
                         </div>
                     </div>
 
                     <div class="col l-12">
                         <div class="slider-item slider-item-voucher">
-                            <h1>Đăng ký để nhận voucher</h1>
-                            <p>Nhận voucher liền tay rước quà về nhà</p>
+                            <div>
+                                <h1>Đăng ký để nhận voucher</h1>
+                                <p>Nhận voucher liền tay rước quà về nhà</p>
+                            </div>
+                            <button class="btn-register-voucher">Đăng ký ngay</button>
                         </div>
                     </div>
                 </div>
@@ -55,6 +61,7 @@
                 <div class="content">
                     <div class="row sm-gutter book">
                         <!-- list book -->
+                        <!-- insert book here by javascript -->
                     </div>
                 </div>
 

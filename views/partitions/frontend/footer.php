@@ -1,6 +1,50 @@
 </main>
 <footer>
-
+    <div class="grid wide">
+        <div class="row footer-content">
+            <div class="col l-2-4">
+                <h4>Hỗ trợ khách hàng</h4>
+                <ul>
+                    <li><a href="">Hotline: 0123456789</a></li>
+                    <li><a href="">Câu hỏi thường gặp</a></li>
+                    <li><a href="">Gửi yêu cầu hỗ trợ</a></li>
+                    <li><a href="">Phương thức vận chuyển</a></li>
+                </ul>
+            </div>
+            <div class="col l-2-4">
+                <h4>Về BookStore</h4>
+                <ul>
+                    <li><a href="">Giới thiệu bookstore</a></li>
+                    <li><a href="">Chính sách bảo mật</a></li>
+                    <li><a href="">Điều khoản sử dụng</a></li>
+                    <li><a href="">Chính sách giao hàng</a></li>
+                </ul>
+            </div>
+            <div class="col l-2-4">
+                <h4>Hợp tác và liên kết</h4>
+                <ul>
+                    <li><a href="">Hợp tác UIT</a></li>
+                    <li><a href="">Bán hàng cùng bookstore</a></li>
+                </ul>
+            </div>
+            <div class="col l-2-4">
+                <h4>Phương thức thanh toán</h4>
+                <div class="payment">
+                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/visa.svg" alt="">
+                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/cash.svg" alt="">
+                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/internet-banking.svg" alt="">
+                </div>
+            </div>
+            <div class="col l-2-4">
+                <h4>Kết nối với chúng tôi</h4>
+                <div class="link-us">
+                    <a href=""><i class="icon-facebook fab fa-facebook"></i></a>
+                    <a href=""><i class="icon-youtube fab fa-youtube"></i></a>
+                    <a href=""><i class="icon-mail fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
 <div class="modal modal-overlay">
     <div class="auth-content">
@@ -48,6 +92,7 @@
 <script src="./public/frontend/js/productdetail.js"></script>
 <script src="./public/frontend/js/authenticate.js"></script>
 <script src="./public/admin/js/Validator.js"></script>
+<script src="./public/frontend/js/checkout.js"></script>
 <script src="./public/frontend/js/bookslider.js"></script>
 
 <!-- slick slider and jquery -->
@@ -87,11 +132,11 @@
     // banner-slider
     if ($('.slider')) {
         $('.slider').slick({
-            // dots: true,
+            dots: true,
             slidesToShow: 1,
             slidesToScroll: 1,
-            // autoplay: true,
-            // autoplaySpeed: 2000,
+            autoplay: true,
+            autoplaySpeed: 5000,
         });
     }
 </script>

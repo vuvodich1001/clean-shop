@@ -34,8 +34,10 @@
                         ?>
                     </tbody>
                 </table>
-                <button class="btn btn-delete-all active">Xóa tất cả</button>
-                <button class="btn btn-buy active">Mua</button>
+                <div class="shopping-cart-action">
+                    <button class="btn btn-delete-all active">Xóa tất cả</button>
+                    <a href="index.php?controller=cart&action=redirectCheckout" class="btn btn-buy active">Mua</a>
+                </div>
             </div>
         </div>
     </div>

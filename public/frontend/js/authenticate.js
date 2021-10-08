@@ -11,6 +11,14 @@ function authentication() {
             btnClose[0].addEventListener('click', e => {
                 modal.classList.remove('modal-active');
                 formLogin.style.display = 'none';
+                let invalidInputs = formLogin.querySelectorAll('.form-group');
+                invalidInputs.forEach(invalidInput => {
+                    if (invalidInput.classList.contains('invalid')) {
+                        let errorMessage = invalidInput.querySelector('.form-message');
+                        errorMessage.remove();
+                        invalidInput.classList.remove('invalid');
+                    }
+                })
             });
         });
 
@@ -21,6 +29,14 @@ function authentication() {
             btnClose[1].addEventListener('click', e => {
                 modal.classList.remove('modal-active');
                 formRegister.style.display = 'none';
+                let invalidInputs = formRegister.querySelectorAll('.form-group');
+                invalidInputs.forEach(invalidInput => {
+                    if (invalidInput.classList.contains('invalid')) {
+                        let errorMessage = invalidInput.querySelector('.form-message');
+                        errorMessage.remove();
+                        invalidInput.classList.remove('invalid');
+                    }
+                })
             });
         });
     }

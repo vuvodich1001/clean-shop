@@ -44,7 +44,7 @@ class CartController extends BaseController {
         }
     }
 
-    public function decreateQuantity() {
+    public function decreaseQuantity() {
         $bookId = $_GET['id'];
         foreach ($_SESSION['cart'] as &$cart) {
             if ($cart['book']['book_id'] == $bookId) {
@@ -62,6 +62,12 @@ class CartController extends BaseController {
         }
     }
 
+    public function redirectCheckout() {
+        $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
+            return $acc + $value['book']['price'] * $value['quantity'];
+        }, 0);
+        return $this->view('frontend.carts.checkout', ['carts' => $_SESSION['cart'], 'total' => $total]);
+    }
     public function removeCart() {
         session_destroy();
     }

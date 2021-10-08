@@ -5,6 +5,8 @@
   /* --main-color: #7b22ff; */
   --main-color: #ea4c89;
   --button-color: #ff434e;
+  --star-color: #ffd52e;
+  --success-color: #00ab56;
 }
 
 * {
@@ -66,7 +68,7 @@ html {
   right: 4px;
 }
 .slider .slick-prev {
-  left: 0;
+  left: -1px;
   z-index: 10;
 }
 .slider .slick-next:before,
@@ -82,5 +84,56 @@ html {
 }
 
 .slick-dots {
-  margin-bottom: 30px;
+  bottom: -2px;
+  color: white;
+}
+
+.slick-dotted.slick-slider {
+  margin-bottom: 0;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--white-color);
+}
+/* footer */
+footer {
+  margin-top: 5px;
+}
+
+.footer-content ul {
+  list-style: none;
+}
+
+.footer-content ul li a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 0px;
+  color: #333;
+  font-size: 16px;
+  transition: color linear 0.2s;
+}
+.footer-content ul li a:hover {
+  color: var(--main-color);
+}
+.payment {
+  margin-top: 5px;
+}
+.link-us {
+  margin-top: 5px;
+}
+.link-us a {
+  font-size: 20px;
+  padding-left: 7px;
+}
+
+.link-us a .icon-facebook {
+  color: blue;
+}
+
+.link-us a .icon-youtube {
+  color: red;
+}
+
+.link-us a .icon-mail {
+  color: #333;
 }

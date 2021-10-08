@@ -28,8 +28,8 @@ function add() {
             btnAdd.onclick = function (e) {
                 let id = e.target.parentElement.parentElement.querySelector('.cart-item-id');
                 let quantity = e.target.parentElement.parentElement.querySelector('.cart-quantity');
-                quantity.textContent = Number(quantity.textContent) + 1
-                fetch('index.php?controller=cart&action=increaseQuantity&id=' + id.innerText);
+                quantity.textContent = Number(quantity.textContent) + 1;
+                fetch('index.php?controller=cart&action=increaseQuantity&id=' + id.getAttribute('book-id'));
             }
         })
     }
@@ -44,7 +44,7 @@ function minus() {
                 let quantity = e.target.parentElement.parentElement.querySelector('.cart-quantity');
                 if (quantity.textContent > 1) {
                     quantity.textContent = Number(quantity.textContent) - 1;
-                    fetch('index.php?controller=cart&action=decreaseQuantity&id=' + id.innerText);
+                    fetch('index.php?controller=cart&action=decreaseQuantity&id=' + id.getAttribute('book-id'));
                 }
             }
         })

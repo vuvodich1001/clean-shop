@@ -12,6 +12,16 @@ class CategoryController extends BaseController {
         return $this->view('admin.categories.show', ['categories' => $categories]);
     }
 
+    public function getAllCategory() {
+        $categories = $this->categoryModel->getAll();
+        echo json_encode($categories);
+    }
+
+    public function searchCategory() {
+        $str = $_GET['str'];
+        $categories = $this->categoryModel->searchCategory($str);
+        echo json_encode($categories);
+    }
     public function createCategory() {
         $name = $_POST['name'];
         $data = [
@@ -20,16 +30,18 @@ class CategoryController extends BaseController {
 
         $this->categoryModel->createCategory($data);
         $categories = $this->categoryModel->getAll();
-        return $this->view('admin.categories.show', ['categories' => $categories]);
+        echo json_encode($categories);
+        // return $this->view('admin.categories.show', ['categories' => $categories]);
     }
 
     public function deleteCategory() {
         $id = $_GET['id'];
         $this->categoryModel->deleteCategory($id);
         $categories = $this->categoryModel->getAll();
-        return $this->view('admin.categories.show', ['categories' => $categories]);
+        // return $this->view('admin.categories.show', ['categories' => $categories]);
+        echo json_encode($categories);
     }
-
+    // modify category
     public function directCategory() {
         $id = $_GET['id'];
         $category = $this->categoryModel->findById($id);
@@ -44,6 +56,7 @@ class CategoryController extends BaseController {
         ];
         $this->categoryModel->updateCategory($id, $data);
         $categories = $this->categoryModel->getAll();
-        return $this->view('admin.categories.show', ['categories' => $categories]);
+        // return $this->view('admin.categories.show', ['categories' => $categories]);
+        echo json_encode($categories);
     }
 }

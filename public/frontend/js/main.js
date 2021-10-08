@@ -5,10 +5,10 @@ function fetchData(type, val, str) {
     else if (type === 'filter') {
         url = `index.php?controller=book&action=filterBook&category=${val}&sortby=${str}`;
     }
-    else if (type == 'pagination') {
+    else if (type === 'pagination') {
         url = `index.php?controller=book&action=pagination&category=${val}&page=${str}`;
     }
-    else if (type = 'search') {
+    else if (type === 'search') {
         url = `index.php?controller=book&action=searchBook&name=${val}`;
     }
     fetch(url)
