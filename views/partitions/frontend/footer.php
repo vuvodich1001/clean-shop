@@ -48,7 +48,7 @@
 </footer>
 <div class="modal modal-overlay">
     <div class="auth-content">
-        <form action="" id="form-login" method="">
+        <form action="index.php" id="form-login" method="POST">
             <h3>Thành viên đăng nhập</h3>
             <div class="form-group">
                 <label for="">Username</label>
@@ -58,7 +58,7 @@
                 <label for="">Password</label>
                 <input type="password" name="password" id="password" autocomplete="off">
             </div>
-
+            <p class="login-fail">Tài khoản hoặc mật khẩu không chính xác</p>
             <button class="btn btn-submit">Đăng nhập</button>
             <div class="btn-close-form"><i class="fas fa-times"></i></div>
         </form>
@@ -81,7 +81,6 @@
                 <label for="">Password</label>
                 <input type="password" name="rpassword" id="rpassword" autocomplete="off">
             </div>
-
             <button class="btn btn-submit">Đăng ký</button>
             <div class="btn-close-form"><i class="fas fa-times"></i></div>
         </form>
@@ -105,7 +104,21 @@
             isRequired('#username'),
             isRequired('#password'),
             minLength('#password', 6)
-        ]
+        ],
+        onSubmit(formData) {
+            fetch('index.php?controller=auth&action=customerLogin', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(flag => {
+                    if (flag == 1) {
+                        document.querySelector('#form-login').submit();
+                    } else {
+                        document.querySelector('.login-fail').style.display = 'block';
+                    }
+                })
+        }
     })
 
     Validator({

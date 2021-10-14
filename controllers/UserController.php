@@ -19,7 +19,8 @@ class UserController extends BaseController {
     public function createUser() {
         $username = $_POST['name'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        // $password = $_POST['password'];
+        $password = md5($_POST['password']);
         $user = [
             'username' => $username,
             'email' => $email,
@@ -41,8 +42,8 @@ class UserController extends BaseController {
         $userId = $_GET['id'];
         $username = $_POST['name'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
-
+        // $password = $_POST['password'];
+        $password = md5($_POST['password']);
         $user = [
             'username' => $username,
             'email' => $email,

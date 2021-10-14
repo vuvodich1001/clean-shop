@@ -10,8 +10,14 @@ class CartController extends BaseController {
     }
     public function index() {
         $carts = '';
-        isset($_SESSION['cart']) ? $carts = $_SESSION['cart'] : $carts;
-        return empty($carts) ?  $this->view('frontend.carts.index') : $this->view('frontend.carts.index', ['carts' => $carts]);
+        $total = 0;
+        if (isset($_SESSION['cart'])) {
+            $carts = $_SESSION['cart'];
+            $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
+                return $acc + $value['book']['price'] * $value['quantity'];
+            }, 0);
+        }
+        return empty($carts) ?  $this->view('frontend.carts.index') : $this->view('frontend.carts.index', ['carts' => $carts, 'total' => $total]);
     }
 
     public function addToCart() {
@@ -42,6 +48,10 @@ class CartController extends BaseController {
                 $cart['quantity'] += 1;
             }
         }
+        $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
+            return $acc + $value['book']['price'] * $value['quantity'];
+        }, 0);
+        echo json_encode($total);
     }
 
     public function decreaseQuantity() {
@@ -51,6 +61,10 @@ class CartController extends BaseController {
                 $cart['quantity'] -= 1;
             }
         }
+        $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
+            return $acc + $value['book']['price'] * $value['quantity'];
+        }, 0);
+        echo json_encode($total);
     }
 
     public function deleteCartItem() {
@@ -60,6 +74,10 @@ class CartController extends BaseController {
                 unset($_SESSION['cart'][$key]);
             }
         }
+        $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
+            return $acc + $value['book']['price'] * $value['quantity'];
+        }, 0);
+        echo json_encode($total);
     }
 
     public function redirectCheckout() {

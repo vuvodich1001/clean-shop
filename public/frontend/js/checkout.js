@@ -1,23 +1,23 @@
-// function borderWhenChecked() {
-//     let inputRadios = document.querySelectorAll('input[type="radio"]');
-//     let addressGroups = document.querySelectorAll('.address-group');
-//     if (inputRadios) {
-//         inputRadios.forEach(inputRadio => {
-//             inputRadio.addEventListener('click', e => {
-//                 addressGroups.forEach(addressGroup => {
-//                     addressGroup.style.border = 'none';
-//                 })
-//                 let addressGroup = inputRadio.parentElement;
-//                 if (inputRadio.checked == true) {
-//                     addressGroup.style.border = '2px solid #5045E6';
-//                 }
-//             })
-//         })
-//     }
-// }
+function borderWhenChecked(selector) {
+    //Address group
+    let inputRadios = document.querySelectorAll(`${selector} input[type="radio"]`);
+    let selectorGroups = document.querySelectorAll(`${selector}`);
+    if (inputRadios) {
+        inputRadios.forEach(inputRadio => {
+            inputRadio.addEventListener('change', e => {
+                selectorGroups.forEach(selectorGroup => {
+                    selectorGroup.style.border = 'none';
+                })
+                let selectorGroup = inputRadio.parentElement;
+                selectorGroup.style.border = '2px solid var(--main-color)';
+            })
+        })
+    }
+}
 
-// function start() {
-//     borderWhenChecked();
-// }
+function start() {
+    borderWhenChecked('.address-group');
+    borderWhenChecked('.payment-group');
+}
 
-// start();
+start();

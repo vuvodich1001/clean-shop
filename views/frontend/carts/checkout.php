@@ -75,7 +75,7 @@
 
         <div class="col l-4">
             <div class="your-order">
-                <p>Your Order</p>
+                <p>Đơn hàng của bạn</p>
                 <div class="order-list">
                     <?php foreach ($carts as $cart) { ?>
                         <div class="order-item">
@@ -90,14 +90,14 @@
                 </div>
                 <div class="order-ship">
                     <div class="delivery">
-                        <span>Delivery</span>
+                        <span>Vận chuyển</span>
                         <span class="delivery-cost">
                             <?php echo number_format($total * 0.05, 0, '.', '.') ?>đ
                         </span>
                     </div>
 
                     <div class="discount">
-                        <span>Discount</span>
+                        <span>Giảm giá</span>
                         <span class="discount-cost">
                             -<?php echo number_format(20000, 0, '.', '.') ?>đ
                         </span>
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="order-total">
-                    <span>Total</span>
+                    <span>Tổng</span>
                     <span class="order-total"><?php echo number_format($total, 0, '.', '.'); ?>đ</span>
                 </div>
             </div>

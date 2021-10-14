@@ -30,4 +30,10 @@ class UserModel extends BaseModel {
         }
         return $users;
     }
+
+    public function authenticate($username, $password) {
+        $sql = "select * from user where username = '$username' and password = '$password'";
+        $result = $this->query($sql);
+        return mysqli_num_rows($result);
+    }
 }

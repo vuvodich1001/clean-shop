@@ -1,34 +1,44 @@
 function authentication() {
-    let btnLogin = document.querySelector('.btn-login');
+    let btnLogins = document.querySelectorAll('.btn-login');
     let btnRegister = document.querySelector('.btn-register');
+    let loginFail = document.querySelector('.login-fail');
     let modal = document.querySelector('.modal');
     let btnClose = document.querySelectorAll('.btn-close-form');
-    if (btnLogin) {
-        btnLogin.addEventListener('click', e => {
-            modal.classList.add('modal-active');
-            let formLogin = document.querySelector('#form-login');
-            formLogin.style.display = 'block';
-            btnClose[0].addEventListener('click', e => {
-                modal.classList.remove('modal-active');
-                formLogin.style.display = 'none';
-                let invalidInputs = formLogin.querySelectorAll('.form-group');
-                invalidInputs.forEach(invalidInput => {
-                    if (invalidInput.classList.contains('invalid')) {
-                        let errorMessage = invalidInput.querySelector('.form-message');
-                        errorMessage.remove();
-                        invalidInput.classList.remove('invalid');
-                    }
-                })
-            });
-        });
+    let authContent = document.querySelector('.auth-content');
+    const formLogin = document.querySelector('#form-login');
+    const formRegister = document.querySelector('#form-register');
 
+    if (btnLogins) {
+        btnLogins.forEach(btnLogin => {
+            btnLogin.addEventListener('click', e => {
+                modal.classList.add('modal-active');
+                formLogin.style.display = 'block';
+                btnClose[0].addEventListener('click', e => {
+                    modal.classList.remove('modal-active');
+                    formLogin.style.display = 'none';
+                    if (loginFail) loginFail.style.display = 'none';
+                    formLogin.reset();
+                    let invalidInputs = formLogin.querySelectorAll('.form-group');
+                    invalidInputs.forEach(invalidInput => {
+                        if (invalidInput.classList.contains('invalid')) {
+                            let errorMessage = invalidInput.querySelector('.form-message');
+                            errorMessage.remove();
+                            invalidInput.classList.remove('invalid');
+                        }
+                    })
+                });
+            });
+        })
+    }
+
+    if (btnRegister) {
         btnRegister.addEventListener('click', e => {
             modal.classList.add('modal-active');
-            let formRegister = document.querySelector('#form-register');
             formRegister.style.display = 'block';
             btnClose[1].addEventListener('click', e => {
                 modal.classList.remove('modal-active');
                 formRegister.style.display = 'none';
+                formRegister.reset();
                 let invalidInputs = formRegister.querySelectorAll('.form-group');
                 invalidInputs.forEach(invalidInput => {
                     if (invalidInput.classList.contains('invalid')) {
@@ -40,8 +50,21 @@ function authentication() {
             });
         });
     }
-}
 
+    modal.addEventListener('click', () => {
+        if (formRegister.style.display == 'block') {
+            btnClose[1].click();
+        }
+
+        if (formLogin.style.display == 'block') {
+            btnClose[0].click();
+        }
+    })
+
+    authContent.addEventListener('click', e => {
+        e.stopPropagation();
+    })
+}
 function start() {
     authentication();
 }
