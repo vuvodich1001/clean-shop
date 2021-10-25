@@ -33,6 +33,7 @@ class UserModel extends BaseModel {
 
     public function authenticate($username, $password) {
         $sql = "select * from user where username = '$username' and password = '$password'";
+        // and password = 'vudai' or '1' = '1';
         $result = $this->query($sql);
         return mysqli_num_rows($result);
     }

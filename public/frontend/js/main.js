@@ -73,7 +73,7 @@ function sideBarAction() {
             removeAllActive(sidebarItems);
             removeFilterActive();
             this.classList.add('active');
-            let val = this.children[0].innerText;
+            let val = this.children[0].getAttribute('category-name');
             fetchData('get', val);
         }
     })
@@ -84,11 +84,11 @@ function findSideBarItemActive() {
     let sidebarItems = document.querySelectorAll('.sidebar-item');
     let sidebarItemActive = Array.from(sidebarItems).find(sidebarItem => {
         return sidebarItem.matches('.active');
-    })
+    });
     return sidebarItemActive;
 }
 
-// filter book 
+// filter book => new, sort, best seller
 function filterProduct() {
     let btnPopular = document.querySelector('.btn-popular');
     let btnNew = document.querySelector('.btn-new');
@@ -101,6 +101,7 @@ function filterProduct() {
         let str = '';
         let val = e.target.innerText;
         let btnPrice = document.querySelector('.home-filter .btn-price');
+        let categoryName = findSideBarItemActive().firstChild.getAttribute('category-name');
         switch (val) {
             case 'Mới nhất':
                 str = 'create_date desc';
@@ -117,7 +118,7 @@ function filterProduct() {
             default:
                 break;
         }
-        fetchData('filter', findSideBarItemActive().innerText, str);
+        fetchData('filter', categoryName, str);
     }
 
     if (btnNew) {
@@ -154,8 +155,8 @@ function pagination() {
             pageItem.addEventListener('click', e => {
                 e.preventDefault();
                 let str = e.target.innerText;
-                let val = findSideBarItemActive().innerText;
-                fetchData('pagination', val, str);
+                let categoryName = findSideBarItemActive().firstChild.getAttribute('category-name');
+                fetchData('pagination', categoryName, str);
             })
         })
     }

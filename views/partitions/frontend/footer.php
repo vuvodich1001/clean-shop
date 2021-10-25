@@ -93,6 +93,7 @@
 <script src="./public/admin/js/Validator.js"></script>
 <script src="./public/frontend/js/checkout.js"></script>
 <script src="./public/frontend/js/bookslider.js"></script>
+<script src="./public/frontend/js/account.js"></script>
 
 <!-- slick slider and jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

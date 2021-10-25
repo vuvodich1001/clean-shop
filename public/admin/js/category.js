@@ -50,25 +50,27 @@ function fetchDataCategory(type, data = {}, id) {
         .then(response => response.json())
         .then(posts => {
             // dataUsers = posts;
-            const contentBody = document.querySelector('.content-body');
-            const categories = posts.map(category => {
-                return `
-                <tr>
-                    <td>${category.category_id}</td>
-                    <td>${category.name}</td>
-                    <td><a class="btn-delete-category" category-id="${category.category_id}" href="#">
-                            <i class="fas fa-trash-alt"></i></a>
-                        <a class="btn-update-category" category-id="${category.category_id}" href="#">
-                            <i class="fas fa-edit"></i></a>
-                    </td>
-                </tr>
-                `;
-            })
-            contentBody.innerHTML = categories.join('');
-            modal.classList.remove('modal-active');
-            formCategory.reset();
-            deleteCategory();
-            updateCategory();
+            if (posts.length != 0) {
+                const contentBody = document.querySelector('.content-body');
+                const categories = posts.map(category => {
+                    return `
+                    <tr>
+                        <td>${category.category_id}</td>
+                        <td>${category.name}</td>
+                        <td><a class="btn-delete-category" category-id="${category.category_id}" href="#">
+                                <i class="fas fa-trash-alt"></i></a>
+                            <a class="btn-update-category" category-id="${category.category_id}" href="#">
+                                <i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    `;
+                })
+                contentBody.innerHTML = categories.join('');
+                modal.classList.remove('modal-active');
+                formCategory.reset();
+                deleteCategory();
+                updateCategory();
+            }
         })
 }
 

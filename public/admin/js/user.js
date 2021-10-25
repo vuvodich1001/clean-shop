@@ -15,6 +15,7 @@ function validateUser() {
             ],
             onSubmit(data) {
                 if (formUser.getAttribute('name') == 'create') {
+
                     fetchDataUser('post', {
                         method: 'post',
                         body: data
@@ -52,9 +53,10 @@ function fetchDataUser(type, data = {}, id) {
         .then(response => response.json())
         .then(posts => {
             // dataUsers = posts;
-            const contentBody = document.querySelector('.content-body');
-            const users = posts.map(user => {
-                return `
+            if (Array.isArray(posts) && posts.length != 0) {
+                const contentBody = document.querySelector('.content-body');
+                const users = posts.map(user => {
+                    return `
                 <tr>
                     <td>${user.user_id}</td>
                     <td>${user.username}</td>
@@ -67,12 +69,16 @@ function fetchDataUser(type, data = {}, id) {
                     </td>
                 </tr>
                 `;
-            })
-            contentBody.innerHTML = users.join('');
-            modal.classList.remove('modal-active');
-            formUser.reset();
-            deleteUser();
-            updateUser();
+                })
+                contentBody.innerHTML = users.join('');
+                modal.classList.remove('modal-active');
+                formUser.reset();
+                deleteUser();
+                updateUser();
+            }
+            else {
+                confirm("loi khong the tao user");
+            }
         })
 }
 

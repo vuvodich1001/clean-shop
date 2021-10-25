@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookStore</title>
+    <!-- font roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Work+Sans:wght@700&display=swap" rel="stylesheet">
     <!-- font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- slick slider -->
@@ -22,7 +26,10 @@
         <div class="grid wide">
             <nav>
                 <div class="nav-logo">
-                    <a href="index.php"><img src="public/frontend/images/logo.png" alt=""></a>
+                    <!-- <a href="index.php"><img src="public/frontend/images/logo.png" alt=""></a> -->
+                    <a href="index.php">
+                        <h1><i class="fas fa-book-open"></i> BOOKSTORE</h1>
+                    </a>
                 </div>
                 <div class="nav-search">
                     <div class="nav-search-wrap">
@@ -53,9 +60,9 @@
                                 <p class="account">Nguyễn Công Vũ<i class="account-icon fas fa-sort-down"></i></p>
                             </div>
                             <div class="nav-auth-body">
-                                <a href="" class="btn-account">Đơn hàng của tôi</a>
-                                <a href="" class="btn-account">Tài khoản của tôi</a>
-                                <a href="" class="btn-account">Nhận xét sản phẩm đã mua</a>
+                                <a href="index.php?controller=account&action=redirectOrder" class="btn-account">Đơn hàng của tôi</a>
+                                <a href="index.php?controller=account&action=redirectInfo" class="btn-account">Tài khoản của tôi</a>
+                                <a href="index.php?controller=account&action=redirectComment" class="btn-account">Nhận xét sản phẩm đã mua</a>
                                 <a href="index.php?controller=auth&action=customerLogout" class="btn-account">Thoát tài khoản</a>
                             </div>';
                     }

@@ -39,12 +39,12 @@
 
                         <div class="cus-group">
                             <div class="form-group">
-                                <label for="">Số điện thoại</label>
-                                <input type="text" name="" id="" placeholder="0123456789">
-                            </div>
-                            <div class="form-group">
                                 <label for="">Tỉnh/ Thành phố</label>
                                 <input type="text" name="" id="" placeholder="TPHCM">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Số điện thoại</label>
+                                <input type="text" name="" id="" placeholder="0123456789">
                             </div>
                             <div class="form-group">
                                 <label for="">zipcode</label>
@@ -62,7 +62,10 @@
             <div class="payment-method">
                 <div class="payment-group">
                     <input type="radio" name="payment" id="">
-                    Thanh toán qua ví điện tử - VNPAY
+                    Thanh toán qua Paypal
+                    <div id="paypal-button">
+
+                    </div>
                 </div>
                 <div class="payment-group">
                     <input type="radio" name="payment" id="">
@@ -112,4 +115,100 @@
         </div>
     </div>
 </div>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+    <?php if ($total > 0) : ?>
+        paypal.Button.render({
+                // Configure environment
+                env: 'sandbox',
+                client: {
+                    sandbox: 'AR0u7adFeGxIi6UCxILLq1fVwPccRQtcwY2NmGbCZzGoA1Z7-oz1zgBw_nO-N_rSwo1_9Wq9OJR4WP03',
+                    // production: 'demo_production_client_id'
+                },
+                // Customize button (optional)
+                locale: 'en_VN',
+                style: {
+                    size: 'medium',
+                    color: 'gold',
+                    shape: 'pill',
+                    label: 'pay'
+                },
+
+                // Enable Pay Now checkout flow (optional)
+                commit: true,
+                // Set up a payment
+                payment: function(data, actions) {
+                    return actions.payment.create({
+                        transactions: [{
+                            amount: {
+                                total: <?php echo $total * 0.000044; ?>,
+                                currency: 'USD',
+                                details: {
+                                    subtotal: <?php echo $total * 0.000044; ?>,
+                                    tax: '0.00',
+                                    shipping: '0.00',
+                                    handling_fee: '0.00',
+                                    shipping_discount: '0.00',
+                                    insurance: '0.00'
+                                }
+                            },
+                            description: 'The payment transaction description.',
+                            custom: '90048630024435',
+                            // insert unique invoice
+                            invoice_number: '12345',
+                            // payer: {
+                            //     payment_method: 'paypal', 
+                            //     status: 'VERIFIED',
+                            //     payer_info: {
+                            //         email: 'test@gmail.com',
+
+                            //     }
+                            // },
+                            payment_options: {
+                                allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
+                            },
+                            item_list: {
+                                items: [
+                                    <?php
+                                    foreach ($_SESSION['cart'] as $cart) {
+                                        $name = $cart['book']['title'];
+                                        $description = $cart['book']['author'];
+                                        $quantity = $cart['quantity'];
+                                        $price = $cart['book']['price'] * 0.000044;
+                                        echo "{
+                                            name: '$name',
+                                            description: '$description',
+                                            quantity: $quantity,
+                                            price: $price,
+                                            currency: 'USD'
+                                        },";
+                                    }
+                                    ?>
+                                ],
+                                shipping_address: {
+                                    recipient_name: 'vu nguyen',
+                                    line1: '7/56/2, long truong',
+                                    line2: 'thu duc',
+                                    city: 'hcmc',
+                                    country_code: 'VN',
+                                    postal_code: '12345',
+                                    phone: '0123456789',
+
+                                }
+                            }
+                        }],
+                        note_to_payer: `Quy đổi: 1 VND = 0.000044 USD, Liên hệ với chúng tôi nếu bạn có bất kì thắc mắc nào!`,
+                    });
+                },
+                // Execute the payment
+                onAuthorize: function(data, actions) {
+                    return actions.payment.execute().then(function() {
+                        // Show a confirmation message to the buyer
+                        window.alert('Cảm ơn bạn đã mua hàng!');
+                    });
+                }
+            },
+            '#paypal-button');
+    <?php endif ?>
+</script>
 <?php $this->view('partitions.frontend.footer') ?>

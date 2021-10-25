@@ -22,9 +22,9 @@
                 <!-- <p class="detail-description"><strong>Description: </strong><?php echo $book['description']; ?></p> -->
                 <div class="detail-quantity">
                     <strong> Số lượng: </strong>
-                    <button>+</button>
+                    <button><i class="fas fa-plus"></i></button>
                     <span class="cur-quantity">1</span>
-                    <button>-</button>
+                    <button><i class="fas fa-minus"></i></button>
                 </div>
 
                 <button book-id="<?php echo $book['book_id'] ?>" class="btn btn-addtocart active"><i class="fas fa-plus-circle"></i> Thêm vào giỏ hàng</button>

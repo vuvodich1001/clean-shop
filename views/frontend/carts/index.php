@@ -5,7 +5,7 @@
             <div class="shopping-cart">
                 <div class="shopping-cart-wrap">
                     <h2>Giỏ hàng của bạn</h2>
-                    <button class="btn btn-delete-all active"><i class="far fa-trash-alt"></i> Tất cả</button>
+                    <!-- <button class="btn btn-delete-all active"><i class="far fa-trash-alt"></i> Tất cả</button> -->
                 </div>
                 <table>
                     <thead>
