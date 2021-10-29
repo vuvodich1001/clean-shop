@@ -30,9 +30,9 @@
             <div class="col l-2-4">
                 <h4>Phương thức thanh toán</h4>
                 <div class="payment">
-                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/visa.svg" alt="">
-                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/cash.svg" alt="">
-                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/internet-banking.svg" alt="">
+                    <!-- <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/visa.svg" alt=""> -->
+                    <!-- <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/cash.svg" alt="">
+                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/internet-banking.svg" alt=""> -->
                 </div>
             </div>
             <div class="col l-2-4">
@@ -51,11 +51,11 @@
         <form action="index.php" id="form-login" method="POST">
             <h3>Thành viên đăng nhập</h3>
             <div class="form-group">
-                <label for="">Username</label>
+                <label for="">Tài Khoản</label>
                 <input type="text" name="username" id="username">
             </div>
             <div class="form-group">
-                <label for="">Password</label>
+                <label for="">Mật khẩu</label>
                 <input type="password" name="password" id="password" autocomplete="off">
             </div>
             <p class="login-fail">Tài khoản hoặc mật khẩu không chính xác</p>
@@ -65,21 +65,27 @@
 
         <form action="" id="form-register" method="">
             <h3>Thành viên đăng ký</h3>
-            <div class="form-group">
-                <label for="">Username</label>
-                <input type="text" name="username" id="name">
+            <div class="name-group">
+                <div class="form-group">
+                    <label for="">Họ</label>
+                    <input type="text" name="first-name" id="first-name">
+                </div>
+                <div class="form-group">
+                    <label for="">Tên</label>
+                    <input type="text" name="last-name" id="last-name">
+                </div>
             </div>
             <div class="form-group">
-                <label for="">email</label>
+                <label for="">Email</label>
                 <input type="email" name="email" id="email">
             </div>
             <div class="form-group">
-                <label for="">Phone</label>
-                <input type="text" name="phone" id="phone">
+                <label for="">Mật khẩu</label>
+                <input type="password" name="rpassword" id="rpassword">
             </div>
             <div class="form-group">
-                <label for="">Password</label>
-                <input type="password" name="rpassword" id="rpassword" autocomplete="off">
+                <label for="">Nhập lại mật khẩu</label>
+                <input type="password" name="crpassword" id="crpassword" autocomplete="off">
             </div>
             <button class="btn btn-submit">Đăng ký</button>
             <div class="btn-close-form"><i class="fas fa-times"></i></div>
@@ -94,11 +100,13 @@
 <script src="./public/frontend/js/checkout.js"></script>
 <script src="./public/frontend/js/bookslider.js"></script>
 <script src="./public/frontend/js/account.js"></script>
+<script src="./public/frontend/js/voucher.js"></script>
 
 <!-- slick slider and jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    // validator for form login and register
     Validator({
         form: '#form-login',
         rules: [
@@ -112,8 +120,8 @@
                     body: formData
                 })
                 .then(response => response.json())
-                .then(flag => {
-                    if (flag == 1) {
+                .then(check => {
+                    if (check == 1) {
                         document.querySelector('#form-login').submit();
                     } else {
                         document.querySelector('.login-fail').style.display = 'block';
@@ -125,12 +133,37 @@
     Validator({
         form: '#form-register',
         rules: [
-            isRequired('#name'),
+            isRequired('#first-name'),
+            isRequired('#last-name'),
+            isRequired('#email'),
             isEmail('#email'),
-            isRequired('#phone'),
             isRequired('#rpassword'),
-            minLength('#rpassword', 6)
-        ]
+            minLength('#rpassword', 6),
+            isRequired('#crpassword'),
+            minLength('#crpassword', 6),
+            isConfirmed('#crpassword', () => {
+                return document.querySelector('#rpassword').value;
+            })
+        ],
+        onSubmit(formData) {
+            fetch('index.php?controller=customer&action=registerCustomer', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(check => {
+                    if (check == 1) {
+                        let btnCloses = document.querySelectorAll('.btn-close-form');
+                        btnCloses.forEach(btnClose => {
+                            btnClose.click();
+                        });
+                        alert('Bạn đã đăng ký thành công!');
+                    } else {
+                        alert('Đăng kí thất bại !!!')
+                    }
+
+                })
+        }
     })
 
     // book-slider

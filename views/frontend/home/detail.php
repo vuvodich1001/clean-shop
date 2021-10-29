@@ -4,7 +4,7 @@
     <div class="row container container-detail">
         <div class="col l-3">
             <div class="book-detail-img">
-                <img src="public/admin/uploads/<?php echo $book['image']; ?>" alt="">
+                <img src="public/admin/uploads/<?php echo $book['main_image']; ?>" alt="">
             </div>
 
             <div class="book-detail-share">
@@ -45,7 +45,7 @@
         <?php foreach ($bookRelates as $book) { ?>
             <div class="col l-2">
                 <a href="index.php?controller=book&action=bookDetail&id=<?php echo $book['book_id'] ?>" class="item">
-                    <img src="public/admin/uploads/<?php echo $book['image'] ?>" alt="">
+                    <img src="public/admin/uploads/<?php echo $book['main_image'] ?>" alt="">
                     <div class="item-body">
                         <h4 class="item-title"><?php echo $book['title'] ?></h4>
                         <p class="item-price"><?php echo number_format($book['price'], 0, '.', '.') ?> VNĐ</p>

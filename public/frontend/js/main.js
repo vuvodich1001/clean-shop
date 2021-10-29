@@ -22,7 +22,7 @@ function fetchData(type, val, str) {
                     return `
                         <div class="col l-2-4 m-4 c-6">
                             <a href="index.php?controller=book&action=bookDetail&id=${book['book_id']}" class="item">
-                                <img src="public/admin/uploads/${book.image}" alt="">
+                                <img src="public/admin/uploads/${book.main_image}" alt="">
                                 <div class="item-body">
                                     <h4 class="item-title">${book.title}</h4>
                                     <p class="item-price">${bookPrice} VNĐ</p>

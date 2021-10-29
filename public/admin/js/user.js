@@ -53,6 +53,7 @@ function fetchDataUser(type, data = {}, id) {
         .then(response => response.json())
         .then(posts => {
             // dataUsers = posts;
+            console.log(posts);
             if (Array.isArray(posts) && posts.length != 0) {
                 const contentBody = document.querySelector('.content-body');
                 const users = posts.map(user => {

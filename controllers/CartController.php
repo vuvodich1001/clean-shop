@@ -2,10 +2,12 @@
 
 class CartController extends BaseController {
     private $bookModel;
-
+    private $customerModel;
     public function __construct() {
         $this->loadModel('BookModel');
+        $this->loadModel('CustomerModel');
         $this->bookModel = new BookModel();
+        $this->customerModel = new CustomerModel();
         session_start();
     }
     public function index() {
@@ -84,7 +86,11 @@ class CartController extends BaseController {
         $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
             return $acc + $value['book']['price'] * $value['quantity'];
         }, 0);
-        return $this->view('frontend.carts.checkout', ['carts' => $_SESSION['cart'], 'total' => $total]);
+        $_SESSION['order']['total'] = $total + $total * 0.05;
+        $_SESSION['order']['shippingFee'] = $total * 0.05;
+        $_SESSION['order']['subtotal'] = $total;
+        $address = $this->customerModel->getCustomerAddressById($_SESSION['customer']['customer_id']);
+        return $this->view('frontend.carts.checkout', ['carts' => $_SESSION['cart'], 'total' => $total, 'address' => $address]);
     }
     public function removeCart() {
         session_destroy();

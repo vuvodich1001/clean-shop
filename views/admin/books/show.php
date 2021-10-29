@@ -26,7 +26,7 @@
                     <td><?php echo $book['title'] ?></td>
                     <td><?php echo $book['author'] ?></td>
                     <td><?php echo $book['price'] ?></td>
-                    <td><img src="public/admin/uploads/<?php echo $book['image'] ?>" alt=""></td>
+                    <td><img src="public/admin/uploads/<?php echo $book['main_image'] ?>" alt=""></td>
                     <td>
                         <p><?php echo $book['description'] ?></p>
                     </td>

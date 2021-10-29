@@ -32,7 +32,10 @@ class BookController extends BaseController {
         if ($file_error == UPLOAD_ERR_OK) {
             $tmp_name = $_FILES[$selector]['tmp_name'];
             $name = basename($_FILES[$selector]['name']);
-            move_uploaded_file($tmp_name, $uploads_dir . $name);
+            if (file_exists($uploads_dir . $name)) {
+                // do nothing
+            } else
+                move_uploaded_file($tmp_name, $uploads_dir . $name);
         }
     }
 
@@ -48,7 +51,7 @@ class BookController extends BaseController {
             'category_id' => $categoryId,
             'title' => $title,
             'author' =>  $author,
-            'image' => $image,
+            'main_image' => $image,
             'price' => $price,
             'description' => $description
         ];
@@ -127,5 +130,8 @@ class BookController extends BaseController {
         $name = $_GET['name'];
         $books = $this->bookModel->searchBook($name);
         echo json_encode($books);
+    }
+
+    public function favouriteBook() {
     }
 }

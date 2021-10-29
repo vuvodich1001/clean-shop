@@ -45,29 +45,30 @@
                     </div>
                     <?php
                     if (session_status() === PHP_SESSION_NONE) session_start();
-                    if (!isset($_SESSION['customer'])) {
-                        echo '<div class="nav-auth-text">
-                                <p>Đăng nhập/ Đăng ký</p>
-                                <p class="account">Tài khoản<i class="account-icon fas fa-sort-down"></i></p>
-                            </div>
-                            <div class="nav-auth-body">
-                                <a class="btn-auth btn-login">Đăng nhập</a>
-                                <a class="btn-auth btn-register">Tạo tài khoản</a>
-                            </div>';
-                    } else {
-                        echo '<div class="nav-auth-text">
-                                <p>Tài khoản</p>
-                                <p class="account">Nguyễn Công Vũ<i class="account-icon fas fa-sort-down"></i></p>
-                            </div>
-                            <div class="nav-auth-body">
-                                <a href="index.php?controller=account&action=redirectOrder" class="btn-account">Đơn hàng của tôi</a>
-                                <a href="index.php?controller=account&action=redirectInfo" class="btn-account">Tài khoản của tôi</a>
-                                <a href="index.php?controller=account&action=redirectComment" class="btn-account">Nhận xét sản phẩm đã mua</a>
-                                <a href="index.php?controller=auth&action=customerLogout" class="btn-account">Thoát tài khoản</a>
-                            </div>';
-                    }
-
+                    if (!isset($_SESSION['customer'])) { ?>
+                        <div class="nav-auth-text">
+                            <p>Đăng nhập/ Đăng ký</p>
+                            <p class="account">Tài khoản<i class="account-icon fas fa-sort-down"></i></p>
+                        </div>
+                        <div class="nav-auth-body">
+                            <a class="btn-auth btn-login">Đăng nhập</a>
+                            <a class="btn-auth btn-register">Tạo tài khoản</a>
+                        </div>
+                    <?php } else {
+                        $firstName = ucfirst($_SESSION['customer']['first_name']);
+                        $lastName = ucfirst($_SESSION['customer']['last_name']);
                     ?>
+                        <div class="nav-auth-text">
+                            <p>Tài khoản</p>
+                            <p class="account"> <?php echo $firstName . ' ' . $lastName ?> <i class="account-icon fas fa-sort-down"></i></p>
+                        </div>
+                        <div class="nav-auth-body">
+                            <a href="index.php?controller=account&action=redirectOrder" class="btn-account">Đơn hàng của tôi</a>
+                            <a href="index.php?controller=account&action=redirectInfo" class="btn-account">Tài khoản của tôi</a>
+                            <a href="index.php?controller=account&action=redirectComment" class="btn-account">Nhận xét sản phẩm đã mua</a>
+                            <a href="index.php?controller=auth&action=customerLogout" class="btn-account">Thoát tài khoản</a>
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <div class="nav-cart">

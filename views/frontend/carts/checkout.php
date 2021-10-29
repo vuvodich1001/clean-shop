@@ -5,7 +5,7 @@
             <a href="index.php?controller=cart" class="cart-back"><i class="fas fa-angle-left"></i> Back to cart</a>
             <h2>Địa chỉ giao hàng</h2>
             <div class="shipping-address">
-                <div class="address-group">
+                <!-- <div class="address-group">
                     <input type="radio" name="address" id="">
                     <span class="cus-name">Vu Nguyen</span>
                     <span class="cus-address">7/56/2, đường số 6, phường long trường, quận 9</span>
@@ -16,41 +16,73 @@
                     <span class="cus-name">Mai Ngon</span>
                     <span class="cus-address">số 7, đường 42, phường bình trưng đông, quận 2</span>
                     ,phone :<span>0123456789</span>
-                </div>
+                </div> -->
+                <?php if (empty($address)) {
+                } else {
+                    foreach ($address as $address) {
+                        $userName = ucfirst($address['first_name']) . ' ' . ucfirst($address['last_name']);
+                        $shippingAddress = $address['line1'] . ', ' . $address['line2'] . ', ' . $address['city'];
+                ?>
+                        <div class="address-group">
+                            <input type="radio" name="address" id="<?php echo $address['address_id'] ?>">
+                            <span class="cus-name"><?php echo $userName ?></span>
+                            <span class="cus-address"><?php echo $shippingAddress ?></span>
+                            ,phone :<span><?php echo $address['phone'] ?></span>
+                        </div>
+                <?php }
+                } ?>
                 <div class="address-group">
-                    <input type="radio" name="address" id="">
-                    <span class="new-address">Thêm địa chỉ mới</span>
-                    <form action="" id="address-form">
+                    <input type="radio" name="address" class="new-address" id="">
+                    <span class="cus-name">Thêm địa chỉ mới</span>
+                    <div class="address-button">
+                        <i class="address-button-left fas fa-chevron-left"></i>
+                        <i class="address-button-down fas fa-chevron-down"></i>
+                    </div>
+                    <form action="" id="address-form" method="POST">
                         <div class="name-group">
                             <div class="form-group">
                                 <label for="">Họ</label>
-                                <input type="text" name="" id="" placeholder="Nguyen">
+                                <input type="text" name="firstname" id="firstname" placeholder="Nguyen">
                             </div>
                             <div class="form-group">
                                 <label for="">Tên</label>
-                                <input type="text" name="" id="" placeholder="Vu">
+                                <input type="text" name="lastname" id="lastname" placeholder="Vu">
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="">Địa chỉ</label>
-                            <input type="text" name="" id="" placeholder="7/56/2, duong so 6, phuong long truong">
-                        </div>
+                        <div class="name-group">
+                            <div class="form-group">
+                                <label for="">Địa chỉ</label>
+                                <input type="text" name="address" id="address" placeholder="7/56/2, duong so 6">
+                            </div>
 
-                        <div class="cus-group">
+                            <div class="form-group">
+                                <label for="">Xã/ Phường</label>
+                                <input type="text" name="ward" id="ward" placeholder="Long truong">
+                            </div>
+                        </div>
+                        <div class="name-group">
+                            <div class="form-group">
+                                <label for="">Quận/ Huyện</label>
+                                <input type="text" name="district" id="district" placeholder="TPHCM">
+                            </div>
                             <div class="form-group">
                                 <label for="">Tỉnh/ Thành phố</label>
-                                <input type="text" name="" id="" placeholder="TPHCM">
+                                <input type="text" name="city" id="city" placeholder="TPHCM">
                             </div>
+                        </div>
+                        <div class="name-group">
                             <div class="form-group">
                                 <label for="">Số điện thoại</label>
-                                <input type="text" name="" id="" placeholder="0123456789">
+                                <input type="text" name="phone" id="phone" placeholder="0123456789">
                             </div>
                             <div class="form-group">
                                 <label for="">zipcode</label>
-                                <input type="text" name="" id="" placeholder="1234">
+                                <input type="text" name="zipcode" id="zipcode" placeholder="1234">
                             </div>
                         </div>
+
+                        <button class="address-form-button"></button>
                     </form>
                 </div>
             </div>
@@ -73,7 +105,8 @@
                 </div>
             </div>
 
-            <button class="btn active">Đặt hàng</button>
+            <a href="index.php" class="btn active btn-checkout">Đặt hàng</a>
+
         </div>
 
         <div class="col l-4">
@@ -82,7 +115,7 @@
                 <div class="order-list">
                     <?php foreach ($carts as $cart) { ?>
                         <div class="order-item">
-                            <img src="./public/admin/uploads/<?php echo $cart['book']['image'] ?>" alt="">
+                            <img src="./public/admin/uploads/<?php echo $cart['book']['main_image'] ?>" alt="">
                             <div class="order-group">
                                 <p class="order-title"><?php echo $cart['book']['title'] ?></p>
                                 <p class="order-author"><?php echo  $cart['book']['author'] ?></p>
@@ -109,7 +142,7 @@
 
                 <div class="order-total">
                     <span>Tổng</span>
-                    <span class="order-total"><?php echo number_format($total, 0, '.', '.'); ?>đ</span>
+                    <span class="total"><?php echo number_format($total, 0, '.', '.'); ?>đ</span>
                 </div>
             </div>
         </div>
@@ -155,7 +188,7 @@
                             description: 'The payment transaction description.',
                             custom: '90048630024435',
                             // insert unique invoice
-                            invoice_number: '12345',
+                            // invoice_number: '12345',
                             // payer: {
                             //     payment_method: 'paypal', 
                             //     status: 'VERIFIED',

@@ -1,6 +1,6 @@
 function authentication() {
     let btnLogins = document.querySelectorAll('.btn-login');
-    let btnRegister = document.querySelector('.btn-register');
+    let btnRegisters = document.querySelectorAll('.btn-register');
     let loginFail = document.querySelector('.login-fail');
     let modal = document.querySelector('.modal');
     let btnClose = document.querySelectorAll('.btn-close-form');
@@ -31,22 +31,24 @@ function authentication() {
         })
     }
 
-    if (btnRegister) {
-        btnRegister.addEventListener('click', e => {
-            modal.classList.add('modal-active');
-            formRegister.style.display = 'block';
-            btnClose[1].addEventListener('click', e => {
-                modal.classList.remove('modal-active');
-                formRegister.style.display = 'none';
-                formRegister.reset();
-                let invalidInputs = formRegister.querySelectorAll('.form-group');
-                invalidInputs.forEach(invalidInput => {
-                    if (invalidInput.classList.contains('invalid')) {
-                        let errorMessage = invalidInput.querySelector('.form-message');
-                        errorMessage.remove();
-                        invalidInput.classList.remove('invalid');
-                    }
-                })
+    if (btnRegisters) {
+        btnRegisters.forEach(btnRegister => {
+            btnRegister.addEventListener('click', e => {
+                modal.classList.add('modal-active');
+                formRegister.style.display = 'block';
+                btnClose[1].addEventListener('click', e => {
+                    modal.classList.remove('modal-active');
+                    formRegister.style.display = 'none';
+                    formRegister.reset();
+                    let invalidInputs = formRegister.querySelectorAll('.form-group');
+                    invalidInputs.forEach(invalidInput => {
+                        if (invalidInput.classList.contains('invalid')) {
+                            let errorMessage = invalidInput.querySelector('.form-message');
+                            errorMessage.remove();
+                            invalidInput.classList.remove('invalid');
+                        }
+                    })
+                });
             });
         });
     }

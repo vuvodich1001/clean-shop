@@ -9,7 +9,7 @@
                                 <h2>Mã giảm giá</h2>
                                 <p>PreeShip trên mọi tỉnh thành</p>
                             </div>
-                            <button class="btn-receive-coupon">Nhận ngay</button>
+                            <a class="btn-receive-coupon" href="index.php?controller=home&action=coupon">Nhận ngay</a>
                         </div>
                     </div>
 
@@ -19,7 +19,7 @@
                                 <h2>Đăng ký để nhận voucher</h2>
                                 <p>Nhận voucher liền tay rước quà về nhà</p>
                             </div>
-                            <button class="btn-register-voucher">Đăng ký ngay</button>
+                            <a class="btn-register-voucher btn-register">Đăng ký ngay</a>
                         </div>
                     </div>
 
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="col l-4 c-12">
+            <div class="col l-4 m-0 c-0">
                 <div class="banner-item">
                     <h2>Săn sale sập sàn</h2>
                 </div>

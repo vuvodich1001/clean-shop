@@ -21,6 +21,8 @@ html {
 }
 
 .btn {
+  display: inline-block;
+  text-decoration: none;
   padding: 8px 15px;
   outline: none;
   border: none;

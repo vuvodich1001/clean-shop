@@ -1,19 +1,20 @@
 <?php
 
 class AuthController extends BaseController {
-    private $userModel;
+    private $customerModel;
     public function __construct() {
         session_start();
-        $this->loadModel('UserModel');
-        $this->userModel = new UserModel();
+        $this->loadModel('CustomerModel');
+        $this->customerModel = new CustomerModel();
     }
 
     public function customerLogin() {
         $check = 0;
         $username = $_POST['username'];
         $password = md5($_POST['password']);
-        if ($this->userModel->authenticate($username, $password) == 1) {
-            $_SESSION['customer'] = 1;
+        if ($this->customerModel->authenticate($username, $password) == 1) {
+            $customer = $this->customerModel->getCustomerByUsernameAndPassword($username, $password);
+            $_SESSION['customer'] = $customer;
             $check = 1;
         }
         echo json_encode($check);
@@ -23,9 +24,10 @@ class AuthController extends BaseController {
         unset($_SESSION['customer']);
         header('Location:index.php');
     }
-    public function authAdmin() {
+
+    public function adminLogin() {
     }
 
-    public function registerCustomer() {
+    public function adminLogout() {
     }
 }

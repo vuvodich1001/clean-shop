@@ -4,7 +4,7 @@ class Database {
     const HOST = 'localhost';
     const USERNAME = 'root';
     const PASSWORD = '';
-    const DB_NAME = 'bookstore';
+    const DB_NAME = 'store_dev';
 
     public function connect() {
         $connect = mysqli_connect(self::HOST, self::USERNAME, self::PASSWORD, self::DB_NAME);
