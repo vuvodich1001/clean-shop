@@ -1,10 +1,10 @@
 <?php
 
 class BaseModel extends Database {
-    protected $connect;
+    protected $db;
 
     public function __construct() {
-        $this->connect = $this->connect();
+        $this->db = $this->connect();
     }
 
     public function all($table, $select, $orderBy, $limit) {
@@ -14,48 +14,45 @@ class BaseModel extends Database {
 
         $sql = "select $field from $table $orderField limit $limit";
 
-        $result = $this->query($sql);
+        $result = $this->db->query($sql);
         $data = [];
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = $result->fetch()) {
             $data[] = $row;
         }
         return $data;
     }
 
     public function find($table, $id) {
-        $sql = "select * from $table where ${table}_id = $id limit 1";
-        $result = $this->query($sql);
-        return mysqli_fetch_assoc($result);
+        $sql = "select * from $table where ${table}_id = :id limit 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch();
     }
 
 
     public function create($table, $data) {
         $columns = implode(',', array_keys($data));
-        $values = array_map(function ($value) {
-            return is_numeric($value) ? $value : "'$value'";
-        }, $data);
-        $dataSets = implode(',', $values);
-        $sql = "insert into $table($columns) values($dataSets)";
-        $this->query($sql);
+        $placeHolders = implode(',', array_map(function ($value) {
+            return ':' . $value;
+        }, array_keys($data)));
+        $sql = "insert into $table($columns) values($placeHolders)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($data);
     }
 
     public function update($table, $id, $data) {
-        $dataSets = [];
-        foreach ($data as $key => $value) {
-            is_numeric($value) ? $dataSets[] = "$key = $value" : $dataSets[] = "$key = '$value'";
-        }
-
-        $dataSets = implode(',', $dataSets);
-        $sql = "update $table set $dataSets where ${table}_id = $id";
-        $this->query($sql);
+        $placeHolders = implode(',', array_map(function ($value) {
+            return $value . '=:' . $value;
+        }, array_keys($data)));
+        $data["${table}_id"] = $id;
+        $sql = "update $table set $placeHolders where ${table}_id =:${table}_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($data);
     }
 
     public function destroy($table, $id) {
-        $sql = "delete from $table where ${table}_id = $id";
-        $this->query($sql);
-    }
-
-    protected function query($sql) {
-        return mysqli_query($this->connect, $sql);
+        $sql = "delete from $table where ${table}_id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id' => $id]);
     }
 }

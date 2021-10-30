@@ -2,16 +2,18 @@
 class CustomerModel extends BaseModel {
     const TABLE = 'customer';
     public function authenticate($username, $password) {
-        $sql = "select * from customer where email= '$username' and password = '$password'";
-        $result = $this->query($sql);
-        return mysqli_num_rows($result);
+        $sql = "select * from customer where email= :username and password = :password";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['username' => $username, 'password' => $password]);
+        return $stmt->rowCount();
     }
 
     public function getCustomerByUsernameAndPassword($username, $password) {
-        $sql = "select * from customer where email = '$username' and password = '$password' limit 1";
-        $result = $this->query($sql);
+        $sql = "select * from customer where email = :username and password = :password limit 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['username' => $username, 'password' => $password]);
         $customer = [];
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = $stmt->fetch()) {
             $customer = $row;
         }
         return $customer;
@@ -26,10 +28,11 @@ class CustomerModel extends BaseModel {
     }
 
     public function getCustomerAddressById($id) {
-        $sql = "select * from customer_address where customer_id = $id";
-        $result = $this->query($sql);
+        $sql = "select * from customer_address where customer_id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id' => $id]);
         $address = [];
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = $stmt->fetch()) {
             $address[] = $row;
         }
         return $address;

@@ -5,13 +5,10 @@ class OrderModel extends BaseModel {
     const TABLE_CUSTOMER_ADDRESS = 'customer_address';
 
     public function gerOrderId($customerId) {
-        $sql = "select * from book_order where customer_id = $customerId order by order_date desc limit 1";
-        $result = $this->query($sql);
-        $orderId = 0;
-        while ($row = mysqli_fetch_assoc($result)) {
-            $orderId = $row['order_id'];
-        }
-        return $orderId;
+        $sql = "select * from book_order where customer_id = :customer_id order by order_date desc limit 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['customer_id' => $customerId]);
+        return $stmt->fetch()['order_id'];
     }
 
     public function createOrder($shippingAddress, $orderFee, $orderDetail, $customerId) {
@@ -23,5 +20,15 @@ class OrderModel extends BaseModel {
             $detail['order_id'] = $orderId;
             $this->create(self::TABLE_ORDER_DETAIL, $detail);
         }
+    }
+
+    public function checkDuplicateAddress($address) {
+        $placeHolders = implode(' and ', array_map(function ($value) {
+            return $value . '=:' . $value;
+        }, array_keys($address)));
+        $sql = "select * from customer_address where $placeHolders";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($address);
+        return $stmt->rowCount();
     }
 }

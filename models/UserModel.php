@@ -22,19 +22,20 @@ class UserModel extends BaseModel {
     }
 
     public function searchUser($str) {
-        $sql = "select * from user where username like '%$str%'";
-        $result = $this->query($sql);
+        $sql = "select * from user where username like :str";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['str' => $str]);
         $users = [];
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = $stmt->fetch()) {
             $users[] = $row;
         }
         return $users;
     }
 
     public function authenticate($username, $password) {
-        $sql = "select * from user where email = '$username' and password = '$password'";
-        // and password = 'vudai' or '1' = '1';
-        $result = $this->query($sql);
-        return mysqli_num_rows($result);
+        $sql = "select * from user where email = :username and password = :password";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['username' => $username, 'password' => $password]);
+        return $stmt->rowCount();
     }
 }

@@ -68,15 +68,8 @@ function checkout() {
                             body: formData
                         })
                             .then(response => response.json())
-                            .then(order => {
-                                console.log(order);
-                                // if (order == 1) {
-                                //     alert('Ban da mua hang thanh cong!');
-                                //     btnCheckout.click();
-                                // }
-                                // else {
-                                //     alert('Loi!!!')
-                                // }
+                            .then(error => {
+                                if (error == 1) alert('Địa chỉ giao hàng đã tồn tại!!!');
                             })
                     }
                 })

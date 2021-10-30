@@ -25,18 +25,22 @@
                 ?>
                         <div class="address-group">
                             <input type="radio" name="address" id="<?php echo $address['address_id'] ?>">
-                            <span class="cus-name"><?php echo $userName ?></span>
-                            <span class="cus-address"><?php echo $shippingAddress ?></span>
-                            ,phone :<span><?php echo $address['phone'] ?></span>
+                            <label for="<?php echo $address['address_id'] ?>">
+                                <span class="cus-name"><?php echo $userName ?></span>
+                                <span class="cus-address"><?php echo $shippingAddress ?></span>
+                                ,phone :<span><?php echo $address['phone'] ?></span>
+                            </label>
                         </div>
                 <?php }
                 } ?>
                 <div class="address-group">
-                    <input type="radio" name="address" class="new-address" id="">
-                    <span class="cus-name">Thêm địa chỉ mới</span>
+                    <input type="radio" name="address" class="new-address" id="new-address-id">
+                    <label for="new-address-id"><span class="cus-name">Thêm địa chỉ mới</span></label>
                     <div class="address-button">
-                        <i class="address-button-left fas fa-chevron-left"></i>
-                        <i class="address-button-down fas fa-chevron-down"></i>
+                        <label for="new-address-id">
+                            <i class="address-button-left fas fa-chevron-left"></i>
+                            <i class="address-button-down fas fa-chevron-down"></i>
+                        </label>
                     </div>
                     <form action="" id="address-form" method="POST">
                         <div class="name-group">

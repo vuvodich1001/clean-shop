@@ -22,19 +22,20 @@ class CategoryModel extends BaseModel {
     }
 
     public function searchCategory($str) {
-        $sql = "select * from category where name like '%$str%'";
-        $result = $this->query($sql);
+        $sql = "select * from category where name like :str";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['str' => '%' . $str . '%']);
         $users = [];
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = $stmt->fetch()) {
             $users[] = $row;
         }
         return $users;
     }
 
     public function findIndexByCategoryName($category) {
-        $sql = "select * from category where name = '$category'";
-        $result = $this->query($sql);
-        $row = mysqli_fetch_assoc($result);
-        return $row['category_id'];
+        $sql = "select * from category where name = :name";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['name' => $category]);
+        return $stmt->fetch()['category_id'];
     }
 }

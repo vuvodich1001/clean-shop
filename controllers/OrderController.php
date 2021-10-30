@@ -36,6 +36,11 @@ class OrderController extends BaseController {
             'zipcode' => $zipcode,
             'country' => 'VN',
         ];
+
+        if ($this->orderModel->checkDuplicateAddress($shippingAddress) >= 1) {
+            echo json_encode(1);
+            return;
+        }
         // order fee
         // data from $_SESSION['order']
         $total = $_SESSION['order']['total'];
