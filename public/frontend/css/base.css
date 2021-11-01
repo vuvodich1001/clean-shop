@@ -119,6 +119,19 @@ footer {
 }
 .payment {
   margin-top: 5px;
+  display: flex;
+}
+.payment i {
+  font-size: 30px;
+}
+.payment p {
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  font-weight: bold;
+  line-height: 28px;
+  padding: 0 5px;
+  border-radius: 5px;
+  color: var(--main-color);
 }
 .link-us {
   margin-top: 5px;

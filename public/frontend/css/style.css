@@ -1063,7 +1063,8 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 22px;
 }
 
-.address-group label:hover {
+.address-group label:hover,
+.payment-group label:hover {
   cursor: pointer;
 }
 
@@ -1089,6 +1090,15 @@ input[type="range"]::-webkit-slider-thumb {
 
 #address-form.address-active {
   display: block;
+}
+
+#address-form .address-form-button {
+  margin-top: 10px;
+  transition: all linear 0.2s;
+}
+
+#address-form .address-form-button:hover {
+  opacity: 0.8;
 }
 
 .name-group {
@@ -1354,7 +1364,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .voucher-item__expire {
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -1375,4 +1385,10 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 15px;
   margin-left: 10px;
   cursor: pointer;
+  background-color: #cfd9e0;
+  outline: none;
+  border: none;
+  padding: 5px 7px;
+  border-radius: 5px;
+  transition: all linear 0.2s;
 }

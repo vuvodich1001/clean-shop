@@ -27,7 +27,7 @@ function fetchData(type, val, str) {
                                     <h4 class="item-title">${book.title}</h4>
                                     <p class="item-price">${bookPrice} VNĐ</p>
                                     <div class="item-rate">
-                                        <div class="item-rate__heart">
+                                        <div class="item-rate__heart" book-id=${book['book_id']}>
                                             <i class="heart-icon far fa-heart"></i>
                                             <i class="heart-icon-fill fas fa-heart"></i>
                                         </div>
@@ -133,14 +133,24 @@ function filterProduct() {
         btnPriceUpDown.addEventListener('click', filterBook);
     }
 }
-// Heart icon change
+// Heart icon change and add favourite book into db
 function heartIconChange() {
     let heartIcons = document.querySelectorAll('.item-rate__heart');
     if (heartIcons) {
         heartIcons.forEach(heartIcon => {
             heartIcon.onclick = function (e) {
                 e.preventDefault();
-                this.classList.toggle('heart-active');
+                let bookId = this.getAttribute('book-id');
+                fetch(`index.php?controller=book&action=addfavouriteBook&book-id=${bookId}`)
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result == 0) {
+                            alert('Đăng nhập để thêm vào mục sản phẩm yêu thích');
+                        }
+                        else {
+                            this.classList.toggle('heart-active');
+                        }
+                    })
             }
         }
         )
@@ -172,6 +182,7 @@ function searchBook() {
         })
     }
 }
+
 function start() {
     sideBarAction();
     let sidebarFirst = document.querySelector('.sidebar-item:first-child');

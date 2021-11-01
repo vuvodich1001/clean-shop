@@ -11,10 +11,11 @@ class OrderModel extends BaseModel {
         return $stmt->fetch()['order_id'];
     }
 
-    public function createOrder($shippingAddress, $orderFee, $orderDetail, $customerId) {
+    public function createOrder($shippingAddress, $orderFee, $orderDetail, $customerId, $check) {
         $bookOrder = array_merge($shippingAddress, $orderFee);
         $this->create(self::TABLE_ORDER, $bookOrder);
-        $this->create(self::TABLE_CUSTOMER_ADDRESS, $shippingAddress);
+        // check = 0 => not exists address before 
+        if ($check == 0) $this->create(self::TABLE_CUSTOMER_ADDRESS, $shippingAddress);
         $orderId = $this->gerOrderId($customerId);
         foreach ($orderDetail as $detail) {
             $detail['order_id'] = $orderId;
@@ -30,5 +31,14 @@ class OrderModel extends BaseModel {
         $stmt = $this->db->prepare($sql);
         $stmt->execute($address);
         return $stmt->rowCount();
+    }
+
+    public function findCustomerAddress($addressId) {
+        $sql = "select * from customer_address where address_id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id' => $addressId]);
+        $address = $stmt->fetch();
+        unset($address['address_id']);
+        return $address;
     }
 }

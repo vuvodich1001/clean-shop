@@ -13,7 +13,7 @@
                             <p class="info-title">Thông tin cá nhân</p>
                             <div class="form-group-info">
                                 <label for="">Họ và tên</label>
-                                <input type="text" name="" id="" value="Nguyễn Công Vũ">
+                                <input type="text" name="" id="" value="<?php echo ucfirst($customer['first_name']) . ' ' . ucfirst($customer['last_name']) ?>">
                             </div>
                             <div class="form-group-info">
                                 <label for="">Nickname</label>
@@ -56,7 +56,7 @@
                                     <i class="far fa-envelope"></i>
                                     <div>
                                         <p>Địa chỉ email</p>
-                                        <p>vunguyen.311001@gmail.com</p>
+                                        <p><?php echo $customer['email'] ?></p>
                                     </div>
                                 </div>
 

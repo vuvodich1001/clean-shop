@@ -4,6 +4,7 @@ class BookController extends BaseController {
     private $bookModel;
     private $categoryModel;
     public function __construct() {
+        session_start();
         $this->loadModel('BookModel');
         $this->loadModel('CategoryModel');
         $this->bookModel = new BookModel();
@@ -132,6 +133,20 @@ class BookController extends BaseController {
         echo json_encode($books);
     }
 
-    public function favouriteBook() {
+    public function addfavouriteBook() {
+        $bookId = $_GET['book-id'];
+        $customerId = 0;
+        if (isset($_SESSION['customer'])) {
+            $customerId = $_SESSION['customer']['customer_id'];
+        } else {
+            echo json_encode($customerId);
+            return;
+        }
+        $data = [
+            'customer_id' => $customerId,
+            'book_id' => $bookId
+        ];
+        $this->bookModel->createfavouriteBook($data);
+        echo json_encode(1);
     }
 }

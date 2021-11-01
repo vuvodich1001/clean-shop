@@ -74,7 +74,7 @@
                             </div>
                         </div>
 
-                        <button class="address-form-button"></button>
+                        <button class="btn active address-form-button">Tạo mới</button>
                     </form>
                 </div>
             </div>

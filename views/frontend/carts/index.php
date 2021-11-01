@@ -44,8 +44,8 @@
             <div class="shopping-cart-coupon">
                 <p>Sử dụng phiếu quà tặng, giảm giá</p>
                 <div class="coupon-wrap">
-                    <input type="text" name="" id="" placeholder="Mã giảm giá">
-                    <button> Áp dụng</button>
+                    <input type="text" name="coupon-code" id="coupon-code" placeholder="Mã giảm giá">
+                    <button class="btn-coupon"> Áp dụng</button>
                 </div>
             </div>
 
@@ -67,7 +67,7 @@
             <div class="shopping-cart-total">
                 <div class="checkout-wrap">
                     <span>Tổng cộng</span>
-                    <span class="checkout-total">
+                    <span class="checkout-total" value="<?php echo empty($total) ? 0 : $total ?>">
                         <?php echo empty($total) ? 0 : number_format($total, 0, '.', '.'); ?>đ
                     </span>
                 </div>

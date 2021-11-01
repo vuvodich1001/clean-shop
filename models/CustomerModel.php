@@ -23,6 +23,10 @@ class CustomerModel extends BaseModel {
         return $this->all(self::TABLE, $select, $orderBy, $limit);
     }
 
+    public function getById($customerId) {
+        return $this->find(self::TABLE, $customerId);
+    }
+
     public function createCustomer($data) {
         $this->create(self::TABLE, $data);
     }

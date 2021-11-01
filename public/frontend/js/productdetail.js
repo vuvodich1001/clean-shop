@@ -1,7 +1,6 @@
 function addToCart() {
     let btnAddToCart = document.querySelector('.btn-addtocart');
     let cartSuccess = document.querySelector('.nav-cart-success');
-
     cartSuccess.onclick = function (e) {
         if (e.target.closest('.cart-close')) {
             cartSuccess.classList.toggle('cart-active');

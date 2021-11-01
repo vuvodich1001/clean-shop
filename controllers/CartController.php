@@ -53,6 +53,8 @@ class CartController extends BaseController {
         $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
             return $acc + $value['book']['price'] * $value['quantity'];
         }, 0);
+        // remove voucher
+        if (isset($_SESSION['voucher'])) unset($_SESSION['voucher']);
         echo json_encode($total);
     }
 
@@ -66,6 +68,8 @@ class CartController extends BaseController {
         $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
             return $acc + $value['book']['price'] * $value['quantity'];
         }, 0);
+        // remove voucher
+        if (isset($_SESSION['voucher'])) unset($_SESSION['voucher']);
         echo json_encode($total);
     }
 
@@ -79,18 +83,32 @@ class CartController extends BaseController {
         $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
             return $acc + $value['book']['price'] * $value['quantity'];
         }, 0);
+        // remove voucher
+        if (isset($_SESSION['voucher'])) unset($_SESSION['voucher']);
         echo json_encode($total);
     }
 
     public function redirectCheckout() {
-        $total = array_reduce($_SESSION['cart'], function ($acc, $value) {
+        $subTotal = array_reduce($_SESSION['cart'], function ($acc, $value) {
             return $acc + $value['book']['price'] * $value['quantity'];
         }, 0);
-        $_SESSION['order']['total'] = $total + $total * 0.05;
-        $_SESSION['order']['shippingFee'] = $total * 0.05;
-        $_SESSION['order']['subtotal'] = $total;
+        $coupon = $_SESSION['voucher'] ?? 0;
+        $shippingFee = $subTotal * 0.05;
+        $total = $subTotal + $subTotal * 0.05 - $coupon;
+        // session order fee
+        $_SESSION['order']['total'] = $total;
+        $_SESSION['order']['shippingFee'] = $shippingFee;
+        $_SESSION['order']['subtotal'] = $subTotal;
+        $_SESSION['order']['discount'] = $coupon;
         $address = $this->customerModel->getCustomerAddressById($_SESSION['customer']['customer_id']);
-        return $this->view('frontend.carts.checkout', ['carts' => $_SESSION['cart'], 'total' => $total, 'address' => $address]);
+        return $this->view('frontend.carts.checkout', [
+            'carts' => $_SESSION['cart'],
+            'total' => $total,
+            'subTotal' => $subTotal,
+            'address' => $address,
+            'coupon' => $coupon,
+            'shippingFee' => $shippingFee
+        ]);
     }
     public function removeCart() {
         session_destroy();

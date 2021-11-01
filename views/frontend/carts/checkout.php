@@ -27,8 +27,7 @@
                             <input type="radio" name="address" id="<?php echo $address['address_id'] ?>">
                             <label for="<?php echo $address['address_id'] ?>">
                                 <span class="cus-name"><?php echo $userName ?></span>
-                                <span class="cus-address"><?php echo $shippingAddress ?></span>
-                                ,phone :<span><?php echo $address['phone'] ?></span>
+                                <span class="cus-address"><?php echo $shippingAddress ?></span>, phone :<span><?php echo $address['phone'] ?></span>
                             </label>
                         </div>
                 <?php }
@@ -97,15 +96,15 @@
             <h2>Phương thức thanh toán</h2>
             <div class="payment-method">
                 <div class="payment-group">
-                    <input type="radio" name="payment" id="">
-                    Thanh toán qua Paypal
+                    <input type="radio" name="payment" id="payment-paypal">
+                    <label for="payment-paypal">Thanh toán qua Paypal</label>
                     <div id="paypal-button">
 
                     </div>
                 </div>
                 <div class="payment-group">
-                    <input type="radio" name="payment" id="">
-                    Thanh toán khi nhận hàng
+                    <input type="radio" name="payment" id="payment-cod">
+                    <label for="payment-cod">Thanh toán khi nhận hàng</label>
                 </div>
             </div>
 
@@ -132,14 +131,14 @@
                     <div class="delivery">
                         <span>Vận chuyển</span>
                         <span class="delivery-cost">
-                            <?php echo number_format($total * 0.05, 0, '.', '.') ?>đ
+                            <?php echo number_format($shippingFee, 0, '.', '.') ?>đ
                         </span>
                     </div>
 
                     <div class="discount">
                         <span>Giảm giá</span>
                         <span class="discount-cost">
-                            -<?php echo number_format(20000, 0, '.', '.') ?>đ
+                            -<?php echo $coupon == 0 ? 0 : number_format($coupon, 0, '.', '.') ?>đ
                         </span>
                     </div>
                 </div>
@@ -178,29 +177,19 @@
                     return actions.payment.create({
                         transactions: [{
                             amount: {
-                                total: <?php echo $total * 0.000044; ?>,
+                                total: <?php echo $total * 0.00004; ?>,
                                 currency: 'USD',
                                 details: {
-                                    subtotal: <?php echo $total * 0.000044; ?>,
+                                    subtotal: <?php echo $subTotal * 0.00004; ?>,
                                     tax: '0.00',
-                                    shipping: '0.00',
+                                    shipping: <?php echo $shippingFee * 0.00004; ?>,
                                     handling_fee: '0.00',
-                                    shipping_discount: '0.00',
+                                    discount: <?php echo $coupon * 0.00004; ?>,
                                     insurance: '0.00'
                                 }
                             },
                             description: 'The payment transaction description.',
                             custom: '90048630024435',
-                            // insert unique invoice
-                            // invoice_number: '12345',
-                            // payer: {
-                            //     payment_method: 'paypal', 
-                            //     status: 'VERIFIED',
-                            //     payer_info: {
-                            //         email: 'test@gmail.com',
-
-                            //     }
-                            // },
                             payment_options: {
                                 allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
                             },
@@ -211,7 +200,7 @@
                                         $name = $cart['book']['title'];
                                         $description = $cart['book']['author'];
                                         $quantity = $cart['quantity'];
-                                        $price = $cart['book']['price'] * 0.000044;
+                                        $price = $cart['book']['price'] * 0.00004;
                                         echo "{
                                             name: '$name',
                                             description: '$description',
@@ -230,18 +219,28 @@
                                     country_code: 'VN',
                                     postal_code: '12345',
                                     phone: '0123456789',
-
                                 }
                             }
                         }],
-                        note_to_payer: `Quy đổi: 1 VND = 0.000044 USD, Liên hệ với chúng tôi nếu bạn có bất kì thắc mắc nào!`,
+                        note_to_payer: `Quy đổi: 1 VND = 0.00004 USD, Liên hệ với chúng tôi nếu bạn có bất kì thắc mắc nào!`,
                     });
                 },
                 // Execute the payment
                 onAuthorize: function(data, actions) {
                     return actions.payment.execute().then(function() {
-                        // Show a confirmation message to the buyer
-                        window.alert('Cảm ơn bạn đã mua hàng!');
+                        function findActiveRadio(selector) {
+                            let inputRadio = document.querySelector(`${selector} input[type="radio"]:checked`);
+                            return inputRadio ? inputRadio.id : 0;
+                        }
+                        let addressId = Number(findActiveRadio('.address-group'));
+                        if (Number.isInteger(addressId)) {
+                            fetch(`index.php?controller=order&action=createOrder&addressId=${addressId}&payment=paypal`)
+                                .then(response => response.json())
+                                .then(() => {
+                                    alert('Bạn đã đặt hàng thành công!');
+                                    location.href = 'index.php';
+                                })
+                        }
                     });
                 }
             },

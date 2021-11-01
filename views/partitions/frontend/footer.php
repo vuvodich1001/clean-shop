@@ -30,6 +30,8 @@
             <div class="col l-2-4">
                 <h4>Phương thức thanh toán</h4>
                 <div class="payment">
+                    <i class="fab fa-cc-paypal"></i>
+                    <p>COD</p>
                     <!-- <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/visa.svg" alt=""> -->
                     <!-- <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/cash.svg" alt="">
                     <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/internet-banking.svg" alt=""> -->
