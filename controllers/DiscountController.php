@@ -19,8 +19,14 @@ class DiscountController extends BaseController {
         $now = time();
         $expireDate = strtotime($voucher['discount_expire']);
         if (!empty($voucher) && $total >= $voucher['min_order'] && $now <= $expireDate) {
-            $_SESSION['voucher'] = $voucher['discount_number'];
-            echo json_encode($voucher['discount_number']);
+            $discount = 0;
+            if ($voucher['discount_type'] == 'money') {
+                $discount = $voucher['discount_number'];
+            } else {
+                $discount = $voucher['discount_percent'] * $total;
+            }
+            $_SESSION['voucher'] = $discount;
+            echo json_encode($discount);
         } else {
             echo json_encode(0);
         }

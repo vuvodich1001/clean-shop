@@ -2,7 +2,7 @@ function authentication() {
     let btnLogins = document.querySelectorAll('.btn-login');
     let btnRegisters = document.querySelectorAll('.btn-register');
     let loginFail = document.querySelector('.login-fail');
-    let modal = document.querySelector('.modal');
+    let modal = document.querySelector('.modal-auth');
     let btnClose = document.querySelectorAll('.btn-close-form');
     let authContent = document.querySelector('.auth-content');
     const formLogin = document.querySelector('#form-login');

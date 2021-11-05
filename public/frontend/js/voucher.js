@@ -6,7 +6,7 @@ function clickToCopy() {
                 copies.forEach(copy => copy.textContent = 'Copy');
                 let voucherCode = copy.parentElement.querySelector('.voucher-item__code');
                 navigator.clipboard.writeText(voucherCode.innerText);
-                copy.textContent = 'Copied!';
+                copy.innerHTML = '<i class="fas fa-check"></i> Copied!';
             })
         })
     }

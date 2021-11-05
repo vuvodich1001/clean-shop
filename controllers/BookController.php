@@ -3,12 +3,15 @@ class BookController extends BaseController {
 
     private $bookModel;
     private $categoryModel;
+    private $reviewModel;
     public function __construct() {
         session_start();
         $this->loadModel('BookModel');
         $this->loadModel('CategoryModel');
+        $this->loadModel('ReviewModel');
         $this->bookModel = new BookModel();
         $this->categoryModel = new CategoryModel();
+        $this->reviewModel = new ReviewModel();
     }
 
     // admin
@@ -105,6 +108,12 @@ class BookController extends BaseController {
         echo json_encode($books);
     }
 
+    public function getById() {
+        $bookId = $_GET['book-id'];
+        $book = $this->bookModel->getById($bookId);
+        echo json_encode($book);
+    }
+
     public function filterBook() {
         $sortby = $_GET['sortby'];
         $categoryName = $_GET['category'];
@@ -117,7 +126,16 @@ class BookController extends BaseController {
         $book = $this->bookModel->getById($bookId);
         $categoryName  = $this->bookModel->getCategoryNameById($bookId);
         $bookRelates = $this->bookModel->getByCategory($categoryName);
-        $this->view('frontend.home.detail', ['book' => $book, 'bookRelates' => $bookRelates]);
+        $reviews = $this->reviewModel->getAllReviewByBookId($bookId);
+        $statistics = $this->reviewModel->statisticReview($bookId);
+        $totalReview = $this->reviewModel->totalReview($bookId);
+        $this->view('frontend.home.detail', [
+            'book' => $book,
+            'bookRelates' => $bookRelates,
+            'reviews' => $reviews,
+            'statistics' => $statistics,
+            'totalReview' => $totalReview
+        ]);
     }
 
     public function pagination() {
@@ -148,5 +166,15 @@ class BookController extends BaseController {
         ];
         $this->bookModel->createfavouriteBook($data);
         echo json_encode(1);
+    }
+
+    public function removeFavouriteBook() {
+        $bookId = $_GET['book-id'];
+        $customerId = $_SESSION['customer']['customer_id'];
+        $data = [
+            'book_id' => $bookId,
+            'customer_id' => $customerId
+        ];
+        $this->bookModel->deleteFavouriteBook($data);
     }
 }

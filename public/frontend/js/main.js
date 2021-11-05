@@ -16,6 +16,15 @@ function fetchData(type, val, str) {
         .then(posts => {
             if (posts.length !== 0) {
                 const books = posts.map(book => {
+                    let ratingView = '';
+                    book.rating ? book.rating : book.rating = 0;
+                    for (let i = 1; i <= book.rating; i++) {
+                        ratingView += '<i class="fas fa-star"></i> ';
+                    }
+                    for (let i = 1; i <= 5 - book.rating; i++) {
+                        ratingView += '<i class="far fa-star"></i> ';
+                    }
+
                     let bookPrice = book.price.toString().replace(
                         /(\d)(?=(\d{3})+(?!\d))/g,
                         "$1.");
@@ -32,11 +41,7 @@ function fetchData(type, val, str) {
                                             <i class="heart-icon-fill fas fa-heart"></i>
                                         </div>
                                         <div class="item-rate__star">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
+                                            ${ratingView}
                                         </div>
                                     </div>
                                     <p class="item-author">${book.author}</p>
@@ -92,32 +97,36 @@ function findSideBarItemActive() {
 function filterProduct() {
     let btnPopular = document.querySelector('.btn-popular');
     let btnNew = document.querySelector('.btn-new');
-    let btnBestSeller = document.querySelector('.btn-popular');
+    let btnBestSeller = document.querySelector('.btn-best-seller');
     let btnPriceDownUp = document.querySelector('.btn-price-down-up');
     let btnPriceUpDown = document.querySelector('.btn-price-up-down');
 
     function filterBook(e) {
         removeFilterActive();
         let str = '';
-        let val = e.target.innerText;
+        let val = e.target.getAttribute('value');
         let btnPrice = document.querySelector('.home-filter .btn-price');
         let categoryName = findSideBarItemActive().firstChild.getAttribute('category-name');
         switch (val) {
-            case 'Mới nhất':
+            case 'new':
                 str = 'create_date desc';
                 e.target.classList.add('active');
                 break;
-            case 'Thấp - Cao':
+            case 'down-up':
                 str = 'price asc';
                 btnPrice.classList.add('active');
                 break;
-            case 'Cao - Thấp':
+            case 'up-down':
                 str = 'price desc';
                 btnPrice.classList.add('active');
                 break;
+            case 'best-seller':
+                str = 'rating desc';
+                e.target.classList.add('active');
             default:
                 break;
         }
+        console.log(str);
         fetchData('filter', categoryName, str);
     }
 
@@ -132,6 +141,10 @@ function filterProduct() {
     if (btnPriceUpDown) {
         btnPriceUpDown.addEventListener('click', filterBook);
     }
+
+    if (btnBestSeller) {
+        btnBestSeller.addEventListener('click', filterBook);
+    }
 }
 // Heart icon change and add favourite book into db
 function heartIconChange() {
@@ -141,7 +154,7 @@ function heartIconChange() {
             heartIcon.onclick = function (e) {
                 e.preventDefault();
                 let bookId = this.getAttribute('book-id');
-                fetch(`index.php?controller=book&action=addfavouriteBook&book-id=${bookId}`)
+                fetch(`index.php?controller=book&action=addFavouriteBook&book-id=${bookId}`)
                     .then(response => response.json())
                     .then(result => {
                         if (result == 0) {

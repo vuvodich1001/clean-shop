@@ -40,7 +40,7 @@ function checkout() {
             e.preventDefault();
             let addressId = Number(findActiveRadio('.address-group'));
             let paymentMethod = findActiveRadio('.payment-group');
-            if (!addressId) {
+            if (addressId == 0) {
                 alert('Chưa chọn địa chỉ giao hàng');
                 return;
             }

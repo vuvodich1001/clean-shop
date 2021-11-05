@@ -2,7 +2,7 @@
 <div class="grid wide">
     <div class="row account-container">
         <div class="col l-3">
-            <?php $this->view('frontend.accounts.sidebar') ?>
+            <?php $this->view('frontend.accounts.sidebar', ['info' => $info]) ?>
         </div>
         <div class="col l-9">
             <h3>Sổ địa chỉ</h3>
@@ -17,8 +17,7 @@
                             <input type="radio" name="address" id="<?php echo $address['address_id'] ?>">
                             <label for="<?php echo $address['address_id'] ?>">
                                 <span class="cus-name"><?php echo $userName ?></span>
-                                <span class="cus-address"><?php echo $shippingAddress ?></span>
-                                ,phone :<span><?php echo $address['phone'] ?></span>
+                                <span class="cus-address"><?php echo $shippingAddress ?></span>, phone :<span><?php echo $address['phone'] ?></span>
                             </label>
                         </div>
                 <?php }

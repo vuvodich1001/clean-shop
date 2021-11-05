@@ -36,11 +36,18 @@ class BookModel extends BaseModel {
         $sql = '';
         $stmt = '';
         if ($category == 'All') {
-            $sql = "select * from book limit 10";
+            $sql = "select b.*, round(avg(rating), 0) as rating 
+                from book b left join review r on b.book_id = r.book_id 
+                group by b.book_id 
+                limit 10;";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
         } else {
-            $sql = "select * from book b join category c on b.category_id = c.category_id where name=:name limit 10";
+            $sql = "select b.*, round(avg(rating), 0) as rating 
+                    from book b join category c on b.category_id = c.category_id left join review r on b.book_id = r.book_id 
+                    where c.name = :name 
+                    group by b.book_id 
+                    limit 10;";
             $stmt = $this->db->prepare($sql);
             $stmt->execute(['name' => $category]);
         }
@@ -55,13 +62,22 @@ class BookModel extends BaseModel {
         $sql = '';
         $stmt = '';
         if ($categoryName == 'All') {
-            $sql = "select * from book order by $sortby limit 10";
+            $sql = "select b.*, round(avg(rating), 0) as rating 
+                    from book b left join review r on b.book_id = r.book_id 
+                    group by b.book_id  
+                    order by $sortby 
+                    limit 10";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
         } else {
-            $sql = "select * from book b join category c on b.category_id = c.category_id where c.name = :name order by :sortby limit 10";
+            $sql = "select b.*, round(avg(rating), 0) as rating 
+                    from book b join category c on b.category_id = c.category_id left join review r on b.book_id = r.book_id 
+                    where c.name = :name 
+                    group by b.book_id 
+                    order by $sortby
+                    limit 10";
             $stmt = $this->db->prepare($sql);
-            $stmt->execute(['name' => $categoryName, 'sortby' => $sortby]);
+            $stmt->execute(['name' => $categoryName]);
         }
         $data = [];
         while ($row = $stmt->fetch()) {
@@ -135,6 +151,25 @@ class BookModel extends BaseModel {
         foreach ($bookIds as $bookId) {
             $book = $this->getById($bookId);
             $books[] = $book;
+        }
+        return $books;
+    }
+
+    public function deleteFavouriteBook($data) {
+        $sql = "delete from favourite_book where book_id = :book_id and customer_id = :customer_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($data);
+    }
+
+    public function getAllBookByCustomerId($customerId) {
+        $sql = "select distinct b.* from book_order bo join order_detail od on bo.order_id = od.order_id
+        join book b on od.book_id = b.book_id
+        where bo.customer_id = :customer_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['customer_id' => $customerId]);
+        $books = [];
+        while ($row = $stmt->fetch()) {
+            $books[] = $row;
         }
         return $books;
     }

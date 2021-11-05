@@ -2,27 +2,34 @@
 <div class="grid wide">
     <div class="row account-container">
         <div class="col l-3">
-            <?php $this->view('frontend.accounts.sidebar') ?>
+            <?php $this->view('frontend.accounts.sidebar', ['info' => $info]) ?>
         </div>
         <div class="col l-9">
             <h3>Đơn hàng của tôi</h3>
             <div class="account-body">
-                <table>
-                    <tr>
-                        <th>Mã đơn hàng</th>
-                        <th>Ngày mua</th>
-                        <th>Sản phẩm</th>
-                        <th>Tổng tiền</th>
-                        <th>Trạng thái đơn hàng</th>
-                    </tr>
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày mua</th>
+                            <th>Thanh toán</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái đơn hàng</th>
+                        </tr>
+                    </thead>
 
-                    <tr>
-                        <td><a href="">123456</a></td>
-                        <td>Ngày mua</td>
-                        <td>Sản phẩm</td>
-                        <td>Tổng tiền</td>
-                        <td>Trạng thái đơn hàng</td>
-                    </tr>
+                    <tbody>
+                        <?php foreach ($orders as $order) : ?>
+                            <tr>
+                                <td class="order-code"><a href="index.php?controller=account&action=orderDetail&order-id=<?php echo $order['order_id'] ?>">#<?php echo $order['order_id'] ?></a></td>
+                                <td><?php $time = strtotime($order['order_date']);
+                                    echo date('d/m/Y', $time); ?></td>
+                                <td><?php echo $order['payment_method'] ?></td>
+                                <td><?php echo number_format($order['total'], 0, '.', '.') ?>đ</td>
+                                <td><?php echo $order['status'] ?></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
                 </table>
             </div>
         </div>

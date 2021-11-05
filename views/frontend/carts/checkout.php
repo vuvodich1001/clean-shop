@@ -27,7 +27,7 @@
                             <input type="radio" name="address" id="<?php echo $address['address_id'] ?>">
                             <label for="<?php echo $address['address_id'] ?>">
                                 <span class="cus-name"><?php echo $userName ?></span>
-                                <span class="cus-address"><?php echo $shippingAddress ?></span>, phone :<span><?php echo $address['phone'] ?></span>
+                                <span class="cus-address"><?php echo $shippingAddress ?></span>, phone:<span><?php echo $address['phone'] ?></span>
                             </label>
                         </div>
                 <?php }

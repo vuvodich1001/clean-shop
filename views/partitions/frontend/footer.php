@@ -48,8 +48,8 @@
         </div>
     </div>
 </footer>
-<div class="modal modal-overlay">
-    <div class="auth-content">
+<div class="modal modal-overlay modal-auth">
+    <div class=" auth-content">
         <form action="index.php" id="form-login" method="POST">
             <h3>Thành viên đăng nhập</h3>
             <div class="form-group">
@@ -103,6 +103,8 @@
 <script src="./public/frontend/js/bookslider.js"></script>
 <script src="./public/frontend/js/account.js"></script>
 <script src="./public/frontend/js/voucher.js"></script>
+<script src="./public/frontend/js/favourite.js"></script>
+<script src="./public/frontend/js/review.js"></script>
 
 <!-- slick slider and jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

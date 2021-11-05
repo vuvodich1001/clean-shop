@@ -2,7 +2,7 @@
 <div class="grid wide">
     <div class="row container">
         <div class="col l-12">
-            <h1>Mã Giảm Giá</h1>
+            <h1>Mã Giảm Giá - Săn sale sập sàn</h1>
         </div>
         <?php foreach ($vouchers as $voucher) : ?>
             <div class="col l-3">

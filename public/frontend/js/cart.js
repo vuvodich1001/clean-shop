@@ -120,6 +120,9 @@ function addVoucher() {
                         }
                     })
             }
+            else {
+                alert('Chưa có mã giảm giá nào được áp dụng!!!');
+            }
         })
     }
 }

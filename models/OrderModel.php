@@ -4,11 +4,19 @@ class OrderModel extends BaseModel {
     const TABLE_ORDER_DETAIL = 'order_detail';
     const TABLE_CUSTOMER_ADDRESS = 'customer_address';
 
-    public function gerOrderId($customerId) {
+    public function getOrderId($customerId) {
         $sql = "select * from book_order where customer_id = :customer_id order by order_date desc limit 1";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['customer_id' => $customerId]);
         return $stmt->fetch()['order_id'];
+    }
+
+
+    public function findById($orderId) {
+        $sql = "select * from book_order where order_id = :order_id limit 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['order_id' => $orderId]);
+        return $stmt->fetch();
     }
 
     public function createOrder($shippingAddress, $orderFee, $orderDetail, $customerId, $check) {
@@ -16,7 +24,7 @@ class OrderModel extends BaseModel {
         $this->create(self::TABLE_ORDER, $bookOrder);
         // check = 0 => not exists address before 
         if ($check == 0) $this->create(self::TABLE_CUSTOMER_ADDRESS, $shippingAddress);
-        $orderId = $this->gerOrderId($customerId);
+        $orderId = $this->getOrderId($customerId);
         foreach ($orderDetail as $detail) {
             $detail['order_id'] = $orderId;
             $this->create(self::TABLE_ORDER_DETAIL, $detail);
@@ -40,5 +48,27 @@ class OrderModel extends BaseModel {
         $address = $stmt->fetch();
         unset($address['address_id']);
         return $address;
+    }
+
+    public function getAllOrderByCustomerId($customerId) {
+        $sql = "select * from book_order where customer_id = :customer_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['customer_id' => $customerId]);
+        $orders = [];
+        while ($row = $stmt->fetch()) {
+            $orders[] = $row;
+        }
+        return $orders;
+    }
+
+    public function getAllOrderDetailByOrderId($orderId) {
+        $sql = "select * from order_detail o join book b on o.book_id = b.book_id where order_id = :order_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['order_id' => $orderId]);
+        $orderDetails = [];
+        while ($row = $stmt->fetch()) {
+            $orderDetails[] = $row;
+        }
+        return $orderDetails;
     }
 }

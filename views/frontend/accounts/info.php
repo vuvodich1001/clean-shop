@@ -2,7 +2,7 @@
 <div class="grid wide">
     <div class="row account-container">
         <div class="col l-3">
-            <?php $this->view('frontend.accounts.sidebar') ?>
+            <?php $this->view('frontend.accounts.sidebar', ['info' => $info]) ?>
         </div>
         <div class="col l-9">
             <div class="account-info-person">
@@ -13,21 +13,21 @@
                             <p class="info-title">Thông tin cá nhân</p>
                             <div class="form-group-info">
                                 <label for="">Họ và tên</label>
-                                <input type="text" name="" id="" value="<?php echo ucfirst($customer['first_name']) . ' ' . ucfirst($customer['last_name']) ?>">
+                                <input type="text" name="" id="" disabled="disabled" value="<?php echo ucfirst($customer['first_name']) . ' ' . ucfirst($customer['last_name']) ?>">
                             </div>
                             <div class="form-group-info">
                                 <label for="">Nickname</label>
-                                <input type="text" name="" id="" value="vuvodich1001">
+                                <input type="text" name="" id="" value="">
                             </div>
                             <div class="form-group-info">
                                 <label for="">Ngày tháng năm sinh</label>
-                                <input type="text" name="" id="" value="01-12-2002" onfocus="this.type = 'date'">
+                                <input type="text" name="" id="" value="<?php echo empty($customer['birthday']) ? $customer['birthday'] : ''; ?>" onfocus="this.type = 'date'">
                             </div>
                             <div class="form-group-info">
                                 <label for="">Giới tính</label>
-                                <input type="radio" name="gender" id="" value="nam" checked>
+                                <input type="radio" name="gender" id="" value="nam" <?php if ($customer['gender'] == 'nam') echo 'checked' ?>>
                                 <span>Nam</span>
-                                <input type="radio" name="gender" id="" value="nu">
+                                <input type="radio" name="gender" id="" value="nu" <?php if ($customer['gender'] == 'nu') echo 'checked' ?>>
                                 <span>Nữ</span>
                             </div>
                             <div class="form-group-button">
@@ -37,22 +37,22 @@
                     <div class="col l-5">
                         <div class="more-info">
                             <p class="info-title">Số điện thoại và email</p>
-                            <div class="phone-info">
-                                <div class="phone-wrap">
+                            <div class="info-wrap">
+                                <div class="info-wrap-body">
                                     <i class="fas fa-phone-alt"></i>
                                     <div>
                                         <p>Số điện thoại</p>
-                                        <p>0123456789</p>
+                                        <p><?php echo empty($customer['phone']) ? 'Chưa có' : $customer['phone']; ?> </p>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <button class="btn-update-info">Cập nhật</button>
+                                    <button class="btn-update-info btn-account-action">Cập nhật</button>
                                 </div>
                             </div>
 
-                            <div class="email-info">
-                                <div class="email-wrap">
+                            <div class="info-wrap">
+                                <div class="info-wrap-body">
                                     <i class="far fa-envelope"></i>
                                     <div>
                                         <p>Địa chỉ email</p>
@@ -61,9 +61,37 @@
                                 </div>
 
                                 <div>
-                                    <button class="btn-update-info">Cập nhật</button>
+                                    <button class="btn-update-info btn-account-action">Cập nhật</button>
                                 </div>
                             </div>
+
+                            <p class="info-title">Bảo mật</p>
+
+                            <div class="info-wrap">
+                                <div class="info-wrap-body">
+                                    <i class="fas fa-lock"></i>
+                                    <div>
+                                        <p>Đổi mật khẩu</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn-update-info btn-account-action">Cập nhật</button>
+                                </div>
+                            </div>
+
+                            <p class="info-title">Liên kết mạng xã hội</p>
+                            <div class="info-wrap">
+                                <div class="info-wrap-body">
+                                    <i class="fab fa-facebook"></i>
+                                    <div>
+                                        <p>Facebook</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn-update-info btn-account-action">Liên kết</button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -51,10 +51,10 @@
             <div class="col l-10">
                 <div class="home-filter">
                     <span>Sắp xếp theo</span>
-                    <div class="btn btn-new">
+                    <div class="btn btn-new" value="new">
                         Mới nhất
                     </div>
-                    <div class="btn btn-best-seller">
+                    <div class="btn btn-best-seller" value="best-seller">
                         Bán chạy
                     </div>
                     <div class="btn btn-price">
@@ -62,8 +62,8 @@
                         <i class="btn-price-icon fas fa-chevron-down"></i>
                         <div class="price-sort">
                             <ul class="price-sort-list">
-                                <li class="btn-price-down-up">Thấp - Cao</li>
-                                <li class="btn-price-up-down">Cao - Thấp</li>
+                                <li class="btn-price-down-up" value="down-up">Thấp - Cao</li>
+                                <li class="btn-price-up-down" value="up-down">Cao - Thấp</li>
                             </ul>
                         </div>
                     </div>

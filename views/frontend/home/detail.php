@@ -55,11 +55,12 @@
                                 <i class="heart-icon-fill fas fa-heart"></i>
                             </div>
                             <div class="item-rate__star">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
+                                <?php for ($i = 1; $i <= $book['rating']; $i++) { ?>
+                                    <i class="fas fa-star"></i>
+                                <?php } ?>
+                                <?php for ($i = 1; $i <= 5 - $book['rating']; $i++) { ?>
+                                    <i class="far fa-star"></i>
+                                <?php } ?>
                             </div>
                         </div>
                         <p class="item-author"><?php echo $book['author'] ?></p>
@@ -89,65 +90,39 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <p>100 nhận xét</p>
+                                <p><?php echo $totalReview ?> nhận xét</p>
                             </div>
                         </div>
                         <div class="rating-summary-body">
-                            <div class="rating-summary-group">
-                                <div class="rating-star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+
+                            <?php for ($i = 5; $i >= 1; $i--) { ?>
+                                <div class="rating-summary-group">
+                                    <div class="rating-star">
+                                        <?php for ($j = 1; $j <= $i; $j++) { ?>
+                                            <i class="fas fa-star"></i>
+                                        <?php } ?>
+                                        <?php for ($j = 1; $j <= 5 - $i; $j++) { ?>
+                                            <i class="far fa-star"></i>
+                                        <?php } ?>
+                                    </div>
+                                    <span>
+                                        <?php
+                                        $check = 0;
+                                        foreach ($statistics as $statistic) {
+                                            if ($statistic['rating'] == $i) {
+                                                echo '<input type="range" min=0 max=' . $totalReview . ' value="' . $statistic['quantity'] . '">';
+                                                echo $statistic['quantity'];
+                                                $check = 1;
+                                            }
+                                        }
+                                        if (!$check) {
+                                            echo '<input type="range" value=0 min=0>';
+                                            echo 0;
+                                        }
+                                        ?>
+                                    </span>
                                 </div>
-                                <input type="range">
-                                <span>100</span>
-                            </div>
-                            <div class="rating-summary-group">
-                                <div class="rating-star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <input type="range">
-                                <span>100</span>
-                            </div>
-                            <div class="rating-summary-group">
-                                <div class="rating-star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <input type="range">
-                                <span>100</span>
-                            </div>
-                            <div class="rating-summary-group">
-                                <div class="rating-star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <input type="range">
-                                <span>100</span>
-                            </div>
-                            <div class="rating-summary-group">
-                                <div class="rating-star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <input type="range">
-                                <span>100</span>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -166,83 +141,57 @@
 
             </div>
 
-            <div class="row comment-body">
-                <div class="col l-4">
-                    <div class="comment-detail-head">
-                        <div class="customer-image">NA</div>
-                        <div class="customer-name">
-                            <h4>Nguyễn Văn A</h4>
-                            <p>Đã tham gia 1 năm trước</p>
-                        </div>
-                    </div>
-                    <div class="comment-detail-body">
-                        <p><i class="far fa-comment-alt"></i> Đã viết: <span class="number-comment">2</span><span> đánh giá</span></p>
-                        <p><i class="far fa-thumbs-up"></i> Đã nhận: <span class="number-like">3</span><span> lượt cảm ơn</span></p>
-                    </div>
-                </div>
-                <div class="col l-8">
-                    <div class="comment-detail-content">
-                        <div class="content-head">
-                            <div class="rating-star">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+            <?php foreach ($reviews as $review) : ?>
+                <div class="row comment-body">
+                    <div class="col l-4">
+                        <div class="comment-detail-head">
+                            <div class="customer-image"><?php echo substr($review['first_name'], 0, 1) . '' . substr($review['last_name'], 0, 1) ?></div>
+                            <div class="customer-name">
+                                <h4><?php echo ucfirst($review['first_name']) . ' ' . ucfirst($review['last_name']) ?></h4>
+                                <p>Đã tham gia 1 năm trước</p>
                             </div>
-                            <span class="content-message">Cực kì hài lòng</span>
                         </div>
-                        <p class="content-verify"><i class="fas fa-check-circle"></i> Đã mua hàng</p>
-                        <p class="content-comment">
-                            Tôi rất thích dùng sản phẩm này! Sẽ ủng hộ shop lần sau.
-                        </p>
-                        <p class="content-date">Đánh giá vào <span class="content-time">3/10/2021</span></p>
-                        <div class="content-button">
-                            <button class="btn"><i class="far fa-thumbs-up"></i> Hữu ích</button>
-                            <button class="btn">Bình luận </button>
+                        <div class="comment-detail-body">
+                            <p><i class="far fa-comment-alt"></i> Đã viết: <span class="number-comment">2</span><span> đánh giá</span></p>
+                            <p><i class="far fa-thumbs-up"></i> Đã nhận: <span class="number-like">3</span><span> lượt cảm ơn</span></p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="row comment-body">
-                <div class="col l-4">
-                    <div class="comment-detail-head">
-                        <div class="customer-image">NB</div>
-                        <div class="customer-name">
-                            <h4>Nguyễn Văn B</h4>
-                            <p>Đã tham gia 2 năm trước</p>
-                        </div>
-                    </div>
-                    <div class="comment-detail-body">
-                        <p><i class="far fa-comment-alt"></i> Đã viết: <span class="number-comment">2</span><span> đánh giá</span></p>
-                        <p><i class="far fa-thumbs-up"></i> Đã nhận: <span class="number-like">3</span><span> lượt cảm ơn</span></p>
-                    </div>
-                </div>
-                <div class="col l-8">
-                    <div class="comment-detail-content">
-                        <div class="content-head">
-                            <div class="rating-star">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                    <div class="col l-8">
+                        <div class="comment-detail-content">
+                            <div class="content-head">
+                                <div class="rating-star">
+                                    <?php for ($i = 1; $i <= $review['rating']; $i++) { ?>
+                                        <i class="fas fa-star"></i>
+                                    <?php } ?>
+                                    <?php for ($i = 1; $i <= 5 - $review['rating']; $i++) { ?>
+                                        <i class="far fa-star"></i>
+                                    <?php } ?>
+                                </div>
+                                <span class="content-message"><?php echo $review['headline'] ?></span>
                             </div>
-                            <span class="content-message">Cực kì hài lòng</span>
-                        </div>
-                        <p class="content-verify"><i class="fas fa-check-circle"></i> Đã mua hàng</p>
-                        <p class="content-comment">
-                            Tôi rất thích dùng sản phẩm này! Sẽ ủng hộ shop lần sau.
-                        </p>
-                        <p class="content-date">Đánh giá vào <span class="content-time">3/10/2021</span></p>
-                        <div class="content-button">
-                            <button class="btn"><i class="far fa-thumbs-up"></i> Hữu ích</button>
-                            <button class="btn">Bình luận </button>
+                            <p class="content-verify"><i class="fas fa-check-circle"></i> Đã mua hàng</p>
+                            <div class="content-img">
+                                <?php
+                                if (!empty($review['image'])) {
+                                    $images = explode(',', $review['image']);
+                                    foreach ($images as $image) {
+                                        echo '<img src="public/frontend/review-images/' . $image . '" alt="">';
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <p class="content-comment">
+                                <?php echo $review['comment'] ?>
+                            </p>
+                            <p class="content-date">Đánh giá vào <span class="content-time"><?php echo date('d/m/Y', strtotime($review['review_time'])) ?></span></p>
+                            <div class="content-button">
+                                <button class="btn"><i class="far fa-thumbs-up"></i> Hữu ích</button>
+                                <button class="btn">Bình luận </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach ?>
         </div>
     </div>
 </div>

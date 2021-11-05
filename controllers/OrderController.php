@@ -63,7 +63,7 @@ class OrderController extends BaseController {
             'shipping_fee' => $shippingFee,
             'payment_method' => $paymentMethod,
             'discount' => $discount,
-            'status' => 'dang xu li'
+            'status' => 'Đang xử lí'
         ];
 
         // order detail
