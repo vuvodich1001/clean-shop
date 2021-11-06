@@ -1,5 +1,15 @@
 <?php $this->view('partitions.frontend.header') ?>
 <div class="grid wide">
+    <div class="row">
+        <div class="col l-12">
+            <div class="breadcrumb">
+                <ul>
+                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
+                    <li class="breadcrumb-item"><a href=""></a>Address</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="row account-container">
         <div class="col l-3">
             <?php $this->view('frontend.accounts.sidebar', ['info' => $info]) ?>
@@ -19,6 +29,7 @@
                                 <span class="cus-name"><?php echo $userName ?></span>
                                 <span class="cus-address"><?php echo $shippingAddress ?></span>, phone :<span><?php echo $address['phone'] ?></span>
                             </label>
+                            <button class="btn-delete-address" address-id="<?php echo $address['address_id'] ?>"><i class="fas fa-times"></i></button>
                         </div>
                 <?php }
                 } ?>
@@ -29,7 +40,7 @@
                         <i class="address-button-left fas fa-chevron-left"></i>
                         <i class="address-button-down fas fa-chevron-down"></i>
                     </div>
-                    <form action="" id="address-form" method="POST">
+                    <form action="index.php?controller=account&action=createNewAddress" id="address-form" method="POST">
                         <div class="name-group">
                             <div class="form-group">
                                 <label for="">Họ</label>

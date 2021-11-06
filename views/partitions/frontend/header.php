@@ -20,13 +20,14 @@
     <link rel="stylesheet" href="./public/frontend/css/grid.css">
     <link rel="stylesheet" href="./public/frontend/css/base.css">
     <link rel="stylesheet" href="./public/frontend/css/style.css">
+    <link rel="stylesheet" href="./public/frontend/css/responsive.css">
 </head>
 
 <body>
     <header>
         <div class="grid wide">
             <nav>
-                <div class="nav-logo">
+                <div class="nav-logo hide-on-mobile-tablet">
                     <!-- <a href="index.php"><img src="public/frontend/images/logo.png" alt=""></a> -->
                     <a href="index.php">
                         <h1><i class="fas fa-book-open"></i> BOOKSTORE</h1>

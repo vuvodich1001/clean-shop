@@ -1,5 +1,15 @@
 <?php $this->view('partitions.frontend.header') ?>
 <div class="grid wide">
+    <div class="row">
+        <div class="col l-12">
+            <div class="breadcrumb">
+                <ul>
+                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
+                    <li class="breadcrumb-item"><a href=""></a>Info</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="row account-container">
         <div class="col l-3">
             <?php $this->view('frontend.accounts.sidebar', ['info' => $info]) ?>
@@ -9,7 +19,7 @@
                 <h3>Thông tin tài khoản</h3>
                 <div class="row">
                     <div class="col l-7">
-                        <form action="" id="form-info">
+                        <form action="index.php?controller=account&action=updateInfo" id="form-info" method="POST">
                             <p class="info-title">Thông tin cá nhân</p>
                             <div class="form-group-info">
                                 <label for="">Họ và tên</label>
@@ -17,11 +27,11 @@
                             </div>
                             <div class="form-group-info">
                                 <label for="">Nickname</label>
-                                <input type="text" name="" id="" value="">
+                                <input type="text" name="nickname" id="nickname" value="<?php echo empty($customer['nickname']) ? '' : $customer['nickname'] ?>">
                             </div>
                             <div class="form-group-info">
                                 <label for="">Ngày tháng năm sinh</label>
-                                <input type="text" name="" id="" value="<?php echo empty($customer['birthday']) ? $customer['birthday'] : ''; ?>" onfocus="this.type = 'date'">
+                                <input type="text" name="birthday" id="birthday" value="<?php echo empty($customer['birthday']) ? '' : $customer['birthday'] ?>" onfocus="this.type = 'date'">
                             </div>
                             <div class="form-group-info">
                                 <label for="">Giới tính</label>
@@ -47,7 +57,7 @@
                                 </div>
 
                                 <div>
-                                    <button class="btn-update-info btn-account-action">Cập nhật</button>
+                                    <a href="index.php?controller=account&action=updatePhone" class="btn-update-info btn-account-action">Cập nhật</a>
                                 </div>
                             </div>
 
@@ -61,7 +71,7 @@
                                 </div>
 
                                 <div>
-                                    <button class="btn-update-info btn-account-action">Cập nhật</button>
+                                    <a href="index.php?controller=account&action=updateEmail" class="btn-update-info btn-account-action">Cập nhật</a>
                                 </div>
                             </div>
 
@@ -75,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn-update-info btn-account-action">Cập nhật</button>
+                                    <a href="index.php?controller=account&action=changePassword" class="btn-update-info btn-account-action">Cập nhật</a>
                                 </div>
                             </div>
 
@@ -88,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn-update-info btn-account-action">Liên kết</button>
+                                    <a href="index.php?controller=account&action=linkFacebook" class="btn-update-info btn-account-action">Liên kết</a>
                                 </div>
                             </div>
 

@@ -1,12 +1,22 @@
 <?php $this->view('partitions.frontend.header') ?>
 <div class="grid wide">
+    <div class="row">
+        <div class="col l-12">
+            <div class="breadcrumb">
+                <ul>
+                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
+                    <li class="breadcrumb-item"><a href=""></a>Favourites</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="row account-container">
         <div class="col l-3">
             <?php $this->view('frontend.accounts.sidebar', ['info' => $info]) ?>
         </div>
         <div class="col l-9">
             <h3>Sản phẩm yêu thích</h3>
-            <div class="account-body">
+            <div class="account-body no-minwidth">
                 <div class="row">
                     <?php foreach ($books as $book) : ?>
                         <div class="col l-12">
@@ -21,7 +31,7 @@
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
-                                            <span> (3 nhận xét)</span>
+                                            <span> (<?php echo empty($book['review_quantity']) ? 0 : $book['review_quantity'] ?> nhận xét)</span>
                                         </div>
                                     </div>
                                 </div>

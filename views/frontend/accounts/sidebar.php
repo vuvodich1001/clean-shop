@@ -45,10 +45,11 @@
             <textarea name="" id="" cols="50" rows="10" placeholder="Chia sẻ thêm thông tin về sản phẩm"></textarea>
         </div>
 
+        <div id="review-images"></div>
         <input type="file" name="photos[]" id="review-file" placeholder="" multiple>
 
         <div class="review-action">
-            <label for="review-file" class="btn-account-action"><i class="fas fa-camera"></i> Thêm ảnh</label>
+            <label for="review-file" class="btn-account-action btn-add-image"><i class="fas fa-camera"></i> Thêm ảnh</label>
             <label class="btn-account-action btn-send-review">Gửi đánh giá</label>
         </div>
         <p class="review-close">

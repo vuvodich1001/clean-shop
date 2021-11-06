@@ -1,6 +1,7 @@
 <?php
 class CustomerModel extends BaseModel {
     const TABLE = 'customer';
+    const TABLE_ADDRESS = 'customer_address';
     public function authenticate($username, $password) {
         $sql = "select * from customer where email= :username and password = :password";
         $stmt = $this->db->prepare($sql);
@@ -27,6 +28,10 @@ class CustomerModel extends BaseModel {
         return $this->find(self::TABLE, $customerId);
     }
 
+    public function updateInfo($customerId, $data) {
+        $this->update(self::TABLE, $customerId, $data);
+    }
+
     public function createCustomer($data) {
         $this->create(self::TABLE, $data);
     }
@@ -40,5 +45,15 @@ class CustomerModel extends BaseModel {
             $address[] = $row;
         }
         return $address;
+    }
+
+    public function createNewCustomerAddress($data) {
+        $this->create(self::TABLE_ADDRESS, $data);
+    }
+
+    public function deleteAddress($id) {
+        $sql = "delete from customer_address where address_id = :address_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['address_id' => $id]);
     }
 }

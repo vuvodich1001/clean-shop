@@ -1,14 +1,27 @@
 <?php $this->view('partitions.frontend.header'); ?>
 
 <div class="grid wide">
+    <div class="row">
+        <div class="col l-12">
+            <div class="breadcrumb">
+                <ul>
+                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
+                    <li class="breadcrumb-item"><a href=""></a>Book Detail</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="row container container-detail">
         <div class="col l-3">
             <div class="book-detail-img">
                 <img src="public/admin/uploads/<?php echo $book['main_image']; ?>" alt="">
             </div>
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="PY5SNmaw"></script>
 
+            <div class="fb-share-button" data-href="https://www.facebook.com/profile.php?id=100011530591672" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100011530591672&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
             <div class="book-detail-share">
-                <span>Chia sẻ: <a href="#"> <i class="fab fa-facebook"></i></a> <a href="#"><i class="fab fa-instagram"></i></a> <a href="#"><i class="fab fa-twitter"></i></a> | Yêu
+                <span>Chia sẻ: <a href="#"><i class="fab fa-instagram"></i></a> <a href="#"><i class="fab fa-twitter"></i></a> | Yêu
                     thích:
                     <i class="far fa-heart"></i></span>
             </div>
@@ -43,7 +56,7 @@
     </div>
     <div class="row book-slider">
         <?php foreach ($bookRelates as $book) { ?>
-            <div class="col l-2">
+            <div class="col l-2 m-3">
                 <a href="index.php?controller=book&action=bookDetail&id=<?php echo $book['book_id'] ?>" class="item">
                     <img src="public/admin/uploads/<?php echo $book['main_image'] ?>" alt="">
                     <div class="item-body">
@@ -78,10 +91,13 @@
         <div class="col l-12">
             <h2>Đánh Giá - Nhận Xét Từ Khách Hàng</h2>
             <div class="row comment-body">
-                <div class="col l-4">
+                <div class="col l-4 l-12">
                     <div class="rating-summary">
                         <div class="rating-summary-head">
-                            <h1>4.7</h1>
+                            <h1><?php
+                                $total = array_reduce($statistics, fn ($acc, $value) => $acc + $value['rating'] * $value['quantity'], 0);
+                                echo empty($totalReview) ? 0 : round($total / $totalReview, 1);
+                                ?></h1>
                             <div class="rating-summary-total">
                                 <div class="rating-star">
                                     <i class="fas fa-star"></i>
@@ -127,7 +143,7 @@
                     </div>
                 </div>
 
-                <div class="col l-8">
+                <div class="col l-8 l-12">
                     <span>Lọc xem theo: </span>
                     <button class="btn-filter btn-filter-new">Mới nhất</button>
                     <button class="btn-filter btn-filter-image">Có hình ảnh</button>
@@ -141,22 +157,31 @@
 
             </div>
 
+            <?php
+            const DAY = 60 * 60 * 24;
+            const MONTH = DAY * 30;
+            const YEAR = DAY * 365;
+            ?>
             <?php foreach ($reviews as $review) : ?>
                 <div class="row comment-body">
-                    <div class="col l-4">
+                    <div class="col l-4 m-12">
                         <div class="comment-detail-head">
                             <div class="customer-image"><?php echo substr($review['first_name'], 0, 1) . '' . substr($review['last_name'], 0, 1) ?></div>
                             <div class="customer-name">
                                 <h4><?php echo ucfirst($review['first_name']) . ' ' . ucfirst($review['last_name']) ?></h4>
-                                <p>Đã tham gia 1 năm trước</p>
+                                <?php
+                                $diff = abs(strtotime(time()) - strtotime($review['register_date']));
+                                $years = floor($diff / (YEAR));
+                                echo '<p>Đã tham gia vào ' . date('d/m/Y', strtotime($review['register_date']));
+                                ?>
                             </div>
                         </div>
                         <div class="comment-detail-body">
-                            <p><i class="far fa-comment-alt"></i> Đã viết: <span class="number-comment">2</span><span> đánh giá</span></p>
-                            <p><i class="far fa-thumbs-up"></i> Đã nhận: <span class="number-like">3</span><span> lượt cảm ơn</span></p>
+                            <p><i class="far fa-comment-alt"></i> Đã viết: <span class="number-comment"><?php echo $review['total_review'] ?></span><span> đánh giá</span></p>
+                            <p><i class="far fa-thumbs-up"></i> Đã nhận: <span class="number-like"><?php echo $review['total_review'] - 1 ?></span><span> lượt cảm ơn</span></p>
                         </div>
                     </div>
-                    <div class="col l-8">
+                    <div class="col l-8 m-12">
                         <div class="comment-detail-content">
                             <div class="content-head">
                                 <div class="rating-star">

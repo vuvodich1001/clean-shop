@@ -11,12 +11,28 @@ class ReviewModel extends BaseModel {
     }
 
     public function getAllReviewByBookId($bookId) {
-        $sql = "select * from review r join customer c on r.customer_id = c.customer_id where book_id = :book_id";
+        $sql = "select * from review r join customer c on r.customer_id = c.customer_id 
+                where book_id = :book_id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['book_id' => $bookId]);
         $reviews = [];
         while ($row = $stmt->fetch()) {
             $reviews[] = $row;
+        }
+        //count total comment of specific customer
+        // $temps = array_map(function ($value) {
+        //     return $value['customer_id'];
+        // }, $reviews);
+
+        // $temps = array_unique($temps);
+        // print_r($temps);
+        foreach ($reviews as &$review) {
+            $sql = "select count(*) as 'quantity'
+                    from review r join customer c on r.customer_id = c.customer_id 
+                    where c.customer_id = :customer_id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(['customer_id' => $review['customer_id']]);
+            $review['total_review'] = $stmt->fetch()['quantity'];
         }
         return $reviews;
     }

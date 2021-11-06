@@ -138,19 +138,16 @@ class BookModel extends BaseModel {
     }
 
     public function getAllFavouriteBookByCustomerId($customerId) {
-        $sql = "select * from favourite_book where customer_id = :customer_id";
+        $sql = "select b.*, count(review_id) as 'review_quantity' 
+                from favourite_book f join book b on f.book_id = b.book_id left join review r on f.book_id = r.book_id
+                where f.customer_id = :customer_id
+                group by b.book_id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['customer_id' => $customerId]);
         // get all bookid
-        $bookIds = [];
-        while ($row = $stmt->fetch()) {
-            $bookIds[] = $row['book_id'];
-        }
-        // get all book by bookid
         $books = [];
-        foreach ($bookIds as $bookId) {
-            $book = $this->getById($bookId);
-            $books[] = $book;
+        while ($row = $stmt->fetch()) {
+            $books[] = $row;
         }
         return $books;
     }
@@ -162,14 +159,25 @@ class BookModel extends BaseModel {
     }
 
     public function getAllBookByCustomerId($customerId) {
-        $sql = "select distinct b.* from book_order bo join order_detail od on bo.order_id = od.order_id
-        join book b on od.book_id = b.book_id
-        where bo.customer_id = :customer_id";
+        $sql = "select distinct b.* 
+                from book_order bo join order_detail od on bo.order_id = od.order_id join 
+                book b on od.book_id = b.book_id 
+                where bo.customer_id = :customer_id and b.book_id not in (select book_id from review r where r.customer_id = :customer_id)
+                group by b.book_id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['customer_id' => $customerId]);
         $books = [];
         while ($row = $stmt->fetch()) {
             $books[] = $row;
+        }
+
+        foreach ($books as &$book) {
+            $sql = "select count(*) as 'quantity'
+                    from review
+                    where book_id = :book_id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(['book_id' => $book['book_id']]);
+            $book['review_quantity'] = $stmt->fetch()['quantity'];
         }
         return $books;
     }

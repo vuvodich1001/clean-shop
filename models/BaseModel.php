@@ -45,7 +45,7 @@ class BaseModel extends Database {
             return $value . '=:' . $value;
         }, array_keys($data)));
         $data["${table}_id"] = $id;
-        $sql = "update $table set $placeHolders where ${table}_id =:${table}_id";
+        $sql = "update $table set $placeHolders where ${table}_id = :${table}_id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute($data);
     }

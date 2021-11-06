@@ -1,8 +1,19 @@
 <?php $this->view('partitions.frontend.header') ?>
 <div class="grid wide">
+    <div class="row">
+        <div class="col l-12">
+            <div class="breadcrumb">
+                <ul>
+                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
+                    <li class="breadcrumb-item"><a href="index.php?controller=cart">Cart/</a></li>
+                    <li class="breadcrumb-item"><a href=""></a>Checkout</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="row checkout">
         <div class="col l-8">
-            <a href="index.php?controller=cart" class="cart-back"><i class="fas fa-angle-left"></i> Back to cart</a>
+            <!-- <a href="index.php?controller=cart" class="cart-back"><i class="fas fa-angle-left"></i> Back to cart</a> -->
             <h2>Địa chỉ giao hàng</h2>
             <div class="shipping-address">
                 <!-- <div class="address-group">

@@ -2,6 +2,8 @@ let modal = document.querySelector('.modal-review');
 let btnReviews = document.querySelectorAll('.btn-review');
 let btnCloseReview = document.querySelector('.review-close');
 let btnSendReview = document.querySelector('.btn-send-review');
+let btnAddImage = document.querySelector('.btn-add-image');
+const listImages = document.querySelector('#review-images');
 function showReviewModal() {
     if (btnReviews) {
         btnReviews.forEach(btnReview => {
@@ -35,6 +37,7 @@ function showReviewModal() {
             }
             photos.value = '';
             comment.value = '';
+            listImages.innerHTML = '';
         })
     }
 }
@@ -96,9 +99,27 @@ function review() {
         });
     }
 }
+
+function displayImageAfterUploaded() {
+    const reviewFile = document.querySelector('#review-file');
+    if (reviewFile) {
+        btnAddImage.addEventListener('click', (e) => {
+            reviewFile.value = '';
+            listImages.innerHTML = '';
+        })
+        reviewFile.addEventListener('change', (e) => {
+            for (let i = 0; i < e.target.files.length; i++) {
+                let image = document.createElement('img');
+                image.src = URL.createObjectURL(e.target.files[i]);
+                listImages.appendChild(image);
+            }
+        })
+    }
+}
 function start() {
     showReviewModal();
     review();
+    displayImageAfterUploaded();
 }
 
 start();

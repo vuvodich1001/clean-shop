@@ -50,4 +50,57 @@ class AccountController extends BaseController {
         $orderDetails = $this->orderModel->getAllOrderDetailByOrderId($orderId);
         return $this->view('frontend.accounts.order-detail', ['order' => $order, 'orderDetails' => $orderDetails, 'info' => $this->info]);
     }
+
+    public function updatePhone() {
+        $customer = $this->customerModel->getById($this->customerId);
+        return $this->view('frontend.accounts.phone-update', ['phone' => $customer['phone'], 'info' => $this->info]);
+    }
+
+    public function updateEmail() {
+        $customer = $this->customerModel->getById($this->customerId);
+        return $this->view('frontend.accounts.email-update', ['email' => $customer['email'], 'info' => $this->info]);
+    }
+
+    public function changePassword() {
+        return $this->view('frontend.accounts.password-change', ['info' => $this->info]);
+    }
+
+    public function updateInfo() {
+        if (array_key_exists('password', $_POST)) {
+            $_POST['password'] = md5($_POST['password']);
+        }
+        $this->customerModel->updateInfo($this->customerId, $_POST);
+        $this->redirectInfo();
+    }
+
+    public function createNewAddress() {
+        $customerId = $this->customerId;
+        $firstName = $_POST['firstname'];
+        $lastName = $_POST['lastname'];
+        $address = $_POST['address'];
+        $ward = $_POST['ward'];
+        $district = $_POST['district'];
+        $city = $_POST['city'];
+        $phone = $_POST['phone'];
+        $zipcode = $_POST['zipcode'];
+
+        $data = [
+            'customer_id' => $customerId,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'line1' => $address,
+            'line2' => $ward . ', ' . $district,
+            'city' => $city,
+            'phone' => $phone,
+            'zipcode' => $zipcode,
+            'country' => 'VN',
+        ];
+        $this->customerModel->createNewCustomerAddress($data);
+        $this->redirectAddress();
+    }
+
+    public function deleteAddress() {
+        $id = $_GET['id'];
+        $this->customerModel->deleteAddress($id);
+    }
 }
