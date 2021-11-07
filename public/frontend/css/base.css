@@ -93,7 +93,17 @@ html {
   font-size: 25px;
   color: #333;
 }
-
+.more-img .slick-next:before,
+.more-img .slick-prev:before {
+  font-size: 22px;
+  color: var(--main-color);
+}
+/* .more-img .slick-prev {
+  left: -13px;
+}
+.more-img .slick-next {
+  right: -14px;
+} */
 .slick-dots {
   bottom: -2px;
   color: white;

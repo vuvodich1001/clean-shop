@@ -13,17 +13,48 @@
     </div>
     <div class="row container container-detail">
         <div class="col l-3">
-            <div class="book-detail-img">
-                <img src="public/admin/uploads/<?php echo $book['main_image']; ?>" alt="">
-            </div>
-            <div id="fb-root"></div>
-            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="PY5SNmaw"></script>
+            <div class="row sm-gutter">
+                <div class="col l-12">
+                    <div class="book-detail-img">
+                        <img src="public/admin/uploads/<?php echo $book['main_image']; ?>" alt="">
+                    </div>
+                </div>
+                <div class="col l-12">
+                    <div class="row sm-gutter more-img">
+                        <div class="col l-4">
+                            <div class="book-detail-img-item">
+                                <img src="public/admin/uploads/<?php echo $book['main_image']; ?>" alt="">
+                            </div>
+                        </div>
+                        <div class="col l-4">
+                            <div class="book-detail-img-item">
+                                <img src="public/admin/uploads/bitcoin.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col l-4">
+                            <div class="book-detail-img-item">
+                                <img src="public/admin/uploads/c++.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col l-4">
+                            <div class="book-detail-img-item">
+                                <img src="public/admin/uploads/learnpythonquickly.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="fb-share-button" data-href="https://www.facebook.com/profile.php?id=100011530591672" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100011530591672&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
-            <div class="book-detail-share">
-                <span>Chia sẻ: <a href="#"><i class="fab fa-instagram"></i></a> <a href="#"><i class="fab fa-twitter"></i></a> | Yêu
-                    thích:
-                    <i class="far fa-heart"></i></span>
+                <div class="col l-12">
+                    <div id="fb-root"></div>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="PY5SNmaw"></script>
+
+                    <div class="fb-share-button" data-href="https://www.facebook.com/profile.php?id=100011530591672" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100011530591672&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+                    <div class="book-detail-share">
+                        <span>Chia sẻ: <a href="#"><i class="fab fa-instagram"></i></a> <a href="#"><i class="fab fa-twitter"></i></a> | Yêu
+                            thích:
+                            <i class="far fa-heart"></i></span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -57,7 +88,7 @@
     <div class="row book-slider">
         <?php foreach ($bookRelates as $book) { ?>
             <div class="col l-2 m-3">
-                <a href="index.php?controller=book&action=bookDetail&id=<?php echo $book['book_id'] ?>" class="item">
+                <a href="http://localhost/mvc-php/book/book-detail/<?php echo $book['book_id'] ?>" class="item">
                     <img src="public/admin/uploads/<?php echo $book['main_image'] ?>" alt="">
                     <div class="item-body">
                         <h4 class="item-title"><?php echo $book['title'] ?></h4>
@@ -91,7 +122,7 @@
         <div class="col l-12">
             <h2>Đánh Giá - Nhận Xét Từ Khách Hàng</h2>
             <div class="row comment-body">
-                <div class="col l-4 l-12">
+                <div class="col l-4 m-12">
                     <div class="rating-summary">
                         <div class="rating-summary-head">
                             <h1><?php
@@ -126,13 +157,13 @@
                                         $check = 0;
                                         foreach ($statistics as $statistic) {
                                             if ($statistic['rating'] == $i) {
-                                                echo '<input type="range" min=0 max=' . $totalReview . ' value="' . $statistic['quantity'] . '">';
+                                                echo '<input type="range" disabled="disabled" min=0 max=' . $totalReview . ' value="' . $statistic['quantity'] . '">';
                                                 echo $statistic['quantity'];
                                                 $check = 1;
                                             }
                                         }
                                         if (!$check) {
-                                            echo '<input type="range" value=0 min=0>';
+                                            echo '<input type="range"  disabled="disabled" value=0 min=0>';
                                             echo 0;
                                         }
                                         ?>
@@ -143,7 +174,7 @@
                     </div>
                 </div>
 
-                <div class="col l-8 l-12">
+                <div class="col l-8 m-12">
                     <span>Lọc xem theo: </span>
                     <button class="btn-filter btn-filter-new">Mới nhất</button>
                     <button class="btn-filter btn-filter-image">Có hình ảnh</button>

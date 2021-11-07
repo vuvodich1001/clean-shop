@@ -59,7 +59,7 @@ function fetchDataBook(type, data = {}, id) {
                     <td>${book.title}</td>
                     <td>${book.author}</td>
                     <td>${book.price}</td>
-                    <td><img src="public/admin/uploads/${book.main_image}" alt=""></td>
+                    <td><img src="../public/admin/uploads/${book.main_image}" alt=""></td>
                     <td>
                         <p>${book.description}</p>
                     </td>

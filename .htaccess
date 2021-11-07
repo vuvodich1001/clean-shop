@@ -1,13 +1,17 @@
 RewriteEngine on
 
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)$ index.php?controller=$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/([^/]+)$ index.php?controller=$1&action=$2 [L]
+RewriteRule ^([a-zA-Z0-9]+)$ index.php?controller=$1
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9])$ index.php?controller=$1&action=$2
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/([(0-9)])$ index.php?controller=$1&action=$2&id=$3
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/([^/]+)$ index.php?controller=$1&action=$2&id=$3 [L]
+RewriteRule ^book/book-detail/([(0-9)]+)$ index.php?controller=book&action=bookDetail&id=$1
+
+RewriteRule ^account/order$ index.php?controller=account&action=redirectOrder
+RewriteRule ^account/info$ index.php?controller=account&action=redirectInfo
+RewriteRule ^account/comment$ index.php?controller=account&action=redirectComment
+
+RewriteRule ^cart/checkout$ index.php?controller=cart&action=redirectCheckout

@@ -1,8 +1,8 @@
 <?php
 
 class BaseController {
-    const BASE_FOLDER_VIEW = './views';
-    const BASE_FOLDER_MODEL = './models';
+    const BASE_FOLDER_VIEW = '../views';
+    const BASE_FOLDER_MODEL = '../models';
     protected function view($path, array $data = []) {
         foreach ($data as $key => $value) {
             $$key = $value;

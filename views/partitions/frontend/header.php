@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookStore</title>
+    <!-- base url-->
+    <base href="http://localhost/mvc-php/">
     <!-- font roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,9 +67,9 @@
                             <p class="account"> <?php echo $firstName . ' ' . $lastName ?> <i class="account-icon fas fa-sort-down"></i></p>
                         </div>
                         <div class="nav-auth-body">
-                            <a href="index.php?controller=account&action=redirectOrder" class="btn-account">Đơn hàng của tôi</a>
-                            <a href="index.php?controller=account&action=redirectInfo" class="btn-account">Tài khoản của tôi</a>
-                            <a href="index.php?controller=account&action=redirectComment" class="btn-account">Nhận xét sản phẩm đã mua</a>
+                            <a href="http://localhost/mvc-php/account/order" class="btn-account">Đơn hàng của tôi</a>
+                            <a href="http://localhost/mvc-php/account/info" class="btn-account">Tài khoản của tôi</a>
+                            <a href="http://localhost/mvc-php/account/comment" class="btn-account">Nhận xét sản phẩm đã mua</a>
                             <a href="index.php?controller=auth&action=customerLogout" class="btn-account">Thoát tài khoản</a>
                         </div>
                     <?php } ?>
@@ -75,7 +77,7 @@
 
                 <div class="nav-cart">
                     <div class="nav-cart-icon">
-                        <a href="index.php?controller=cart"><i class="fas fa-shopping-cart"></i><span>Giỏ
+                        <a href="http://localhost/mvc-php/cart"><i class="fas fa-shopping-cart"></i><span>Giỏ
                                 hàng</span></a>
                     </div>
                     <div class="nav-cart-success">

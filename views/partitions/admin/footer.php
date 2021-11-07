@@ -5,10 +5,10 @@
 <footer>
 
 </footer>
-<script src="./public/admin/js/Validator.js"></script>
-<script src="./public/admin/js/user.js"></script>
-<script src="./public/admin/js/category.js"></script>
-<script src="./public/admin/js/book.js"></script>
+<script src="../public/admin/js/Validator.js"></script>
+<script src="../public/admin/js/user.js"></script>
+<script src="../public/admin/js/category.js"></script>
+<script src="../public/admin/js/book.js"></script>
 <!-- text editor -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

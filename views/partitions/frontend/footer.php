@@ -180,6 +180,15 @@
         });
     }
 
+    // more-img
+    let moreImg = document.querySelector('.more-img');
+    if (moreImg) {
+        $('.more-img').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
+    }
     // banner-slider
     if ($('.slider')) {
         $('.slider').slick({

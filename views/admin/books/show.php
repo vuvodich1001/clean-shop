@@ -26,7 +26,7 @@
                     <td><?php echo $book['title'] ?></td>
                     <td><?php echo $book['author'] ?></td>
                     <td><?php echo $book['price'] ?></td>
-                    <td><img src="public/admin/uploads/<?php echo $book['main_image'] ?>" alt=""></td>
+                    <td><img src="../public/admin/uploads/<?php echo $book['main_image'] ?>" alt=""></td>
                     <td>
                         <p><?php echo $book['description'] ?></p>
                     </td>
@@ -42,7 +42,7 @@
 <div class="modal modal-overlay">
     <div class="modal-body">
         <h1>Book</h1>
-        <form action="index.php?controller=book&action=createBook" method="POST" id="form-book" enctype="multipart/form-data">
+        <form action="admin.php?controller=book&action=createBook" method="POST" id="form-book" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Category: </label>
                 <select name="category" id="#category" class="">

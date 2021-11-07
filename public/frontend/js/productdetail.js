@@ -19,8 +19,29 @@ function addToCart() {
     }
 }
 
+function changeImageProduct() {
+    let imageItems = document.querySelectorAll('.book-detail-img-item img');
+    let bookImage = document.querySelector('.book-detail-img img');
+    if (imageItems) {
+        imageItems.forEach(imageItem => {
+            imageItem.addEventListener('click', (e) => {
+                bookImage.src = imageItem.src;
+                imageItems.forEach(imageItem => {
+                    imageItem.style.border = '1px solid #ccc';
+                    imageItem.style.opacity = 0.6;
+                });
+                imageItem.style.border = '1px solid var(--main-color)';
+                imageItem.style.opacity = 1;
+            });
+        });
+    }
+
+    if (imageItems[0]) imageItems[0].click();
+}
+
 function start() {
     addToCart();
+    changeImageProduct();
 }
 
 start();

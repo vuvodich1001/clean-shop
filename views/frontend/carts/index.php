@@ -84,7 +84,7 @@
             </div>
             <div class="shopping-cart-action">
                 <?php if (isset($_SESSION['customer'])) {
-                    echo '<a href="index.php?controller=cart&action=redirectCheckout" class="btn btn-buy active">Mua hàng</a>';
+                    echo '<a href="http://localhost/mvc-php/cart/checkout" class="btn btn-buy active">Mua hàng</a>';
                 } else {
                     echo '<a class="btn btn-login active">Đăng nhập ngay</a>';
                 }
