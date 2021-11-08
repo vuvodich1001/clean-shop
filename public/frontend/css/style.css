@@ -603,8 +603,8 @@ main {
   width: 100%;
   object-fit: fill;
   height: 345px;
-  border: 1px solid #ccc;
   border-radius: 3px;
+  padding: 0 30px;
 }
 .more-img {
   margin: 10px 0;
@@ -613,7 +613,7 @@ main {
   padding: 5px 0;
 }
 .book-detail-img-item img {
-  width: 87px;
+  width: 88px;
   height: 90px;
   /* object-fit: cover; */
   border-radius: 3px;
@@ -656,13 +656,16 @@ main {
   text-decoration: none;
 }
 
-.book-description h2 {
-  padding: 10px;
+.book-description div {
+  line-height: 30px;
+  margin-left: 15px;
 }
-.book-description p {
-  padding: 0 10px 10px;
-  font-size: 17px;
-  line-height: 25px;
+.book-description {
+  padding-bottom: 10px;
+}
+.book-description ul,
+.book-description ol {
+  padding-left: 40px;
 }
 /* shopping cart */
 .shopping-cart-wrap {
@@ -799,6 +802,19 @@ td img {
   margin-top: 10px;
   background-color: var(--white-color);
   padding: 10px;
+}
+.detail-table {
+  margin-top: 5px;
+  width: 80%;
+}
+.detail-table,
+.detail-table th,
+.detail-table td {
+  text-align: left;
+  min-width: 100px;
+  border-collapse: collapse;
+  padding: 5px;
+  border: 1px solid #ccc;
 }
 /* book slider */
 .book-slider {
@@ -1158,6 +1174,7 @@ input[type="range"]::-webkit-slider-thumb {
 .name-group .form-group {
   flex-basis: 48%;
 }
+
 .name-group .form-group input {
   width: 100%;
 }
@@ -1589,6 +1606,10 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .detail-action a {
   margin-top: 20px;
+}
+
+.detail-footer {
+  margin-top: 10px;
 }
 
 .order-table .order-fee {

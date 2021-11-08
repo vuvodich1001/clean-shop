@@ -4,14 +4,22 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 
+RewriteRule ^book/detail/([(0-9)]+)$ index.php?controller=book&action=bookDetail&id=$1
+RewriteRule ^account/order/([(0-9)]+)$ index.php?controller=account&action=orderDetail&order-id=$1
+
 RewriteRule ^([a-zA-Z0-9]+)$ index.php?controller=$1
 RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9])$ index.php?controller=$1&action=$2
-RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/([(0-9)])$ index.php?controller=$1&action=$2&id=$3
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/([0-9]+)$ index.php?controller=$1&action=$2&id=$3
 
-RewriteRule ^book/book-detail/([(0-9)]+)$ index.php?controller=book&action=bookDetail&id=$1
+
+RewriteRule ^account/info/update-phone$ index.php?controller=account&action=updatePhone
+RewriteRule ^account/info$ index.php?controller=account&action=redirectInfo
+RewriteRule ^account/info/update-email$ index.php?controller=account&action=updateEmail
+RewriteRule ^account/info/change-password$ index.php?controller=account&action=changePassword
 
 RewriteRule ^account/order$ index.php?controller=account&action=redirectOrder
-RewriteRule ^account/info$ index.php?controller=account&action=redirectInfo
 RewriteRule ^account/comment$ index.php?controller=account&action=redirectComment
+RewriteRule ^account/favourite$ index.php?controller=account&action=redirectFavourite
+RewriteRule ^account/address$ index.php?controller=account&action=redirectAddress
 
 RewriteRule ^cart/checkout$ index.php?controller=cart&action=redirectCheckout

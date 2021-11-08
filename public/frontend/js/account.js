@@ -41,8 +41,25 @@ function deleteAddress() {
     }
 }
 
+function cancelOrder() {
+    let btnCancelOrder = document.querySelector('.btn-cancel-order');
+    let detailStatus = document.querySelector('.detail-status');
+    if (btnCancelOrder) {
+        btnCancelOrder.addEventListener('click', (e) => {
+            let orderId = btnCancelOrder.getAttribute('order-id');
+            let check = confirm('Bạn có muốn hủy đơn đặt hàng này?');
+            if (check) {
+                fetch(`index.php?controller=account&action=cancelOrder&id=${orderId}`);
+                detailStatus.textContent = 'Đã hủy';
+                btnCancelOrder.textContent = 'Đã hủy';
+                btnCancelOrder.disabled = true;
+            }
+        });
+    }
+}
 function start() {
     deleteAddress();
+    cancelOrder();
 }
 
 start();

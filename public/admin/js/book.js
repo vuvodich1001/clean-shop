@@ -10,9 +10,10 @@ function validateBook() {
                 isRequired('#title'),
                 isRequired('#author'),
                 isRequired('#price'),
-                isRequired('#description'),
+                // isRequired('#description'),
             ],
             onSubmit(data) {
+                data.append('description', CKEDITOR.instances['description'].getData())
                 if (formBook.getAttribute('name') == 'create') {
                     fetchDataBook('post', {
                         method: 'post',
@@ -61,8 +62,11 @@ function fetchDataBook(type, data = {}, id) {
                     <td>${book.price}</td>
                     <td><img src="../public/admin/uploads/${book.main_image}" alt=""></td>
                     <td>
-                        <p>${book.description}</p>
+                        <div>${book.description}</div>
                     </td>
+                    <td>${book.publish_date.toLocaleString()}</td>
+                    <td>${book.publisher}</td>
+                    <td>${book.page} x ${book.width} x ${book.height}</td>
                     <td>${book.create_date}</td>
                     <td><a class="btn-delete-book" book-id="${book.book_id}" href=""><i class="fas fa-trash-alt"></i></a>
                         <a class="btn-update-book" book-id="${book.book_id}" href=""><i class="fas fa-edit"></i></a>
@@ -148,7 +152,8 @@ function updateBook() {
                                 title.value = book.title;
                                 author.value = book.author;
                                 price.value = book.price;
-                                description.value = book.description;
+                                // description.value = book.description;
+                                CKEDITOR.instances['description'].setData(book.description);
                             }
                         })
                     })

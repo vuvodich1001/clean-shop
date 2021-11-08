@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="row container container-detail">
-        <div class="col l-3">
+        <div class="col l-4">
             <div class="row sm-gutter">
                 <div class="col l-12">
                     <div class="book-detail-img">
@@ -21,22 +21,22 @@
                 </div>
                 <div class="col l-12">
                     <div class="row sm-gutter more-img">
-                        <div class="col l-4">
+                        <div class="col l-3">
                             <div class="book-detail-img-item">
                                 <img src="public/admin/uploads/<?php echo $book['main_image']; ?>" alt="">
                             </div>
                         </div>
-                        <div class="col l-4">
+                        <div class="col l-3">
                             <div class="book-detail-img-item">
                                 <img src="public/admin/uploads/bitcoin.jpg" alt="">
                             </div>
                         </div>
-                        <div class="col l-4">
+                        <div class="col l-3">
                             <div class="book-detail-img-item">
                                 <img src="public/admin/uploads/c++.jpg" alt="">
                             </div>
                         </div>
-                        <div class="col l-4">
+                        <div class="col l-3">
                             <div class="book-detail-img-item">
                                 <img src="public/admin/uploads/learnpythonquickly.jpg" alt="">
                             </div>
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <div class="col l-9">
+        <div class="col l-3">
             <div class="book-detail-content">
                 <p class="detail-author"><strong>Tác giả: </strong><?php echo $book['author']; ?></p>
                 <p class="detail-price"><strong>Giá:</strong>
@@ -70,14 +70,37 @@
                     <span class="cur-quantity">1</span>
                     <button><i class="fas fa-minus"></i></button>
                 </div>
-
                 <button book-id="<?php echo $book['book_id'] ?>" class="btn btn-addtocart active"><i class="fas fa-plus-circle"></i> Thêm vào giỏ hàng</button>
             </div>
         </div>
 
+        <div class="col l-4">
+            <h3>Thông tin chi tiết</h3>
+            <table class="detail-table">
+                <tr>
+                    <td>Kích thước</td>
+                    <td><?php echo $book['width'] . ' x ' . $book['height'] ?> cm</td>
+                </tr>
+                <tr>
+                    <td>Số trang</td>
+                    <td><?php echo $book['page'] ?></td>
+                </tr>
+                <tr>
+                    <td>Nhà xuất bản</td>
+                    <td><?php echo $book['publisher'] ?></td>
+                </tr>
+                <tr>
+                    <td>Ngày xuất bản</td>
+                    <td><?php echo $book['publish_date'] ? date('d/m/Y', strtotime($book['publish_date'])) : '' ?></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div class="row relate-title">
         <div class="col l-12 book-description">
             <h2>Mô tả sản phẩm</h2>
-            <p><?php echo $book['description'] ?></p>
+            <div><?php echo $book['description'] ?></div>
         </div>
     </div>
     <div class="row relate-title">
@@ -88,7 +111,7 @@
     <div class="row book-slider">
         <?php foreach ($bookRelates as $book) { ?>
             <div class="col l-2 m-3">
-                <a href="http://localhost/mvc-php/book/book-detail/<?php echo $book['book_id'] ?>" class="item">
+                <a href="http://localhost/mvc-php/book/detail/<?php echo $book['book_id'] ?>" class="item">
                     <img src="public/admin/uploads/<?php echo $book['main_image'] ?>" alt="">
                     <div class="item-body">
                         <h4 class="item-title"><?php echo $book['title'] ?></h4>
@@ -157,13 +180,13 @@
                                         $check = 0;
                                         foreach ($statistics as $statistic) {
                                             if ($statistic['rating'] == $i) {
-                                                echo '<input type="range" disabled="disabled" min=0 max=' . $totalReview . ' value="' . $statistic['quantity'] . '">';
+                                                echo '<input type="range" disabled min=0 max=' . $totalReview . ' value="' . $statistic['quantity'] . '">';
                                                 echo $statistic['quantity'];
                                                 $check = 1;
                                             }
                                         }
                                         if (!$check) {
-                                            echo '<input type="range"  disabled="disabled" value=0 min=0>';
+                                            echo '<input type="range" disabled value=0 min=0>';
                                             echo 0;
                                         }
                                         ?>

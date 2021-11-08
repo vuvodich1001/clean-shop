@@ -97,13 +97,19 @@ class BookModel extends BaseModel {
         $num = $page * 10 - 10;
         $stmt = '';
         if ($category == 'All') {
-            $sql = 'select * from book limit :num, 10';
+            $sql = "select b.*, round(avg(rating), 0) as rating 
+                    from book b left join review r on b.book_id = r.book_id 
+                    group by b.book_id  
+                    limit :num, 10";
             // bug of pdo
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':num', $num, PDO::PARAM_INT);
             $stmt->execute();
         } else {
-            $sql = "select b.* from book b join category c on b.category_id = c.category_id where c.name = :name limit :num, 10";
+            $sql = "select b.*, round(avg(rating), 0) as rating 
+                    from book b join category c on b.category_id = c.category_id left join review r on b.book_id = r.book_id 
+                    where c.name = :name 
+                    group by b.book_id  limit :num, 10";
             // bug of pdo
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':name', $category, PDO::PARAM_STR);

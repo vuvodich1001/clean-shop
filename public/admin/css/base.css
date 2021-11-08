@@ -38,6 +38,7 @@ html {
 }
 .modal-body {
   margin: auto;
+  /* width: 400px; */
   width: 400px;
   padding: 30px;
   border: 1px solid #ccc;
@@ -48,6 +49,9 @@ html {
   animation: slideFromTop ease-in 0.2s;
 }
 
+.modal-body.modal-book {
+  width: 750px;
+}
 @keyframes slideFromTop {
   from {
     opacity: 0;
@@ -74,4 +78,8 @@ html {
   display: inline-block;
   margin-top: 5px;
   color: red;
+}
+
+.row {
+  margin-right: 0;
 }

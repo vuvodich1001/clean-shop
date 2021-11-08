@@ -30,7 +30,7 @@ function fetchData(type, val, str) {
                         "$1.");
                     return `
                         <div class="col l-2-4 m-4 c-6">
-                            <a href="http://localhost/mvc-php/book/book-detail/${book['book_id']}" class="item">
+                            <a href="http://localhost/mvc-php/book/detail/${book['book_id']}" class="item">
                                 <img src="public/admin/uploads/${book.main_image}" alt="">
                                 <div class="item-body">
                                     <h4 class="item-title">${book.title}</h4>

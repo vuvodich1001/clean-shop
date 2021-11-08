@@ -83,7 +83,7 @@
                     <div class="nav-cart-success">
                         <p><i class="nav-cart-success-icon fas fa-check-circle"></i> Thêm vào vào giỏ hàng thành công!
                         </p>
-                        <a href="index.php?controller=cart" class="btn btn-view-cart">Xem giỏ hàng và
+                        <a href="http://localhost/mvc-php/cart" class="btn btn-view-cart">Xem giỏ hàng và
                             thanh
                             toán</a>
                         <div class="cart-close">

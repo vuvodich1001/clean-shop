@@ -1,6 +1,7 @@
 <?php
 class DiscountModel extends BaseModel {
     const TABLE = 'discount';
+
     public function getAll($select = ['*'], $orderBy = [], $limit = 15) {
         return $this->all(self::TABLE, $select, $orderBy, $limit);
     }

@@ -1,5 +1,16 @@
 <?php $this->view('partitions.frontend.header') ?>
 <div class="grid wide">
+    <div class="row">
+        <div class="col l-12">
+            <div class="breadcrumb">
+                <ul>
+                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
+                    <li class="breadcrumb-item"><a href="http://localhost/mvc-php/account/order">Orders/</a></li>
+                    <li class="breadcrumb-item"><a href=""></a>Order Detail - #<?php echo $order['order_id'] ?></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="row account-container">
         <div class="col l-3">
             <?php $this->view('frontend.accounts.sidebar', ['info' => $info]) ?>
@@ -7,7 +18,7 @@
         <div class="col l-9">
             <div class="order-detail">
                 <div class="detail-head">
-                    <p class="detail-title">Chi tiết đơn hàng #1 - <strong><?php echo $order['status'] ?></strong></p>
+                    <p class="detail-title">Chi tiết đơn hàng #<?php echo $order['order_id'] ?> - <strong class="detail-status"><?php echo $order['status'] ?></strong></p>
                     <span class="order-date">Ngày đặt hàng: <?php echo $order['order_date'] ?></span>
                 </div>
 
@@ -60,8 +71,14 @@
                                     <td class="detail-img"><img src="./public/admin/uploads/<?php echo $orderDetail['main_image'] ?>" alt="">
                                         <div class="detail-action">
                                             <p>Sách <?php echo $orderDetail['title'] ?></p>
-                                            <button class="btn-account-action btn-review" book-id="<?php echo $orderDetail['book_id'] ?>">Viết nhận xét</button>
-                                            <a href="index.php?controller=book&action=bookDetail&id=<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Mua lại</a>
+                                            <?php if ($order['status'] == 'Giao hàng thành công') : ?>
+                                                <button class="btn-account-action btn-review" book-id="<?php echo $orderDetail['book_id'] ?>">Viết nhận xét</button>
+                                                <a href="http://localhost/mvc-php/book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Mua lại</a>
+                                            <?php elseif ($order['status'] == 'Đã hủy') : ?>
+                                                <a href="http://localhost/mvc-php/book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Mua lại</a>
+                                            <?php else : ?>
+                                                <a href="http://localhost/mvc-php/book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Xem lại sản phẩm</a>
+                                            <?php endif ?>
                                         </div>
                                     </td>
                                     <td><?php echo number_format($orderDetail['price'], 0, '.', '.') ?>đ</td>
@@ -90,9 +107,9 @@
                 </div>
 
                 <div class="detail-footer">
-                    <table class="order-fee">
-
-                    </table>
+                    <?php if ($order['status'] == 'Đang xử lí') : ?>
+                        <button class="btn-account-action btn-cancel-order" order-id="<?php echo $order['order_id'] ?>">Hủy đơn hàng</button>
+                    <?php endif ?>
                 </div>
             </div>
         </div>

@@ -103,4 +103,9 @@ class AccountController extends BaseController {
         $id = $_GET['id'];
         $this->customerModel->deleteAddress($id);
     }
+
+    public function cancelOrder() {
+        $id = $_GET['id'];
+        $this->orderModel->cancelOrder($id);
+    }
 }

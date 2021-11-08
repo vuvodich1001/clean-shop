@@ -19,12 +19,12 @@
     <header>
     </header>
     <main>
-        <div class="grid wide">
+        <div class="grid">
             <div class="row container">
-                <div class="col l-3">
+                <div class="col l-2">
                     <?php $this->view('partitions.admin.sidebar'); ?>
                 </div>
-                <div class="col l-9">
+                <div class="col l-10">
                     <div class="nav">
                         <?php $this->view('partitions.admin.navigation'); ?>
                     </div>

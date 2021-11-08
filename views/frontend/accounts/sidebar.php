@@ -9,11 +9,11 @@
 </div>
 
 <ul class="account-list">
-    <li class="account-item"><a href="index.php?controller=account&action=redirectInfo"><i class="account-icon fas fa-user-alt"></i>Thông tin tài khoản</a></li>
-    <li class="account-item"><a href="index.php?controller=account&action=redirectOrder"><i class="account-icon fas fa-tasks"></i>Quản lí đơn hàng</a></li>
-    <li class="account-item"><a href="index.php?controller=account&action=redirectAddress"><i class="account-icon fas fa-address-card"></i></i>Sổ địa chỉ</a></li>
-    <li class="account-item"><a href="index.php?controller=account&action=redirectComment"><i class="account-icon fas fa-eye"></i>Nhận xét sản phẩm đã mua</a></li>
-    <li class="account-item"><a href="index.php?controller=account&action=redirectFavourite"><i class="account-icon fas fa-heart"></i>Sản phẩm yêu thích</a></li>
+    <li class="account-item"><a href="http://localhost/mvc-php/account/info"><i class="account-icon fas fa-user-alt"></i>Thông tin tài khoản</a></li>
+    <li class="account-item"><a href="http://localhost/mvc-php/account/order"><i class="account-icon fas fa-tasks"></i>Quản lí đơn hàng</a></li>
+    <li class="account-item"><a href="http://localhost/mvc-php/account/address"><i class="account-icon fas fa-address-card"></i></i>Sổ địa chỉ</a></li>
+    <li class="account-item"><a href="http://localhost/mvc-php/account/comment"><i class="account-icon fas fa-eye"></i>Nhận xét sản phẩm đã mua</a></li>
+    <li class="account-item"><a href="http://localhost/mvc-php/account/favourite"><i class="account-icon fas fa-heart"></i>Sản phẩm yêu thích</a></li>
 </ul>
 
 <div class="modal modal-overlay modal-review">

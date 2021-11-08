@@ -29,16 +29,26 @@ class BookController extends BaseController {
         echo json_encode($books);
     }
 
-    private function insertFile($selector) {
+    // upload 1 files
+    // private function insertFile($selector) {
+    //     $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/admin/uploads/';
+    //     $file_error = $_FILES[$selector]['error'];
+    //     if ($file_error == UPLOAD_ERR_OK) {
+    //         $tmp_name = $_FILES[$selector]['tmp_name'];
+    //         $name = basename($_FILES[$selector]['name']);
+    //         if (file_exists($uploads_dir . $name)) {
+    //             // do nothing
+    //         } else
+    //             move_uploaded_file($tmp_name, $uploads_dir . $name);
+    //     }
+    // }
+    // uploads lots of file
+    private function insertFile($error, $tempName, $name) {
         $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/admin/uploads/';
-        $file_error = $_FILES[$selector]['error'];
-        if ($file_error == UPLOAD_ERR_OK) {
-            $tmp_name = $_FILES[$selector]['tmp_name'];
-            $name = basename($_FILES[$selector]['name']);
-            if (file_exists($uploads_dir . $name)) {
-                // do nothing
-            } else
-                move_uploaded_file($tmp_name, $uploads_dir . $name);
+        if ($error == UPLOAD_ERR_OK) {
+            $name = basename($name);
+            if (!file_exists($uploads_dir . $name))
+                move_uploaded_file($tempName, $uploads_dir . $name);
         }
     }
 
@@ -46,17 +56,37 @@ class BookController extends BaseController {
         $title = $_POST['title'];
         $author = $_POST['author'];
         $price = $_POST['price'];
-        $image = basename($_FILES['image']['name']);
         $description = $_POST['description'];
+        $page = $_POST['page'];
+        $height = $_POST['height'];
+        $width = $_POST['width'];
+        $publishDate = $_POST['publish-date'];
+        $publisher = $_POST['publisher'];
         $categoryId = $_POST['category'];
-        $this->insertFile('image');
+        $bookImages = [];
+        if (isset($_FILES['images'])) {
+            $images = $_FILES['images']['name'];
+            for ($i = 0; $i < count($images); $i++) {
+                $error = $_FILES['images']['error'][$i];
+                $tempName = $_FILES['images']['tmp_name'][$i];
+                $name = $_FILES['images']['name'][$i];
+                $this->insertFile($error, $tempName, $name);
+                $bookImages[] = $name;
+            }
+            $bookImages = implode(',', $bookImages);
+        }
         $data = [
             'category_id' => $categoryId,
             'title' => $title,
             'author' => $author,
-            'main_image' => $image,
+            'main_image' => $bookImages,
             'price' => $price,
-            'description' => $description
+            'description' => $description,
+            'page' => $page,
+            'height' => $height,
+            'width' => $width,
+            'publish_date' => $publishDate,
+            'publisher' => $publisher
         ];
         $this->bookModel->createBook($data);
         $books = $this->bookModel->getAll();
@@ -87,7 +117,7 @@ class BookController extends BaseController {
     public function deleteBook() {
         $id = $_GET['id'];
         $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/admin/uploads/';
-        $image = $this->bookModel->getById($id)['image'];
+        $image = $this->bookModel->getById($id)['main_image'];
         $this->bookModel->deleteBook($id);
         unlink($uploads_dir . $image);
         $books = $this->bookModel->getAll();
@@ -96,7 +126,9 @@ class BookController extends BaseController {
         echo json_encode($books);
     }
 
-    public function show() {
-        $this->view('frontend.Books.show');
+    public function searchBook() {
+        $name = $_GET['name'];
+        $books = $this->bookModel->searchBook($name);
+        echo json_encode($books);
     }
 }

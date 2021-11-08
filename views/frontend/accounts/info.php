@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div>
-                                    <a href="index.php?controller=account&action=updatePhone" class="btn-update-info btn-account-action">Cập nhật</a>
+                                    <a href="http://localhost/mvc-php/account/info/update-phone" class="btn-update-info btn-account-action">Cập nhật</a>
                                 </div>
                             </div>
 
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div>
-                                    <a href="index.php?controller=account&action=updateEmail" class="btn-update-info btn-account-action">Cập nhật</a>
+                                    <a href="http://localhost/mvc-php/account/info/update-email" class="btn-update-info btn-account-action">Cập nhật</a>
                                 </div>
                             </div>
 
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="index.php?controller=account&action=changePassword" class="btn-update-info btn-account-action">Cập nhật</a>
+                                    <a href="http://localhost/mvc-php/account/info/change-password" class="btn-update-info btn-account-action">Cập nhật</a>
                                 </div>
                             </div>
 

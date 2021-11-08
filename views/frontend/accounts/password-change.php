@@ -5,7 +5,7 @@
             <div class="breadcrumb">
                 <ul>
                     <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
-                    <li class="breadcrumb-item"><a href="index.php?controller=account&action=redirectInfo">Info/</a></li>
+                    <li class="breadcrumb-item"><a href="http://localhost/mvc-php/account/info">Info/</a></li>
                     <li class="breadcrumb-item"><a href=""></a>Change Password</li>
                 </ul>
             </div>

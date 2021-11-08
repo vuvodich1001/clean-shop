@@ -4,6 +4,10 @@ class OrderModel extends BaseModel {
     const TABLE_ORDER_DETAIL = 'order_detail';
     const TABLE_CUSTOMER_ADDRESS = 'customer_address';
 
+    public function getAll($select = ['*'], $orderBy = [], $limit = 15) {
+        return $this->all(self::TABLE_ORDER, $select, $orderBy, $limit);
+    }
+
     public function getOrderId($customerId) {
         $sql = "select * from book_order where customer_id = :customer_id order by order_date desc limit 1";
         $stmt = $this->db->prepare($sql);
@@ -70,5 +74,11 @@ class OrderModel extends BaseModel {
             $orderDetails[] = $row;
         }
         return $orderDetails;
+    }
+
+    public function cancelOrder($id) {
+        $sql = "update book_order set status='Đã hủy' where order_id = :order_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['order_id' => $id]);
     }
 }

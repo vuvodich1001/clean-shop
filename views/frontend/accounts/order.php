@@ -31,7 +31,7 @@
                     <tbody>
                         <?php foreach ($orders as $order) : ?>
                             <tr>
-                                <td class="order-code"><a href="index.php?controller=account&action=orderDetail&order-id=<?php echo $order['order_id'] ?>">#<?php echo $order['order_id'] ?></a></td>
+                                <td class="order-code"><a href="http://localhost/mvc-php/account/order/<?php echo $order['order_id'] ?>">#<?php echo $order['order_id'] ?></a></td>
                                 <td><?php $time = strtotime($order['order_date']);
                                     echo date('d/m/Y', $time); ?></td>
                                 <td><?php echo $order['payment_method'] ?></td>

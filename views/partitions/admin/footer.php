@@ -8,7 +8,6 @@
 <script src="../public/admin/js/Validator.js"></script>
 <script src="../public/admin/js/user.js"></script>
 <script src="../public/admin/js/category.js"></script>
-<script src="../public/admin/js/book.js"></script>
 <!-- text editor -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -28,6 +27,12 @@
         });
     }
 </script> -->
+<!-- ck editor -->
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description');
+</script>
+<script src="../public/admin/js/book.js"></script>
 </body>
 
 </html>
