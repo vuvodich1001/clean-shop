@@ -1,4 +1,4 @@
-<?php $this->view('partitions.admin.header'); ?>
+<?php $this->view('partitions.admin.header', ['roles' => $roles]); ?>
 
 <div class="action">
     <h2>Customer</h2>

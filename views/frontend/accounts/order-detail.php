@@ -4,9 +4,9 @@
         <div class="col l-12">
             <div class="breadcrumb">
                 <ul>
-                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
-                    <li class="breadcrumb-item"><a href="http://localhost/mvc-php/account/order">Orders/</a></li>
-                    <li class="breadcrumb-item"><a href=""></a>Order Detail - #<?php echo $order['order_id'] ?></li>
+                    <li class="breadcrumb-item"><a href="">Home/</a></li>
+                    <li class="breadcrumb-item"><a href="account/order">Orders/</a></li>
+                    <li class="breadcrumb-item">Order Detail - #<?php echo $order['order_id'] ?></li>
                 </ul>
             </div>
         </div>
@@ -73,11 +73,11 @@
                                             <p>Sách <?php echo $orderDetail['title'] ?></p>
                                             <?php if ($order['status'] == 'Giao hàng thành công') : ?>
                                                 <button class="btn-account-action btn-review" book-id="<?php echo $orderDetail['book_id'] ?>">Viết nhận xét</button>
-                                                <a href="http://localhost/mvc-php/book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Mua lại</a>
+                                                <a href="book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Mua lại</a>
                                             <?php elseif ($order['status'] == 'Đã hủy') : ?>
-                                                <a href="http://localhost/mvc-php/book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Mua lại</a>
+                                                <a href="book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Mua lại</a>
                                             <?php else : ?>
-                                                <a href="http://localhost/mvc-php/book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Xem lại sản phẩm</a>
+                                                <a href="book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Xem lại sản phẩm</a>
                                             <?php endif ?>
                                         </div>
                                     </td>

@@ -4,9 +4,9 @@
         <div class="col l-12">
             <div class="breadcrumb">
                 <ul>
-                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
-                    <li class="breadcrumb-item"><a href="http://localhost/mvc-php/account/info">Info/</a></li>
-                    <li class="breadcrumb-item"><a href=""></a>Change Password</li>
+                    <li class="breadcrumb-item"><a href="">Home/</a></li>
+                    <li class="breadcrumb-item"><a href="account/info">Info/</a></li>
+                    <li class="breadcrumb-item">Change Password</li>
                 </ul>
             </div>
         </div>

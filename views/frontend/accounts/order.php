@@ -4,8 +4,8 @@
         <div class="col l-12">
             <div class="breadcrumb">
                 <ul>
-                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
-                    <li class="breadcrumb-item"><a href=""></a>Orders</li>
+                    <li class="breadcrumb-item"><a href="">Home/</a></li>
+                    <li class="breadcrumb-item">Orders</li>
                 </ul>
             </div>
         </div>
@@ -31,7 +31,7 @@
                     <tbody>
                         <?php foreach ($orders as $order) : ?>
                             <tr>
-                                <td class="order-code"><a href="http://localhost/mvc-php/account/order/<?php echo $order['order_id'] ?>">#<?php echo $order['order_id'] ?></a></td>
+                                <td class="order-code"><a href="account/order/<?php echo $order['order_id'] ?>">#<?php echo $order['order_id'] ?></a></td>
                                 <td><?php $time = strtotime($order['order_date']);
                                     echo date('d/m/Y', $time); ?></td>
                                 <td><?php echo $order['payment_method'] ?></td>

@@ -5,8 +5,8 @@
         <div class="col l-12">
             <div class="breadcrumb">
                 <ul>
-                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
-                    <li class="breadcrumb-item"><a href=""></a>Book Detail</li>
+                    <li class="breadcrumb-item"><a href="">Home/</a></li>
+                    <li class="breadcrumb-item">Book Detail</li>
                 </ul>
             </div>
         </div>
@@ -111,7 +111,7 @@
     <div class="row book-slider">
         <?php foreach ($bookRelates as $book) { ?>
             <div class="col l-2 m-3">
-                <a href="http://localhost/mvc-php/book/detail/<?php echo $book['book_id'] ?>" class="item">
+                <a href="book/detail/<?php echo $book['book_id'] ?>" class="item">
                     <img src="public/admin/uploads/<?php echo $book['main_image'] ?>" alt="">
                     <div class="item-body">
                         <h4 class="item-title"><?php echo $book['title'] ?></h4>
@@ -232,7 +232,7 @@
                         </div>
                         <div class="comment-detail-body">
                             <p><i class="far fa-comment-alt"></i> Đã viết: <span class="number-comment"><?php echo $review['total_review'] ?></span><span> đánh giá</span></p>
-                            <p><i class="far fa-thumbs-up"></i> Đã nhận: <span class="number-like"><?php echo $review['total_review'] - 1 ?></span><span> lượt cảm ơn</span></p>
+                            <!-- <p><i class="far fa-thumbs-up"></i> Đã nhận: <span class="number-like"><?php echo $review['total_review'] - 1 ?></span><span> lượt cảm ơn</span></p> -->
                         </div>
                     </div>
                     <div class="col l-8 m-12">
@@ -263,10 +263,10 @@
                                 <?php echo $review['comment'] ?>
                             </p>
                             <p class="content-date">Đánh giá vào <span class="content-time"><?php echo date('d/m/Y', strtotime($review['review_time'])) ?></span></p>
-                            <div class="content-button">
+                            <!-- <div class="content-button">
                                 <button class="btn"><i class="far fa-thumbs-up"></i> Hữu ích</button>
                                 <button class="btn">Bình luận </button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

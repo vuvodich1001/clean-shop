@@ -4,7 +4,7 @@
         <div class="col l-12">
             <div class="breadcrumb">
                 <ul>
-                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
+                    <li class="breadcrumb-item"><a href="">Home/</a></li>
                     <li class="breadcrumb-item"><a href=""></a>Info</li>
                 </ul>
             </div>
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div>
-                                    <a href="http://localhost/mvc-php/account/info/update-phone" class="btn-update-info btn-account-action">Cập nhật</a>
+                                    <a href="account/info/update-phone" class="btn-update-info btn-account-action">Cập nhật</a>
                                 </div>
                             </div>
 
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div>
-                                    <a href="http://localhost/mvc-php/account/info/update-email" class="btn-update-info btn-account-action">Cập nhật</a>
+                                    <a href="account/info/update-email" class="btn-update-info btn-account-action">Cập nhật</a>
                                 </div>
                             </div>
 
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="http://localhost/mvc-php/account/info/change-password" class="btn-update-info btn-account-action">Cập nhật</a>
+                                    <a href="account/info/change-password" class="btn-update-info btn-account-action">Cập nhật</a>
                                 </div>
                             </div>
 

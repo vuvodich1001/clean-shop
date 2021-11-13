@@ -181,14 +181,14 @@
     }
 
     // more-img
-    let moreImg = document.querySelector('.more-img');
-    if (moreImg) {
-        $('.more-img').slick({
-            infinite: true,
-            slidesToShow: 4,
-            slidesToScroll: 4
-        });
-    }
+    // let moreImg = document.querySelector('.more-img');
+    // if (moreImg) {
+    //     $('.more-img').slick({
+    //         infinite: true,
+    //         slidesToShow: 4,
+    //         slidesToScroll: 4
+    //     });
+    // }
     // banner-slider
     if ($('.slider')) {
         $('.slider').slick({

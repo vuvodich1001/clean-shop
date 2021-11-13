@@ -4,7 +4,7 @@ class OrderModel extends BaseModel {
     const TABLE_ORDER_DETAIL = 'order_detail';
     const TABLE_CUSTOMER_ADDRESS = 'customer_address';
 
-    public function getAll($select = ['*'], $orderBy = [], $limit = 15) {
+    public function getAll($select = ['*'], $orderBy = [], $limit = 30) {
         return $this->all(self::TABLE_ORDER, $select, $orderBy, $limit);
     }
 
@@ -15,7 +15,12 @@ class OrderModel extends BaseModel {
         return $stmt->fetch()['order_id'];
     }
 
-
+    public function changeStatus($data) {
+        $sql = "update book_order 
+                set status = :status where order_id = :order_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($data);
+    }
     public function findById($orderId) {
         $sql = "select * from book_order where order_id = :order_id limit 1";
         $stmt = $this->db->prepare($sql);

@@ -5,14 +5,14 @@ class BookController extends BaseController {
     private $categoryModel;
     private $reviewModel;
     public function __construct() {
-        session_start();
+        parent::__construct();
         $this->loadModel('BookModel');
         $this->loadModel('CategoryModel');
         $this->loadModel('ReviewModel');
         $this->bookModel = new BookModel();
         $this->categoryModel = new CategoryModel();
+        $this->userId = $_SESSION['user']['user_id'];
     }
-
     // admin
     public function index() {
         // $order = [
@@ -21,7 +21,8 @@ class BookController extends BaseController {
         // ];
         $books = $this->bookModel->getAll();
         $categories = $this->categoryModel->getAll();
-        return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories]);
+        $roles = $this->getUserModel()->getAllRoleByUserId($this->userId);
+        return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories, 'roles' => $roles]);
     }
 
     public function getAllBook() {
@@ -102,12 +103,22 @@ class BookController extends BaseController {
         $author = $_POST['author'];
         $price = $_POST['price'];
         $description = $_POST['description'];
+        $page = $_POST['page'];
+        $height = $_POST['height'];
+        $width = $_POST['width'];
+        $publisher = $_POST['publisher'];
+        $publishDate = $_POST['publish-date'];
         $data = [
             'category_id' => $categoryId,
             'title' => $title,
             'author' => $author,
             'price' => $price,
-            'description' => $description
+            'description' => $description,
+            'page' => $page,
+            'height' => $height,
+            'width' => $width,
+            'publish_date' => $publishDate,
+            'publisher' => $publisher
         ];
         $this->bookModel->updateBook($id, $data);
         $books = $this->bookModel->getAll();

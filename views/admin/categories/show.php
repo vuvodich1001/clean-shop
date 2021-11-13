@@ -1,4 +1,4 @@
-<?php $this->view('partitions.admin.header'); ?>
+<?php $this->view('partitions.admin.header', ['roles' => $roles]); ?>
 <div class="action">
     <h2>Category</h2>
     <button class="btn btn-create"><i class="fas fa-plus-circle"></i> Create Category</button>

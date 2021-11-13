@@ -54,6 +54,12 @@ function fetchDataBook(type, data = {}, id) {
             // dataBooks = posts;
             const contentBody = document.querySelector('.content-body');
             const books = posts.map(book => {
+                let dateTime = book.create_date;
+                let wanted = '';
+                if (dateTime) {
+                    let parts = dateTime.split(/[- :]/);
+                    wanted = `${parts[0]}-${parts[1]}-${parts[2]}`;
+                }
                 return `
                 <tr>
                     <td>${book.book_id}</td>
@@ -64,10 +70,10 @@ function fetchDataBook(type, data = {}, id) {
                     <td>
                         <div>${book.description}</div>
                     </td>
-                    <td>${book.publish_date.toLocaleString()}</td>
+                    <td>${book.publish_date}</td>
                     <td>${book.publisher}</td>
                     <td>${book.page} x ${book.width} x ${book.height}</td>
-                    <td>${book.create_date}</td>
+                    <td>${wanted}</td>
                     <td><a class="btn-delete-book" book-id="${book.book_id}" href=""><i class="fas fa-trash-alt"></i></a>
                         <a class="btn-update-book" book-id="${book.book_id}" href=""><i class="fas fa-edit"></i></a>
                     </td>
@@ -142,6 +148,11 @@ function updateBook() {
                                 let title = document.querySelector('#title');
                                 let author = document.querySelector('#author');
                                 let price = document.querySelector('#price');
+                                let publishDate = document.querySelector('#publish-date');
+                                let publisher = document.querySelector('#publisher');
+                                let height = document.querySelector('#height');
+                                let width = document.querySelector('#width');
+                                let page = document.querySelector('#page');
                                 let description = document.querySelector('#description');
                                 categories.forEach(category => {
                                     if (category.value == book.category_id) {
@@ -152,6 +163,11 @@ function updateBook() {
                                 title.value = book.title;
                                 author.value = book.author;
                                 price.value = book.price;
+                                publisher.value = book.publisher;
+                                height.value = book.height;
+                                width.value = book.width;
+                                page.value = book.page;
+                                publishDate.value = book.publish_date;
                                 // description.value = book.description;
                                 CKEDITOR.instances['description'].setData(book.description);
                             }

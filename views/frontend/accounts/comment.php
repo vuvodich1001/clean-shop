@@ -4,8 +4,8 @@
         <div class="col l-12">
             <div class="breadcrumb">
                 <ul>
-                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
-                    <li class="breadcrumb-item"><a href=""></a>Review</li>
+                    <li class="breadcrumb-item"><a href="">Home/</a></li>
+                    <li class="breadcrumb-item">Review</li>
                 </ul>
             </div>
         </div>

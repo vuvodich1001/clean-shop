@@ -1,6 +1,5 @@
 <?php
-
-class TrackingController extends BaseController {
+class InventoryController extends BaseController {
     private $inventoryModel;
     public function __construct() {
         parent::__construct();

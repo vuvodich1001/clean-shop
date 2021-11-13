@@ -4,11 +4,20 @@
   top: 0;
   bottom: 0;
   background-color: #23243d;
+  width: 250px;
 }
-.sidebar h2 {
+.sidebar .sidebar-title {
+  /* color: var(--white-color);
+  padding: 20px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: var(--white-color);
-  padding: 20px;
   border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  padding: 15px;
+}
+.sidebar-title i {
+  font-size: 25px;
 }
 .sidebar-list {
   list-style: none;
@@ -62,6 +71,11 @@ h1 {
 .form-group input[type="date"] {
   padding: 2px;
 }
+.form-group input[type="checkbox"] {
+  width: unset;
+  margin-left: 10px;
+}
+
 .form-group input:focus {
   border: 1px solid #333;
 }
@@ -74,6 +88,11 @@ h1 {
 
 form button {
   margin-top: 10px;
+}
+
+.role-group label {
+  display: inline-block;
+  min-width: 170px;
 }
 /* btn */
 .btn {
@@ -225,4 +244,44 @@ nav .personal span i {
 }
 .name-group .form-group input {
   width: 100%;
+}
+
+/* Card */
+.card-box {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card-box .card {
+  background: var(--background-color);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.card-box .card .number {
+  font-size: 2em;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.card .card-number {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.card-box .card .card-icon {
+  margin-left: 10px;
+  font-size: 2.5em;
+  color: var(--primary-color);
+}
+
+.action a {
+  text-decoration: none;
 }

@@ -1,6 +1,7 @@
 /* Header */
 header {
   background-color: #1a94ff;
+  /* background-color: #ebb9c7; */
   border-bottom: 1px solid rgb(241, 241, 241);
 }
 
@@ -658,7 +659,7 @@ main {
 
 .book-description div {
   line-height: 30px;
-  margin-left: 15px;
+  text-align: justify;
 }
 .book-description {
   padding-bottom: 10px;

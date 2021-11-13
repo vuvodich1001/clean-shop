@@ -24,10 +24,4 @@ class AuthController extends BaseController {
         unset($_SESSION['customer']);
         header('Location:index.php');
     }
-
-    public function adminLogin() {
-    }
-
-    public function adminLogout() {
-    }
 }

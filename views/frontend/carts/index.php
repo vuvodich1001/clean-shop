@@ -4,8 +4,8 @@
         <div class="col l-12">
             <div class="breadcrumb">
                 <ul>
-                    <li class="breadcrumb-item"><a href="index.php">Home/</a></li>
-                    <li class="breadcrumb-item"><a href=""></a>Cart</li>
+                    <li class="breadcrumb-item"><a href="">Home/</a></li>
+                    <li class="breadcrumb-item">Cart</li>
                 </ul>
             </div>
         </div>
@@ -84,7 +84,7 @@
             </div>
             <div class="shopping-cart-action">
                 <?php if (isset($_SESSION['customer'])) {
-                    echo '<a href="http://localhost/mvc-php/cart/checkout" class="btn btn-buy active">Mua hàng</a>';
+                    echo '<a href="cart/checkout" class="btn btn-buy active">Mua hàng</a>';
                 } else {
                     echo '<a class="btn btn-login active">Đăng nhập ngay</a>';
                 }

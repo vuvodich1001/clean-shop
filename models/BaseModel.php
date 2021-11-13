@@ -13,7 +13,6 @@ class BaseModel extends Database {
         $orderBy ? $orderField .= implode(' ', $orderBy) : $orderField = '';
 
         $sql = "select $field from $table $orderField limit $limit";
-
         $result = $this->db->query($sql);
         $data = [];
         while ($row = $result->fetch()) {

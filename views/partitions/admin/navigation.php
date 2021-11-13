@@ -7,6 +7,6 @@
     <div class="personal">
         <span class="bell"><i class="fas fa-bell"></i></span>
         <span class="setting"><i class="fas fa-cog"></i></span>
-        <span><strong>Admin</strong></span>
+        <span><strong><?php echo ucfirst($_SESSION['user']['first_name']) . ' ' .  ucfirst($_SESSION['user']['last_name']) ?></strong></span>
     </div>
 </nav>
