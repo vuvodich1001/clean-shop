@@ -10,7 +10,7 @@ class BaseModel extends Database {
     public function all($table, $select, $orderBy, $limit) {
         $field = implode(',', $select);
         $orderField = 'order by ';
-        $orderBy ? $orderField .= implode(' ', $orderBy) : $orderField = '';
+        $orderBy ? $orderField .= implode(', ', $orderBy) : $orderField = '';
 
         $sql = "select $field from $table $orderField limit $limit";
         $result = $this->db->query($sql);

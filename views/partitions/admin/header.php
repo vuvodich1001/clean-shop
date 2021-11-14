@@ -26,5 +26,10 @@
                 </div>
                 <div class="col l-10">
                     <div class="nav">
-                        <?php $this->view('partitions.admin.navigation'); ?>
+                        <?php
+                        if (isset($notifications))
+                            $this->view('partitions.admin.navigation', ['notifications' => $notifications]);
+                        else
+                            $this->view('partitions.admin.navigation');
+                        ?>
                     </div>

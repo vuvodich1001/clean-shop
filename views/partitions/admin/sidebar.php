@@ -13,7 +13,8 @@
             'supplier' => '<i class="fas fa-coins"></i>',
             'tracking' => '<i class="fas fa-parachute-box"></i>',
             'inventory' => '<i class="fas fa-warehouse"></i>',
-            'discount' => '<i class="fas fa-tags"></i>'
+            'discount' => '<i class="fas fa-tags"></i>',
+            'review' => '<i class="far fa-comment"></i>'
 
         ] ?>
         <li class="sidebar-item"><a href="http://localhost/mvc-php/admin/"><i class="fas fa-table"></i>DashBoard</a></li>
@@ -27,7 +28,7 @@
         <li class="sidebar-item"><a href="http://localhost/mvc-php/admin/inventory"><i class="fas fa-warehouse"></i>Inventorys</a></li>
         <li class="sidebar-item"><a href="http://localhost/mvc-php/admin/discount"><i class="fas fa-tags"></i>Voucher</a></li> -->
         <?php foreach ($roles as $role) : ?>
-            <li class="sidebar-item"><a href="http://localhost/mvc-php/admin/<?= $role['name'] ?>"> <?php echo $icons[$role['name']] ?> <?= ucfirst($role['name'] . 's') ?></a></li>
+            <li class="sidebar-item"><a href="http://localhost/mvc-php/admin/<?= $role['name'] ?>"> <?php echo $icons[$role['name']] ?> <?= ucfirst($role['name']) ?></a></li>
         <?php endforeach ?>
         <li class="sidebar-item"><a href="http://localhost/mvc-php/admin/auth/adminLogout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
     </ul>

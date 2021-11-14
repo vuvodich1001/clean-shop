@@ -46,6 +46,8 @@ function changeStatus() {
                 let orderStatus = document.querySelector(`.order-status-${orderId}`);
                 if (check) {
                     orderStatus.textContent = 'Giao hàng thành công';
+                    orderStatus.classList.remove('text-info');
+                    orderStatus.classList.add('text-success');
                     btnSuccess.remove();
                     fetch(`index.php?controller=order&action=changeStatusSuccess&id=${orderId}`);
 
@@ -63,6 +65,8 @@ function changeStatus() {
                 let orderStatus = document.querySelector(`.order-status-${orderId}`);
                 if (check) {
                     orderStatus.textContent = 'Đang giao hàng';
+                    orderStatus.classList.remove('text-primary');
+                    orderStatus.classList.add('text-info');
                     btnShipping.remove();
                     fetch(`index.php?controller=order&action=changeStatusShipping&id=${orderId}`);
                 }

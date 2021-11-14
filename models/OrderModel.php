@@ -8,6 +8,13 @@ class OrderModel extends BaseModel {
         return $this->all(self::TABLE_ORDER, $select, $orderBy, $limit);
     }
 
+    public function revenue() {
+        $sql = "select sum(total) as revenue from book_order";
+        $stmt = $this->db->query($sql);
+        $stmt->execute();
+        return $stmt->fetch()['revenue'];
+    }
+
     public function getOrderId($customerId) {
         $sql = "select * from book_order where customer_id = :customer_id order by order_date desc limit 1";
         $stmt = $this->db->prepare($sql);

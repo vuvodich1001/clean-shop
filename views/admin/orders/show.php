@@ -29,7 +29,7 @@
                     <td><?php echo $order['phone'] ?></td>
                     <td><?php echo $order['payment_method'] ?></td>
                     <td><?php echo number_format($order['total'], 0, '.', '.') ?>đ</td>
-                    <td class="order-status-<?php echo $order['order_id'] ?>"><?php echo $order['status'] ?></td>
+                    <td class="<?= $textColors[$order['status']] ?> order-status-<?php echo $order['order_id'] ?>"><?php echo $order['status'] ?></td>
                     <td><?php echo date('d/m/Y', strtotime($order['order_date'])); ?></td>
                     <td>
                         <a href="" class="btn-detail-order" order-id="<?php echo $order['order_id'] ?>"><i class="fas fa-info-circle"></i></a>
@@ -61,7 +61,7 @@
 
             </tbody>
         </table>
-        <button class="btn btn-cancel">Close</button>
+        <button class="btn btn-cancel btn-close-detail">Close</button>
     </div>
 </div>
 <?php $this->view('partitions.admin.footer') ?>

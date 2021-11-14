@@ -9,17 +9,17 @@
     <table>
         <thead>
             <th>#</th>
-            <th>Discount Percent</th>
-            <th>Discount Money</th>
+            <th>Percent</th>
+            <th>Money</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Min order</th>
+            <th>Min</th>
             <th>Code</th>
             <th>Quantity</th>
-            <th>Current use</th>
-            <th>Discount type</th>
-            <th>Discount date</th>
-            <th>Discount expire</th>
+            <th>Used</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Expire</th>
             <th>Enable</th>
             <th>Action</th>
         </thead>
@@ -29,11 +29,11 @@
             ?>
                 <tr>
                     <td><?php echo $voucher['discount_id'] ?></td>
-                    <td><?php echo $voucher['discount_percent'] ?></td>
-                    <td><?php echo $voucher['discount_number'] ?></td>
+                    <td><?php echo $voucher['discount_percent'] * 100 ?>%</td>
+                    <td><?php echo number_format($voucher['discount_number'], 0, '.', '.') ?>đ</td>
                     <td><?php echo $voucher['name'] ?></td>
                     <td><?php echo $voucher['description'] ?></td>
-                    <td><?php echo $voucher['min_order'] ?></td>
+                    <td><?php echo number_format($voucher['min_order'], 0, '.', '.') ?>đ</td>
                     <td><?php echo $voucher['code'] ?></td>
                     <td><?php echo $voucher['quantity'] ?></td>
                     <td><?php echo $voucher['current_use'] ?></td>

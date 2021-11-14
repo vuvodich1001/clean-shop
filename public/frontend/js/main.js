@@ -34,7 +34,7 @@ function fetchData(type, val, str) {
                                 <img src="public/admin/uploads/${book.main_image}" alt="">
                                 <div class="item-body">
                                     <h4 class="item-title">${book.title}</h4>
-                                    <p class="item-price">${bookPrice} VNĐ</p>
+                                    <p class="item-price">${bookPrice}đ</p>
                                     <div class="item-rate">
                                         <div class="item-rate__heart" book-id=${book['book_id']}>
                                             <i class="heart-icon far fa-heart"></i>

@@ -20,6 +20,7 @@
 
         form {
             width: 400px;
+            padding: 30px;
             margin: auto;
         }
 

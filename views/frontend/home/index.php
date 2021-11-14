@@ -9,7 +9,7 @@
                                 <h2>Mã giảm giá</h2>
                                 <p>PreeShip trên mọi tỉnh thành</p>
                             </div>
-                            <a class="btn-receive-coupon" href="index.php?controller=discount">Nhận ngay</a>
+                            <a class="btn-receive-coupon" href="discount">Nhận ngay</a>
                         </div>
                     </div>
 

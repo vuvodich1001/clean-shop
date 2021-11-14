@@ -10,9 +10,20 @@ class OrderController extends BaseController {
     }
 
     public function index() {
-        $orders = $this->orderModel->getAll(['*'], ['status desc']);
+        $orders = $this->orderModel->getAll(['*'], ['status desc', 'order_date desc'],  30);
         $roles = $this->getUserModel()->getAllRoleByUserId($this->userId);
-        return $this->view('admin.orders.show', ['orders' => $orders, 'roles' => $roles]);
+        $textColors = [
+            'Đang xử lí' => 'text-primary',
+            'Đã thanh toán' => 'text-warning',
+            'Giao hàng thành công' => 'text-success',
+            'Đang giao hàng' => 'text-info',
+            'Đã hủy' => 'text-danger'
+        ];
+        return $this->view('admin.orders.show', [
+            'orders' => $orders,
+            'roles' => $roles,
+            'textColors' => $textColors
+        ]);
     }
 
     public function orderDetail() {
