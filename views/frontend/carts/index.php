@@ -34,8 +34,8 @@
                         ?>
                                 <tr>
                                     <td class="cart-item-id" book-id="<?php echo $cart['book']['book_id'] ?>"><strong>#</strong><?php echo $cart['book']['book_id'] ?></td>
-                                    <td><img src="./public/admin/uploads/<?php echo $cart['book']['main_image'] ?>" alt=""></td>
-                                    <td><?php echo $cart['book']['title'] ?></td>
+                                    <td><img src="./public/admin/uploads/<?php echo explode(',', $cart['book']['main_image'])[0] ?>" alt=""></td>
+                                    <td style="max-width: 150px;"><?php echo $cart['book']['title'] ?></td>
                                     <td class="cart-price"><?php echo number_format($cart['book']['price'], 0, '.', '.') ?>đ</td>
                                     <td class="cart-quantity-wrap"><button class="btn-minus"><i class="fas fa-minus"></i></button><span class="cart-quantity"><?php echo $cart['quantity'] ?>
                                         </span><button class="btn-add"><i class="fas fa-plus"></i></button></td>

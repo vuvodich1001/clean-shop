@@ -21,26 +21,15 @@
                 </div>
                 <div class="col l-12">
                     <div class="row sm-gutter more-img">
-                        <div class="col l-3">
-                            <div class="book-detail-img-item">
-                                <img src="public/admin/uploads/<?php echo $book['main_image']; ?>" alt="">
+                        <?php
+                        foreach (explode(',', $book['main_image']) as $image) : ?>
+                            <div class="col l-3">
+                                <div class="book-detail-img-item">
+                                    <?php $image ?>
+                                    <img src="public/admin/uploads/<?php echo $image ?>" alt="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col l-3">
-                            <div class="book-detail-img-item">
-                                <img src="public/admin/uploads/bitcoin.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col l-3">
-                            <div class="book-detail-img-item">
-                                <img src="public/admin/uploads/c++.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col l-3">
-                            <div class="book-detail-img-item">
-                                <img src="public/admin/uploads/learnpythonquickly.jpg" alt="">
-                            </div>
-                        </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
 
@@ -112,9 +101,9 @@
         <?php foreach ($bookRelates as $book) { ?>
             <div class="col l-2 m-3">
                 <a href="book/detail/<?php echo $book['book_id'] ?>" class="item">
-                    <img src="public/admin/uploads/<?php echo $book['main_image'] ?>" alt="">
+                    <img src="public/admin/uploads/<?php echo explode(',', $book['main_image'])[0] ?>" alt="">
                     <div class="item-body">
-                        <h4 class="item-title"><?php echo $book['title'] ?></h4>
+                        <p class="item-title"><?php echo $book['title'] ?></p>
                         <p class="item-price"><?php echo number_format($book['price'], 0, '.', '.') ?> VNĐ</p>
                         <div class="item-rate">
                             <div class="item-rate__heart">

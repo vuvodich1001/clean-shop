@@ -29,7 +29,7 @@
                     <td><?php echo $book['title'] ?></td>
                     <td><?php echo $book['author'] ?></td>
                     <td><?php echo $book['price'] ?></td>
-                    <td><img src="../public/admin/uploads/<?php echo $book['main_image'] ?>" alt=""></td>
+                    <td><img src="../public/admin/uploads/<?php echo explode(',', $book['main_image'])[0]; ?>" alt=""></td>
                     <td>
                         <div><?php echo $book['description'] ?></div>
                     </td>

@@ -19,14 +19,14 @@ class BookController extends BaseController {
         // 'column' => 'book_id',
         // 'order' => 'desc'
         // ];
-        $books = $this->bookModel->getAll();
+        $books = $this->bookModel->getAll(['*'], [], 100);
         $categories = $this->categoryModel->getAll();
         $roles = $this->getUserModel()->getAllRoleByUserId($this->userId);
         return $this->view('admin.books.show', ['books' => $books, 'categories' => $categories, 'roles' => $roles]);
     }
 
     public function getAllBook() {
-        $books = $this->bookModel->getAll();
+        $books = $this->bookModel->getAll(['*'], [], 100);
         echo json_encode($books);
     }
 
@@ -98,6 +98,16 @@ class BookController extends BaseController {
 
     public function updateBook() {
         $id = $_GET['id'];
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/admin/uploads/';
+        $existBook = $this->bookModel->getById($id);
+        // remove exist image
+        $bookImages = explode(',', $existBook['main_image']);
+        foreach ($bookImages as $bookImage) {
+            if (!empty($bookImage))
+                unlink($uploads_dir . $bookImage);
+        }
+
+        // update book
         $categoryId = $_POST['category'];
         $title = $_POST['title'];
         $author = $_POST['author'];
@@ -108,12 +118,25 @@ class BookController extends BaseController {
         $width = $_POST['width'];
         $publisher = $_POST['publisher'];
         $publishDate = $_POST['publish-date'];
+        $bookImages = [];
+        if (isset($_FILES['images'])) {
+            $images = $_FILES['images']['name'];
+            for ($i = 0; $i < count($images); $i++) {
+                $error = $_FILES['images']['error'][$i];
+                $tempName = $_FILES['images']['tmp_name'][$i];
+                $name = $_FILES['images']['name'][$i];
+                $this->insertFile($error, $tempName, $name);
+                $bookImages[] = $name;
+            }
+            $bookImages = implode(',', $bookImages);
+        }
         $data = [
             'category_id' => $categoryId,
             'title' => $title,
             'author' => $author,
             'price' => $price,
             'description' => $description,
+            'main_image' => $bookImages,
             'page' => $page,
             'height' => $height,
             'width' => $width,
@@ -121,7 +144,7 @@ class BookController extends BaseController {
             'publisher' => $publisher
         ];
         $this->bookModel->updateBook($id, $data);
-        $books = $this->bookModel->getAll();
+        $books = $this->bookModel->getAll(['*'], [], 100);
         echo json_encode($books);
     }
 

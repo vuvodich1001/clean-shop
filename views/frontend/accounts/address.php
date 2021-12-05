@@ -40,7 +40,7 @@
                         <i class="address-button-left fas fa-chevron-left"></i>
                         <i class="address-button-down fas fa-chevron-down"></i>
                     </div>
-                    <form action="index.php?controller=account&action=createNewAddress" id="address-form" method="POST">
+                    <form action="account/createNewAddress" id="address-form" method="POST">
                         <div class="name-group">
                             <div class="form-group">
                                 <label for="">Họ</label>

@@ -28,7 +28,7 @@ html {
   border: none;
   background-color: var(--white-color);
   /* color: var(--white-color); */
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   border-radius: 3px;
   cursor: pointer;

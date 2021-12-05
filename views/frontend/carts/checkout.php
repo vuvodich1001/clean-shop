@@ -129,7 +129,7 @@
                 <div class="order-list">
                     <?php foreach ($carts as $cart) { ?>
                         <div class="order-item">
-                            <img src="./public/admin/uploads/<?php echo $cart['book']['main_image'] ?>" alt="">
+                            <img src="./public/admin/uploads/<?php echo explode(',', $cart['book']['main_image'])[0] ?>" alt="">
                             <div class="order-group">
                                 <p class="order-title"><?php echo $cart['book']['title'] ?></p>
                                 <p class="order-author"><?php echo  $cart['book']['author'] ?></p>

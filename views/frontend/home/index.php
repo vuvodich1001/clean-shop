@@ -80,7 +80,7 @@
                         <li><a href=""><i class="fas fa-angle-left"></i></a></li>
                         <?php for ($i = 1; $i <= $num; $i++) { ?>
                             <li>
-                                <a class="page-item-link" href=""><?php echo $i; ?></a>
+                                <a class="page-item-link <?php echo $i == 1 ? 'page-item-active' : ''; ?>" href=""><?php echo $i; ?></a>
                             </li>
                         <?php } ?>
                         <li><a href=""><i class="fas fa-angle-right"></i></a></li>

@@ -68,7 +68,7 @@
                         <tbody>
                             <?php foreach ($orderDetails as $orderDetail) : ?>
                                 <tr>
-                                    <td class="detail-img"><img src="./public/admin/uploads/<?php echo $orderDetail['main_image'] ?>" alt="">
+                                    <td class="detail-img"><img src="./public/admin/uploads/<?php echo explode(',', $orderDetail['main_image'])[0] ?>" alt="">
                                         <div class="detail-action">
                                             <p>Sách <?php echo $orderDetail['title'] ?></p>
                                             <?php if ($order['status'] == 'Giao hàng thành công') : ?>

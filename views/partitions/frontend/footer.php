@@ -52,16 +52,25 @@
     <div class=" auth-content">
         <form action="index.php" id="form-login" method="POST">
             <h3>Thành viên đăng nhập</h3>
-            <div class="form-group">
-                <label for="">Tài Khoản</label>
-                <input type="text" name="username" id="username">
+            <div class=" form-group">
+                <input type="text" name="username" id="username" placeholder="Tài Khoản">
             </div>
             <div class="form-group">
-                <label for="">Mật khẩu</label>
-                <input type="password" name="password" id="password" autocomplete="off">
+                <input type="password" name="password" id="password" autocomplete="off" placeholder="Mật khẩu">
             </div>
             <p class="login-fail">Tài khoản hoặc mật khẩu không chính xác</p>
             <button class="btn btn-submit">Đăng nhập</button>
+            <div class="form-link">
+                <p>Or use a social network</p>
+                <div class="form-link-icon">
+                    <a href=""><i class="fab fa-twitter"></i></a>
+                    <a href=""><i class="fab fa-facebook"></i></a>
+                    <a href=""><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="form-footer">
+                <p>Don't have an account? <a href="">Sign up</a></p>
+            </div>
             <div class="btn-close-form"><i class="fas fa-times"></i></div>
         </form>
 
@@ -69,27 +78,33 @@
             <h3>Thành viên đăng ký</h3>
             <div class="name-group">
                 <div class="form-group">
-                    <label for="">Họ</label>
-                    <input type="text" name="first-name" id="first-name">
+                    <input type="text" name="first-name" id="first-name" placeholder="Họ">
                 </div>
                 <div class="form-group">
-                    <label for="">Tên</label>
-                    <input type="text" name="last-name" id="last-name">
+                    <input type="text" name="last-name" id="last-name" placeholder="Tên">
                 </div>
             </div>
             <div class="form-group">
-                <label for="">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <label for="">Mật khẩu</label>
-                <input type="password" name="rpassword" id="rpassword">
+                <input type="password" name="rpassword" id="rpassword" placeholder="Mật khẩu">
             </div>
             <div class="form-group">
-                <label for="">Nhập lại mật khẩu</label>
-                <input type="password" name="crpassword" id="crpassword" autocomplete="off">
+                <input type="password" name="crpassword" id="crpassword" autocomplete="off" placeholder="Nhập lại mật khẩu">
             </div>
             <button class="btn btn-submit">Đăng ký</button>
+            <div class="form-link">
+                <p>Or use a social network</p>
+                <div class="form-link-icon">
+                    <a href=""><i class="fab fa-twitter"></i></a>
+                    <a href=""><i class="fab fa-facebook"></i></a>
+                    <a href=""><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="form-footer">
+                <p>Have an account? <a href="">Sign in</a></p>
+            </div>
             <div class="btn-close-form"><i class="fas fa-times"></i></div>
         </form>
     </div>

@@ -60,13 +60,14 @@ function fetchDataBook(type, data = {}, id) {
                     let parts = dateTime.split(/[- :]/);
                     wanted = `${parts[0]}-${parts[1]}-${parts[2]}`;
                 }
+                let image = book.main_image.split(',')[0];
                 return `
                 <tr>
                     <td>${book.book_id}</td>
                     <td>${book.title}</td>
                     <td>${book.author}</td>
                     <td>${book.price}</td>
-                    <td><img src="../public/admin/uploads/${book.main_image}" alt=""></td>
+                    <td><img src="../public/admin/uploads/${image}" alt=""></td>
                     <td>
                         <div>${book.description}</div>
                     </td>
@@ -101,6 +102,7 @@ function createBook() {
             e.preventDefault();
             modal.classList.remove('modal-active');
             formBook.reset();
+            CKEDITOR.instances['description'].setData('');
         })
     }
 }

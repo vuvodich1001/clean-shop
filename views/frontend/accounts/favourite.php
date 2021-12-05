@@ -22,7 +22,7 @@
                         <div class="col l-12">
                             <a href="index.php?controller=book&action=bookDetail&id=<?php echo $book['book_id'] ?>" class="favourite-item">
                                 <div class="favourite-item-body">
-                                    <img src="public/admin/uploads/<?php echo $book['main_image'] ?>" alt="image">
+                                    <img src="public/admin/uploads/<?php echo explode(',', $book['main_image'])[0] ?>" alt="image">
                                     <div class="favourite-item-rate">
                                         <h4 class="favourite-item-title"><?php echo $book['title'] ?></h4>
                                         <div class="favourite-item-rate__star">

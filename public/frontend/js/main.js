@@ -28,12 +28,13 @@ function fetchData(type, val, str) {
                     let bookPrice = book.price.toString().replace(
                         /(\d)(?=(\d{3})+(?!\d))/g,
                         "$1.");
+                    let image = book.main_image.split(',')[0];
                     return `
                         <div class="col l-2-4 m-4 c-6">
                             <a href="book/detail/${book['book_id']}" class="item">
-                                <img src="public/admin/uploads/${book.main_image}" alt="">
+                                <img src="public/admin/uploads/${image}" alt="">
                                 <div class="item-body">
-                                    <h4 class="item-title">${book.title}</h4>
+                                    <p class="item-title">${book.title}</p>
                                     <p class="item-price">${bookPrice}đ</p>
                                     <div class="item-rate">
                                         <div class="item-rate__heart" book-id=${book['book_id']}>
@@ -68,17 +69,26 @@ function removeFilterActive() {
 // Get book by category
 function sideBarAction() {
     let sidebarItems = document.querySelectorAll('.sidebar-item');
+    let pageItems = document.querySelectorAll('.page-item-link');
     function removeAllActive(sidebarItems) {
         sidebarItems.forEach(sidebarItem => {
             sidebarItem.classList.remove('active');
+        })
+    }
+    function activePageItem() {
+        pageItems.forEach((pageItem, key) => {
+            if (key == 0) pageItem.classList.add('page-item-active');
+            else pageItem.classList.remove('page-item-active');
         })
     }
     sidebarItems.forEach(sidebarItem => {
         sidebarItem.onclick = function (e) {
             removeAllActive(sidebarItems);
             removeFilterActive();
+            activePageItem();
             this.classList.add('active');
             let val = this.children[0].getAttribute('category-name');
+            console.log(val);
             fetchData('get', val);
         }
     })
@@ -177,6 +187,10 @@ function pagination() {
         pageItems.forEach(pageItem => {
             pageItem.addEventListener('click', e => {
                 e.preventDefault();
+                pageItems.forEach(pageItem => {
+                    pageItem.classList.remove('page-item-active');
+                });
+                pageItem.classList.add('page-item-active');
                 let str = e.target.innerText;
                 let categoryName = findSideBarItemActive().firstChild.getAttribute('category-name');
                 fetchData('pagination', categoryName, str);

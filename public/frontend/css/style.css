@@ -172,12 +172,12 @@ nav {
   top: -200px;
   background-color: var(--white-color);
   width: 400px;
-  padding: 30px 40px;
+  padding: 20px;
   border-radius: 3px;
-  animation: scaleUp linear 0.2s;
+  animation: slideFromTop linear 0.3s;
 }
 
-@keyframes scaleUp {
+/* @keyframes scaleUp {
   from {
     opacity: 0;
     transform: scale(0);
@@ -186,6 +186,17 @@ nav {
     opacity: 1;
     transform: scale(1);
   }
+} */
+
+@keyframes slideFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 form {
@@ -193,18 +204,19 @@ form {
 }
 form h3 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 form .login-fail {
   text-align: center;
-  padding: 7px;
+  margin-top: 10px;
   color: red;
   font-size: 16px;
   display: none;
 }
 
 .form-group {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .form-group label {
   display: inline-block;
@@ -231,12 +243,37 @@ form .login-fail {
   border: 1px solid #333;
 }
 .btn.btn-submit {
-  margin-top: 10px;
+  margin-top: 15px;
   width: 100%;
   background-color: var(--main-color);
   color: var(--white-color);
+  border-radius: 20px;
 }
 
+.form-link {
+  padding: 20px 0;
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+}
+.form-link-icon {
+  margin-top: 7px;
+}
+.form-link-icon a {
+  text-decoration: none;
+  color: #333;
+  margin: 0 5px;
+  font-size: 25px;
+}
+
+.form-footer {
+  margin-top: 7px;
+  text-align: center;
+  font-size: 16px;
+}
+.form-footer a {
+  text-decoration: none;
+}
 #form-login,
 #form-register {
   display: none;
@@ -260,9 +297,9 @@ form .login-fail {
 .breadcrumb ul {
   list-style: none;
   display: flex;
+  font-size: 18px;
 }
 .breadcrumb-item a {
-  font-size: 18px;
   text-decoration: none;
 }
 .breadcrumb-item + .breadcrumb-item {
@@ -408,7 +445,7 @@ main {
   position: relative;
   text-decoration: none;
   color: var(--text-color);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -482,10 +519,10 @@ main {
 .item-author {
   padding: 5px 0 5px 5px;
   float: right;
-  font-size: 15px;
+  font-size: 14px;
 }
 
-.item h4 {
+.item .item-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -493,7 +530,7 @@ main {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden; */
-  font-size: 15px;
+  font-size: 14px;
 }
 /* pagination */
 
@@ -511,10 +548,15 @@ main {
 .pagination ul li a {
   display: inline-block;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 7px 10px;
+  margin: 0 7px;
   border-radius: 4px;
+}
+.page-item-active {
+  background-color: var(--main-color);
+  color: var(--white-color);
 }
 
 .pagination ul li a:hover {

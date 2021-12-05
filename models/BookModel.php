@@ -168,7 +168,10 @@ class BookModel extends BaseModel {
         $sql = "select distinct b.* 
                 from book_order bo join order_detail od on bo.order_id = od.order_id join 
                 book b on od.book_id = b.book_id 
-                where bo.customer_id = :customer_id and b.book_id not in (select book_id from review r where r.customer_id = :customer_id)
+                where bo.customer_id = :customer_id and 
+                bo.status = 'Giao hàng thành công'
+                and
+                b.book_id not in (select book_id from review r where r.customer_id = :customer_id)
                 group by b.book_id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['customer_id' => $customerId]);
