@@ -17,7 +17,7 @@ function showReviewModal() {
                 fetch(`index.php?controller=book&action=getById&book-id=${bookId}`)
                     .then(response => response.json())
                     .then(book => {
-                        reviewImg.src = `./public/admin/uploads/${book['main_image']}`;
+                        reviewImg.src = `./public/admin/uploads/${(book['main_image'].split(','))[0]}`;
                         reviewTitle.textContent = `Sách ${book['title']}`;
                         reviewAuthor.textContent = book['author'];
                         btnSendReview.setAttribute('book-id', book['book_id']);

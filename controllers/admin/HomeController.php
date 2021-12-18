@@ -29,7 +29,7 @@ class HomeController extends BaseController {
             'revenue' => $revenue
         ];
 
-        $pendingOrders = array_filter($this->orderModel->getAll(), fn ($order) => $order['status'] == 'Đang xử lí' ? true : false);
+        $pendingOrders = array_filter($this->orderModel->getAll(), fn ($order) => $order['status'] == 'Đang xử lí' || $order['status'] == 'Đã thanh toán' ? true : false);
         $pendingReviews = array_filter($this->reviewModel->getAll(), function ($review) {
             $dayReview = date('d', strtotime($review['review_time']));
             $dayNow = date('d', time());

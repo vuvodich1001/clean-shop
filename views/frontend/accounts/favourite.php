@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <!-- <p class="favourite-item-author"><?php echo $book['author'] ?></p> -->
-                                <p class="favourite-item-price"><?php echo number_format($book['price'], 0, '.', '.') ?>đ</p>
+                                <p class="favourite-item-price"><?php echo number_format($book['price'], 0, '.', '.') ?> ₫</p>
                                 <p class="favourite-item-delete" book-id="<?php echo $book['book_id'] ?>"><i class="fas fa-times"></i></p>
                             </a>
                         </div>

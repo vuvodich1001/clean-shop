@@ -133,7 +133,7 @@
                             <div class="order-group">
                                 <p class="order-title"><?php echo $cart['book']['title'] ?></p>
                                 <p class="order-author"><?php echo  $cart['book']['author'] ?></p>
-                                <span class="order-price"><?php echo number_format($cart['book']['price'], 0, '.', '.') ?>đ</span> x <span class="order-quantity">0<?php echo $cart['quantity'] ?></span>
+                                <span class="order-price"><?php echo number_format($cart['book']['price'], 0, '.', '.') ?>₫</span> x <span class="order-quantity">0<?php echo $cart['quantity'] ?></span>
                             </div>
                         </div>
                     <?php } ?>
@@ -142,21 +142,21 @@
                     <div class="delivery">
                         <span>Vận chuyển</span>
                         <span class="delivery-cost">
-                            <?php echo number_format($shippingFee, 0, '.', '.') ?>đ
+                            <?php echo number_format($shippingFee, 0, '.', '.') ?> ₫
                         </span>
                     </div>
 
                     <div class="discount">
                         <span>Giảm giá</span>
                         <span class="discount-cost">
-                            -<?php echo $coupon == 0 ? 0 : number_format($coupon, 0, '.', '.') ?>đ
+                            <?php echo $coupon == 0 ? 0 : number_format($coupon, 0, '.', '.') ?> ₫
                         </span>
                     </div>
                 </div>
 
                 <div class="order-total">
                     <span>Tổng</span>
-                    <span class="total"><?php echo number_format($total, 0, '.', '.'); ?>đ</span>
+                    <span class="total"><?php echo number_format($total, 0, '.', '.'); ?> ₫</span>
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@ function changeImageProduct() {
             imageItem.addEventListener('click', (e) => {
                 bookImage.src = imageItem.src;
                 imageItems.forEach(imageItem => {
-                    imageItem.style.border = '1px solid #ccc';
+                    imageItem.style.border = 'none';
                     imageItem.style.opacity = 0.6;
                 });
                 imageItem.style.border = '1px solid var(--main-color)';

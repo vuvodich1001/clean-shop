@@ -21,7 +21,9 @@
         form {
             width: 400px;
             padding: 30px;
-            margin: auto;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            border-radius: 3px;
         }
 
         form h3 {
@@ -61,7 +63,7 @@
             background-color: var(--white-color);
             font-size: 17px;
             font-weight: 500;
-            border-radius: 3px;
+            border-radius: 20px;
             cursor: pointer;
             transition: opacity linear 0.2s;
             min-width: 100px;
@@ -95,14 +97,12 @@
 <body>
     <div class="app">
         <form action="index.php" id="form-login" method="POST">
-            <h3>Admin đăng nhập</h3>
+            <h3>Admin Login</h3>
             <div class="form-group">
-                <label for="">Tài Khoản</label>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username" placeholder="Tài Khoản">
             </div>
             <div class="form-group">
-                <label for="">Mật khẩu</label>
-                <input type="password" name="password" id="password" autocomplete="off">
+                <input type="password" name="password" id="password" autocomplete="off" placeholder="Mật khẩu">
             </div>
             <p class="login-fail">Tài khoản hoặc mật khẩu không chính xác</p>
             <button class="btn active btn-submit">Đăng nhập</button>

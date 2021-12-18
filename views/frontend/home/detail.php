@@ -16,7 +16,7 @@
             <div class="row sm-gutter">
                 <div class="col l-12">
                     <div class="book-detail-img">
-                        <img src="public/admin/uploads/<?php echo $book['main_image']; ?>" alt="">
+                        <img src="" alt="">
                     </div>
                 </div>
                 <div class="col l-12">
@@ -49,10 +49,23 @@
 
         <div class="col l-3">
             <div class="book-detail-content">
+                <p class="detail-name"><?php echo $book['title']; ?></p>
+                <div class="detail-sale">
+                    <?php if (!empty($totalReview)) : ?>
+                        <a href="book/detail/<?php echo $book['book_id'] ?>#comment">
+                            xem <?php echo $totalReview ?> đánh giá |
+                        </a>
+                    <?php else : ?>
+                        <a href="book/detail/<?php echo $book['book_id'] ?>#comment">
+                            Chưa có đánh giá nào |
+                        </a>
+                    <?php endif ?>
+                    <span> Đã bán <?php echo empty($quantitySaled) ? 0 : $quantitySaled ?></span>
+                </div>
                 <p class="detail-author"><strong>Tác giả: </strong><?php echo $book['author']; ?></p>
                 <p class="detail-price"><strong>Giá:</strong>
-                    <?php echo number_format($book['price'], 0, '.', '.'); ?>đ</p>
-                <!-- <p class="detail-description"><strong>Description: </strong><?php echo $book['description']; ?></p> -->
+                    <?php echo number_format($book['price'], 0, '.', '.'); ?> ₫</p>
+                <!-- <p class="detail-description"><strong>Số lượng đã bán: </strong></p> -->
                 <div class="detail-quantity">
                     <strong> Số lượng: </strong>
                     <button><i class="fas fa-plus"></i></button>
@@ -68,7 +81,7 @@
             <table class="detail-table">
                 <tr>
                     <td>Kích thước</td>
-                    <td><?php echo $book['width'] . ' x ' . $book['height'] ?> cm</td>
+                    <td><?php echo $book['height'] . ' x ' . $book['width'] ?> cm</td>
                 </tr>
                 <tr>
                     <td>Số trang</td>
@@ -104,7 +117,10 @@
                     <img src="public/admin/uploads/<?php echo explode(',', $book['main_image'])[0] ?>" alt="">
                     <div class="item-body">
                         <p class="item-title"><?php echo $book['title'] ?></p>
-                        <p class="item-price"><?php echo number_format($book['price'], 0, '.', '.') ?> VNĐ</p>
+                        <div class="item-group">
+                            <p class="item-price"><?php echo $book['price'] ?> ₫</p>
+                            <p class="item-sale"> Đã bán <?php echo empty($book['sale_quantity']) ? 0 : $book['sale_quantity'] ?></p>
+                        </div>
                         <div class="item-rate">
                             <div class="item-rate__heart">
                                 <i class="heart-icon far fa-heart"></i>
@@ -132,7 +148,7 @@
 
     <div class="row comment">
         <div class="col l-12">
-            <h2>Đánh Giá - Nhận Xét Từ Khách Hàng</h2>
+            <h2 id="comment">Đánh Giá - Nhận Xét Từ Khách Hàng</h2>
             <div class="row comment-body">
                 <div class="col l-4 m-12">
                     <div class="rating-summary">
@@ -143,11 +159,12 @@
                                 ?></h1>
                             <div class="rating-summary-total">
                                 <div class="rating-star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                                    <?php for ($i = 1; $i <= round($total, 0); $i++) { ?>
+                                        <i class="fas fa-star"></i>
+                                    <?php } ?>
+                                    <?php for ($i = 1; $i <= 5 - round($total, 0); $i++) { ?>
+                                        <i class="far fa-star"></i>
+                                    <?php } ?>
                                 </div>
                                 <p><?php echo $totalReview ?> nhận xét</p>
                             </div>

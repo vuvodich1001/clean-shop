@@ -36,7 +36,7 @@
                                     <td class="cart-item-id" book-id="<?php echo $cart['book']['book_id'] ?>"><strong>#</strong><?php echo $cart['book']['book_id'] ?></td>
                                     <td><img src="./public/admin/uploads/<?php echo explode(',', $cart['book']['main_image'])[0] ?>" alt=""></td>
                                     <td style="max-width: 150px;"><?php echo $cart['book']['title'] ?></td>
-                                    <td class="cart-price"><?php echo number_format($cart['book']['price'], 0, '.', '.') ?>đ</td>
+                                    <td class="cart-price"><?php echo number_format($cart['book']['price'], 0, '.', '.') ?> ₫</td>
                                     <td class="cart-quantity-wrap"><button class="btn-minus"><i class="fas fa-minus"></i></button><span class="cart-quantity"><?php echo $cart['quantity'] ?>
                                         </span><button class="btn-add"><i class="fas fa-plus"></i></button></td>
                                     <td><button class="btn-delete"><i class="far fa-trash-alt"></i></button></td>
@@ -63,13 +63,13 @@
                 <div class="checkout-wrap">
                     <span>Tạm tính</span>
                     <span class="checkout-temp">
-                        <?php echo empty($total) ? 0 : number_format($total, 0, '.', '.'); ?>đ
+                        <?php echo empty($total) ? 0 : number_format($total, 0, '.', '.'); ?> ₫
                     </span>
                 </div>
                 <div class="checkout-wrap">
                     <span>Giảm giá</span>
                     <span class="checkout-coupon">
-                        0đ
+                        0 ₫
                     </span>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 <div class="checkout-wrap">
                     <span>Tổng cộng</span>
                     <span class="checkout-total" value="<?php echo empty($total) ? 0 : $total ?>">
-                        <?php echo empty($total) ? 0 : number_format($total, 0, '.', '.'); ?>đ
+                        <?php echo empty($total) ? 0 : number_format($total, 0, '.', '.'); ?> ₫
                     </span>
                 </div>
             </div>

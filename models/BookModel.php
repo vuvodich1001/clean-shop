@@ -32,24 +32,31 @@ class BookModel extends BaseModel {
         return $this->destroy(self::TABLE, $id);
     }
 
-    public function getByCategory($category) {
+    public function getByCategory($category, $bookId = 0) {
         $sql = '';
         $stmt = '';
         if ($category == 'All') {
-            $sql = "select b.*, round(avg(rating), 0) as rating 
-                from book b left join review r on b.book_id = r.book_id 
+            $sql = "select b.*, round(avg(rating), 0) as rating, sum(quantity) as sale_quantity
+                from book b 
+                left join order_detail o on b.book_id = o.book_id 
+                left join book_order bo on bo.order_id = o.order_id 
+                left join review r on b.book_id = r.book_id 
                 group by b.book_id 
-                limit 10;";
+                limit 10";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
         } else {
-            $sql = "select b.*, round(avg(rating), 0) as rating 
-                    from book b join category c on b.category_id = c.category_id left join review r on b.book_id = r.book_id 
-                    where c.name = :name 
+            $sql = "select b.*, round(avg(rating), 0) as rating, sum(quantity) as sale_quantity
+                    from book b 
+                    join category c on b.category_id = c.category_id
+                    left join order_detail o on b.book_id = o.book_id 
+                    left join book_order bo on bo.order_id = o.order_id 
+                    left join review r on b.book_id = r.book_id 
+                    where c.name = :name and b.book_id != :book_id
                     group by b.book_id 
                     limit 10;";
             $stmt = $this->db->prepare($sql);
-            $stmt->execute(['name' => $category]);
+            $stmt->execute(['name' => $category, 'book_id' => $bookId]);
         }
         $data = [];
         while ($row = $stmt->fetch()) {
@@ -62,16 +69,23 @@ class BookModel extends BaseModel {
         $sql = '';
         $stmt = '';
         if ($categoryName == 'All') {
-            $sql = "select b.*, round(avg(rating), 0) as rating 
-                    from book b left join review r on b.book_id = r.book_id 
+            $sql = "select b.*, round(avg(rating), 0) as rating, sum(quantity) as sale_quantity
+                    from book b 
+                    left join order_detail o on b.book_id = o.book_id 
+                    left join book_order bo on bo.order_id = o.order_id 
+                    left join review r on b.book_id = r.book_id 
                     group by b.book_id  
                     order by $sortby 
                     limit 10";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
         } else {
-            $sql = "select b.*, round(avg(rating), 0) as rating 
-                    from book b join category c on b.category_id = c.category_id left join review r on b.book_id = r.book_id 
+            $sql = "select b.*, round(avg(rating), 0) as rating, sum(quantity) as sale_quantity
+                    from book b 
+                    join category c on b.category_id = c.category_id 
+                    left join order_detail o on b.book_id = o.book_id 
+                    left join book_order bo on bo.order_id = o.order_id 
+                    left join review r on b.book_id = r.book_id 
                     where c.name = :name 
                     group by b.book_id 
                     order by $sortby
@@ -97,8 +111,11 @@ class BookModel extends BaseModel {
         $num = $page * 10 - 10;
         $stmt = '';
         if ($category == 'All') {
-            $sql = "select b.*, round(avg(rating), 0) as rating 
-                    from book b left join review r on b.book_id = r.book_id 
+            $sql = "select b.*, round(avg(rating), 0) as rating, sum(quantity) as sale_quantity
+                    from book b
+                    left join order_detail o on b.book_id = o.book_id 
+                    left join book_order bo on bo.order_id = o.order_id 
+                    left join review r on b.book_id = r.book_id 
                     group by b.book_id  
                     limit :num, 10";
             // bug of pdo
@@ -106,10 +123,15 @@ class BookModel extends BaseModel {
             $stmt->bindParam(':num', $num, PDO::PARAM_INT);
             $stmt->execute();
         } else {
-            $sql = "select b.*, round(avg(rating), 0) as rating 
-                    from book b join category c on b.category_id = c.category_id left join review r on b.book_id = r.book_id 
+            $sql = "select b.*, round(avg(rating), 0) as rating, sum(quantity) as sale_quantity
+                    from book b 
+                    join category c on b.category_id = c.category_id
+                    left join order_detail o on b.book_id = o.book_id 
+                    left join book_order bo on bo.order_id = o.order_id 
+                    left join review r on b.book_id = r.book_id 
                     where c.name = :name 
-                    group by b.book_id  limit :num, 10";
+                    group by b.book_id  
+                    limit :num, 10";
             // bug of pdo
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':name', $category, PDO::PARAM_STR);
@@ -124,7 +146,13 @@ class BookModel extends BaseModel {
     }
 
     public function searchBook($name) {
-        $sql = "select * from book where title like :name limit 10";
+        $sql = "select b.*, sum(quantity) as sale_quantity
+                from book b
+                left join order_detail o on b.book_id = o.book_id 
+                left join book_order bo on bo.order_id = o.order_id
+                where title like :name 
+                group by b.book_id
+                limit 10";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['name' => '%' . $name . '%']);
         $books = [];
@@ -189,5 +217,13 @@ class BookModel extends BaseModel {
             $book['review_quantity'] = $stmt->fetch()['quantity'];
         }
         return $books;
+    }
+
+    public function countBookSaled($bookId) {
+        $sql = "select sum(quantity) as quantity from order_detail o join book b on o.book_id = b.book_id
+                where b.book_id = :book_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['book_id' => $bookId]);
+        return $stmt->fetch()['quantity'];
     }
 }

@@ -31,7 +31,7 @@
             <nav>
                 <div class="nav-logo hide-on-mobile-tablet">
                     <!-- <a href="index.php"><img src="public/frontend/images/logo.png" alt=""></a> -->
-                    <a href="index.php">
+                    <a href="">
                         <h1><i class="fas fa-book-open"></i> BOOKSTORE</h1>
                     </a>
                 </div>

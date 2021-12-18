@@ -35,7 +35,7 @@
                                 <td><?php $time = strtotime($order['order_date']);
                                     echo date('d/m/Y', $time); ?></td>
                                 <td><?php echo $order['payment_method'] ?></td>
-                                <td><?php echo number_format($order['total'], 0, '.', '.') ?>đ</td>
+                                <td><?php echo number_format($order['total'], 0, '.', '.') ?> ₫</td>
                                 <td><?php echo $order['status'] ?></td>
                             </tr>
                         <?php endforeach ?>

@@ -109,6 +109,7 @@
         </form>
     </div>
 </div>
+
 <script src="./public/frontend/js/main.js"></script>
 <script src="./public/frontend/js/cart.js"></script>
 <script src="./public/frontend/js/productdetail.js"></script>

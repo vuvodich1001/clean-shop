@@ -33,14 +33,16 @@ class BookController extends BaseController {
     public function bookDetail() {
         $bookId = $_GET['id'];
         $book = $this->bookModel->getById($bookId);
+        $quantitySaled = $this->bookModel->countBookSaled($bookId);
         $categoryName  = $this->bookModel->getCategoryNameById($bookId);
-        $bookRelates = $this->bookModel->getByCategory($categoryName);
+        $bookRelates = $this->bookModel->getByCategory($categoryName, $bookId);
         $reviews = $this->reviewModel->getAllReviewByBookId($bookId);
         $statistics = $this->reviewModel->statisticReview($bookId);
         $totalReview = $this->reviewModel->totalReview($bookId);
         $this->view('frontend.home.detail', [
             'book' => $book,
             'bookRelates' => $bookRelates,
+            'quantitySaled' => $quantitySaled,
             'reviews' => $reviews,
             'statistics' => $statistics,
             'totalReview' => $totalReview

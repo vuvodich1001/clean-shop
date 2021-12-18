@@ -9,7 +9,7 @@ class OrderModel extends BaseModel {
     }
 
     public function revenue() {
-        $sql = "select sum(total) as revenue from book_order";
+        $sql = "select sum(total) as revenue from book_order where status != 'Đang xử lí' and status != 'Đã hủy'";
         $stmt = $this->db->query($sql);
         $stmt->execute();
         return $stmt->fetch()['revenue'];

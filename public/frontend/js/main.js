@@ -35,7 +35,10 @@ function fetchData(type, val, str) {
                                 <img src="public/admin/uploads/${image}" alt="">
                                 <div class="item-body">
                                     <p class="item-title">${book.title}</p>
-                                    <p class="item-price">${bookPrice}đ</p>
+                                   <div class="item-group">
+                                        <p class="item-price">${bookPrice} ₫</p>
+                                        <p class="item-sale"> Đã bán ${book.sale_quantity == null ? 0 : book.sale_quantity}</p>
+                                   </div>
                                     <div class="item-rate">
                                         <div class="item-rate__heart" book-id=${book['book_id']}>
                                             <i class="heart-icon far fa-heart"></i>
@@ -50,9 +53,13 @@ function fetchData(type, val, str) {
                             </a>
                         </div>
                         `;
-                })
+                });
                 document.querySelector('.book').innerHTML = books.join('');
                 heartIconChange();
+            }
+            else {
+                document.querySelector('.book').innerHTML = `<p style="margin-top: 20px;font-size: 22px; width: 100%; color: var(--main-color); font-weight: bold;text-align: center;">
+                                                            Không tìm thấy cuốn sách nào !!! Bạn nhập lại nhé<p>`
             }
         });
 }

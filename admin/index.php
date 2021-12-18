@@ -17,13 +17,6 @@ if (!isset($_SESSION['user']) && $actionName != 'adminLogin') {
     $controllerObject = new $controllerName;
     $controllerObject->$actionName();
 } else {
-    // $temp = false;
-    // if ($controllerName != 'UserController') {
-    //     include "../controllers/admin/UserController.php";
-    //     $temp = new UserController();
-    // }
-    // $controllerObject = new $controllerName;
-    // $user = $temp ? $temp : $controllerObject;
     $userId = $_SESSION['user']['user_id'];
     $controllerObject = new $controllerName;
     $check = $controllerObject->getUserModel()->checkPrivilege($userId, strtolower($request));

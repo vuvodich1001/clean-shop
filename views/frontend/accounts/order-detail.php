@@ -81,22 +81,22 @@
                                             <?php endif ?>
                                         </div>
                                     </td>
-                                    <td><?php echo number_format($orderDetail['price'], 0, '.', '.') ?>đ</td>
+                                    <td><?php echo number_format($orderDetail['price'], 0, '.', '.') ?> ₫</td>
                                     <td><?php echo $orderDetail['quantity'] ?></td>
-                                    <td><?php echo number_format($orderDetail['subtotal'], 0, '.', '.') ?>đ</td>
+                                    <td><?php echo number_format($orderDetail['subtotal'], 0, '.', '.') ?> ₫</td>
                                 </tr>
                             <?php endforeach ?>
                             <tr class="order-fee">
                                 <td colspan="3" class="order-fee-title">Tạm tính</td>
-                                <td><?php echo number_format($order['subtotal'], 0, '.', '.') ?>đ</td>
+                                <td><?php echo number_format($order['subtotal'], 0, '.', '.') ?> ₫</td>
                             </tr>
                             <tr class="order-fee">
                                 <td colspan="3" class="order-fee-title">Phí vận chuyển</td>
-                                <td><?php echo number_format($order['shipping_fee'], 0, '.', '.') ?>đ</td>
+                                <td><?php echo number_format($order['shipping_fee'], 0, '.', '.') ?> ₫</td>
                             </tr>
                             <tr class="order-fee">
                                 <td colspan="3" class="order-fee-title">Giảm giá</td>
-                                <td><?php echo number_format($order['discount'], 0, '.', '.') ?>đ</td>
+                                <td><?php echo number_format($order['discount'], 0, '.', '.') ?> ₫</td>
                             </tr>
                             <tr class="order-fee">
                                 <td colspan="3" class="order-fee-title">Tổng cộng</td>
