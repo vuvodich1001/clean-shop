@@ -30,12 +30,12 @@
                 </div> -->
                 <?php if (empty($address)) {
                 } else {
-                    foreach ($address as $address) {
+                    foreach ($address as $key => $address) {
                         $userName = ucfirst($address['first_name']) . ' ' . ucfirst($address['last_name']);
                         $shippingAddress = $address['line1'] . ', ' . $address['line2'] . ', ' . $address['city'];
                 ?>
                         <div class="address-group">
-                            <input type="radio" name="address" id="<?php echo $address['address_id'] ?>">
+                            <input type="radio" name="address" id="<?php echo $address['address_id'] ?>" <?= $key == 0 ? 'checked' : '' ?>>
                             <label for="<?php echo $address['address_id'] ?>">
                                 <span class="cus-name"><?php echo $userName ?></span>
                                 <span class="cus-address"><?php echo $shippingAddress ?></span>, phone:<span><?php echo $address['phone'] ?></span>

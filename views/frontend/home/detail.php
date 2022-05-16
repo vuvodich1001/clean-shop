@@ -25,7 +25,6 @@
                         foreach (explode(',', $book['main_image']) as $image) : ?>
                             <div class="col l-3">
                                 <div class="book-detail-img-item">
-                                    <?php $image ?>
                                     <img src="public/admin/uploads/<?php echo $image ?>" alt="">
                                 </div>
                             </div>
@@ -155,14 +154,16 @@
                         <div class="rating-summary-head">
                             <h1><?php
                                 $total = array_reduce($statistics, fn ($acc, $value) => $acc + $value['rating'] * $value['quantity'], 0);
-                                echo empty($totalReview) ? 0 : round($total / $totalReview, 1);
+                                $rating = 0;
+                                empty($totalReview) ? $rating : $rating = round($total / $totalReview, 1);
+                                echo $rating;
                                 ?></h1>
                             <div class="rating-summary-total">
                                 <div class="rating-star">
-                                    <?php for ($i = 1; $i <= round($total, 0); $i++) { ?>
+                                    <?php for ($i = 1; $i <= $rating; $i++) { ?>
                                         <i class="fas fa-star"></i>
                                     <?php } ?>
-                                    <?php for ($i = 1; $i <= 5 - round($total, 0); $i++) { ?>
+                                    <?php for ($i = 1; $i <= 5 - $rating; $i++) { ?>
                                         <i class="far fa-star"></i>
                                     <?php } ?>
                                 </div>

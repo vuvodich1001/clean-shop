@@ -16,7 +16,6 @@ function openOrderDetail() {
                             return `
                                 <tr>
                                     <td>${result.title}</td>
-                                    <td>${result.main_image}</td>
                                     <td>${result.quantity}</td>
                                     <td>${result.price}</td>
                                     <td>${result.subtotal}</td>

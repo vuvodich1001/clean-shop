@@ -119,7 +119,6 @@
         <table class="detail-table">
             <thead>
                 <th>Title</th>
-                <th>Image</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Subtotal</th>
