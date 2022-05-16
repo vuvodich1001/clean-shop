@@ -32,9 +32,11 @@ _Contact: vunguyen.311001@gmail.com_
 
 <img src="./public/frontend/images/demo5.png" alt="demo5"/>
 
-**_6. Admin dashboard_**
+**_7. Admin dashboard_**
 
 <img src="./public/frontend/images/demo6.png" alt="demo5"/>
+
+**_8. Coupon, admin privileges,...._**
 
 ```javascript
 function code() {
