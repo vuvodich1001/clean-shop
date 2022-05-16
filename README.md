@@ -10,18 +10,25 @@ _Contact: vunguyen.311001@gmail.com_
 
 <img src="./public/frontend/images/demo1.png" alt="demo1"/>
 
-**_2. Account_**
+**_2. Book Detail and Comments_**
+
+<img src="./public/frontend/images/demo8.png" alt="demo1"/>
+
+<img src="./public/frontend/images/demo7.png" alt="demo1"/>
+
+**_3. Account_**
 
 <img src="./public/frontend/images/demo2.png" alt="demo1"/>
 
-**_3. Customer order details_**
+**_4. Customer order details_**
+
 <img src="./public/frontend/images/demo3.png" alt="demo1"/>
 
-**_4. Cart_**
+**_5. Cart_**
 
 <img src="./public/frontend/images/demo4.png" alt="demo1"/>
 
-**_5. Customer checkout_**
+**_6. Customer checkout_**
 
 <img src="./public/frontend/images/demo5.png" alt="demo5"/>
 
