@@ -67,6 +67,9 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="filter-title">
+                        <i class="fa-solid fa-circle-arrow-right"></i> <span class="filter-name">Bánh gạo lứt</span>
+                    </div>
                 </div>
                 <div class="content">
                     <div class="row sm-gutter book">

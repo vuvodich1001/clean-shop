@@ -11,7 +11,7 @@ class ReviewController  extends BaseController {
     }
 
     private function insertFile($error, $tempName, $name) {
-        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/frontend/review-images/';
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/clean-shop/public/frontend/review-images/';
         if ($error == UPLOAD_ERR_OK) {
             $name = basename($name);
             if (!file_exists($uploads_dir . $name))

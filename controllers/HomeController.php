@@ -9,4 +9,8 @@ class HomeController extends BaseController {
         $num = $this->bookModel->numPage(10);
         $this->view('frontend.home.index', ['num' => $num]);
     }
+
+    public function about() {
+        $this->view('frontend.home.about');
+    }
 }

@@ -17,6 +17,12 @@ class BookController extends BaseController {
         echo json_encode($books);
     }
 
+    public function getBySubCategory() {
+        $alias = $_GET['alias'];
+        $books = $this->bookModel->getBySubCategory($alias);
+        echo json_encode($books);
+    }
+
     public function getById() {
         $bookId = $_GET['book-id'];
         $book = $this->bookModel->getById($bookId);
@@ -53,6 +59,13 @@ class BookController extends BaseController {
         $page = $_GET['page'];
         $category = $_GET['category'];
         $books =  $this->bookModel->pagination($page, $category);
+        echo json_encode($books);
+    }
+
+    public function paginationSubCategory() {
+        $page = $_GET['page'];
+        $category = $_GET['subcategory'];
+        $books =  $this->bookModel->paginationSubCategory($page, $category);
         echo json_encode($books);
     }
 

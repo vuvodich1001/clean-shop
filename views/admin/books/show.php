@@ -45,15 +45,22 @@
         <form action="admin.php?controller=book&action=createBook" method="POST" id="form-book" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Category: </label>
-                <select name="category" id="#category" class="">
+                <select name="category" id="category" value="" class="">
+                    <option value="" hidden></option>
                     <?php
-
                     foreach ($categories as $category) {
                     ?>
                         <option value="<?php echo $category['category_id'] ?>"><?php echo $category['name'] ?></option>
                     <?php
                     }
                     ?>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="">Subcategory: </label>
+                <select name="subcategory" id="subcategory" class="">
+
                 </select>
             </div>
 

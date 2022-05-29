@@ -147,29 +147,16 @@ function updateBook() {
             if (book.book_id == bookId) {
               let categories = document.querySelectorAll('option');
               let title = document.querySelector('#title');
-              let author = document.querySelector('#author');
               let price = document.querySelector('#price');
               let publishDate = document.querySelector('#publish-date');
-              let publisher = document.querySelector('#publisher');
-              let height = document.querySelector('#height');
-              let width = document.querySelector('#width');
-              let page = document.querySelector('#page');
-              let description = document.querySelector('#description');
               categories.forEach((category) => {
                 if (category.value == book.category_id) {
-                  console.log(book.category_id);
                   category.selected = true;
                 }
               });
               title.value = book.title;
-              author.value = book.author;
               price.value = book.price;
-              publisher.value = book.publisher;
-              height.value = book.height;
-              width.value = book.width;
-              page.value = book.page;
               publishDate.value = book.publish_date;
-              // description.value = book.description;
               CKEDITOR.instances['description'].setData(book.description);
             }
           });
@@ -192,12 +179,34 @@ function searchBook() {
     });
   }
 }
+
+function showSubCategory() {
+  let category = document.querySelector('#category');
+  let subcategory = document.querySelector('#subcategory');
+  if (category) {
+    category.onchange = function (e) {
+      let categoryId = e.target.value;
+      fetch(
+        `index.php?controller=category&action=getAllSubCategoryById&id=${categoryId}`
+      )
+        .then((res) => res.json())
+        .then((results) => {
+          const temp = results.map((result) => {
+            return `<option value="${result.subcategory_id}">${result.name}</option>`;
+          });
+          subcategory.innerHTML = temp.join('');
+        });
+    };
+  }
+}
+
 function start() {
   validateBook();
   createBook();
   deleteBook();
   updateBook();
   searchBook();
+  showSubCategory();
 }
 
 start();

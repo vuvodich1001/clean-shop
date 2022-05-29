@@ -1,12 +1,25 @@
+let subcategory = '';
+let filterName = document.querySelector('.filter-name');
 function fetchData(type, val, str) {
-  if (type === 'get') {
-    url = `index.php?controller=book&action=getByCategory&category=${val}`;
-  } else if (type === 'filter') {
-    url = `index.php?controller=book&action=filterBook&category=${val}&sortby=${str}`;
-  } else if (type === 'pagination') {
-    url = `index.php?controller=book&action=pagination&category=${val}&page=${str}`;
-  } else if (type === 'search') {
-    url = `index.php?controller=book&action=searchBook&name=${val}`;
+  switch (type) {
+    case 'get':
+      url = `index.php?controller=book&action=getByCategory&category=${val}`;
+      break;
+    case 'filter':
+      url = `index.php?controller=book&action=filterBook&category=${val}&sortby=${str}`;
+      break;
+    case 'pagination':
+      url = `index.php?controller=book&action=pagination&category=${val}&page=${str}`;
+      break;
+    case 'paginationSubCategory':
+      url = `index.php?controller=book&action=paginationSubCategory&subcategory=${val}&page=${str}`;
+      break;
+    case 'search':
+      url = `index.php?controller=book&action=searchBook&name=${val}`;
+      break;
+    case 'subcategory':
+      url = `index.php?controller=book&action=getBySubCategory&alias=${val}`;
+      break;
   }
   fetch(url)
     .then((response) => response.json())
@@ -62,7 +75,7 @@ function fetchData(type, val, str) {
         document.querySelector(
           '.book'
         ).innerHTML = `<p style="margin-top: 20px;font-size: 22px; width: 100%; color: var(--main-color); font-weight: bold;text-align: center;">
-                                                            Không tìm thấy sản phẩm nào !!! Bạn nhập lại nhé<p>`;
+                                                            OOPS !!! Không tìm thấy sản phẩm nào !!!<p>`;
       }
     });
 }
@@ -98,10 +111,28 @@ function sideBarAction() {
       activePageItem();
       this.classList.add('active');
       let val = this.children[0].getAttribute('category-name');
-      console.log(val);
+      filterName.innerText = e.target.textContent;
+      subcategory = '';
       fetchData('get', val);
     };
   });
+}
+
+// getProductBySubCategory
+function getProductBySubCatgory() {
+  let popupItems = document.querySelectorAll('.sidebar-popup-item');
+  console.log(popupItems);
+  if (popupItems) {
+    Array.from(popupItems).forEach((popupItem) => {
+      popupItem.onclick = function (e) {
+        e.stopPropagation();
+        let alias = popupItem.getAttribute('subcategeory-name');
+        filterName.innerText = e.target.textContent;
+        subcategory = alias;
+        fetchData('subcategory', alias);
+      };
+    });
+  }
 }
 
 function findSideBarItemActive() {
@@ -126,7 +157,7 @@ function filterProduct() {
     let val = e.target.getAttribute('value');
     let btnPrice = document.querySelector('.home-filter .btn-price');
     let categoryName =
-      findSideBarItemActive().firstChild.getAttribute('category-name');
+      findSideBarItemActive().firstElementChild.getAttribute('category-name');
     switch (val) {
       case 'new':
         str = 'create_date desc';
@@ -203,8 +234,12 @@ function pagination() {
         pageItem.classList.add('page-item-active');
         let str = e.target.innerText;
         let categoryName =
-          findSideBarItemActive().firstChild.getAttribute('category-name');
-        fetchData('pagination', categoryName, str);
+          findSideBarItemActive().firstElementChild.getAttribute(
+            'category-name'
+          );
+        if (subcategory) {
+          fetchData('paginationSubCategory', subcategory, str);
+        } else fetchData('pagination', categoryName, str);
       });
     });
   }
@@ -228,6 +263,7 @@ function start() {
   filterProduct();
   pagination();
   searchBook();
+  getProductBySubCatgory();
 }
 
 start();

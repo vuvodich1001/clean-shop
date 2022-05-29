@@ -65,6 +65,25 @@ class BookModel extends BaseModel {
         return $data;
     }
 
+    public function getBySubCategory($alias) {
+        $sql = "select b.*, round(avg(rating), 0) as rating, sum(quantity) as sale_quantity
+        from book b 
+        join sub_category c on b.subcategory_id = c.subcategory_id 
+        left join order_detail o on b.book_id = o.book_id 
+        left join book_order bo on bo.order_id = o.order_id 
+        left join review r on b.book_id = r.book_id 
+        where c.alias = :alias 
+        group by b.book_id 
+        limit 10";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['alias' => $alias]);
+        $data = [];
+        while ($row = $stmt->fetch()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
     public function filterBook($sortby, $categoryName) {
         $sql = '';
         $stmt = '';
@@ -138,6 +157,29 @@ class BookModel extends BaseModel {
             $stmt->bindParam(':num', $num, PDO::PARAM_INT);
             $stmt->execute();
         }
+        $books = [];
+        while ($row = $stmt->fetch()) {
+            $books[] = $row;
+        }
+        return $books;
+    }
+
+    public function paginationSubCategory($page, $category) {
+        $num = $page * 10 - 10;
+        $sql = "select b.*, round(avg(rating), 0) as rating, sum(quantity) as sale_quantity
+                    from book b 
+                    join sub_category c on b.subcategory_id = c.subcategory_id
+                    left join order_detail o on b.book_id = o.book_id 
+                    left join book_order bo on bo.order_id = o.order_id 
+                    left join review r on b.book_id = r.book_id 
+                    where c.alias = :alias 
+                    group by b.book_id  
+                    limit :num, 10";
+        // bug of pdo
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':alias', $category, PDO::PARAM_STR);
+        $stmt->bindParam(':num', $num, PDO::PARAM_INT);
+        $stmt->execute();
         $books = [];
         while ($row = $stmt->fetch()) {
             $books[] = $row;

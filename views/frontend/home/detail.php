@@ -111,10 +111,10 @@
             <h2>Sản phẩm tương tự</h2>
         </div>
     </div>
-    <div class="row book-slider">
+    <div class="row <?php echo count($bookRelates) > 6 ? 'book-slider' : ''; ?>">
         <?php foreach ($bookRelates as $book) { ?>
             <div class="col l-2 m-3">
-                <a href="book/detail/<?php echo $book['book_id'] ?>" class="item">
+                <a href="product/detail/<?php echo $book['book_id'] ?>" class="item">
                     <img src="public/admin/uploads/<?php echo explode(',', $book['main_image'])[0] ?>" alt="">
                     <div class="item-body">
                         <p class="item-title"><?php echo $book['title'] ?></p>
@@ -136,7 +136,6 @@
                                 <?php } ?>
                             </div>
                         </div>
-                        <p class="item-author"><?php echo $book['author'] ?></p>
                     </div>
                 </a>
             </div>

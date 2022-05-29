@@ -38,4 +38,15 @@ class CategoryModel extends BaseModel {
         $stmt->execute(['name' => $category]);
         return $stmt->fetch()['category_id'];
     }
+
+    public function getAllSubcategoryById($id) {
+        $sql = "select * from sub_category where category_id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        $subCategories = [];
+        while ($row = $stmt->fetch()) {
+            $subCategories[] = $row;
+        }
+        return $subCategories;
+    }
 }

@@ -20,6 +20,12 @@ class CategoryController extends BaseController {
         echo json_encode($categories);
     }
 
+    public function getAllSubCategoryById() {
+        $id = $_GET['id'];
+        $subCategories = $this->categoryModel->getAllSubcategoryById($id);
+        echo json_encode($subCategories);
+    }
+
     public function searchCategory() {
         $str = $_GET['str'];
         $categories = $this->categoryModel->searchCategory($str);

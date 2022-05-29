@@ -14,7 +14,7 @@
             <div class="col l-2-4">
                 <h4>Về BookStore</h4>
                 <ul>
-                    <li><a href="">Giới thiệu bookstore</a></li>
+                    <li><a href="home/about">Giới thiệu bookstore</a></li>
                     <li><a href="">Chính sách bảo mật</a></li>
                     <li><a href="">Điều khoản sử dụng</a></li>
                     <li><a href="">Chính sách giao hàng</a></li>
@@ -32,9 +32,10 @@
                 <div class="payment">
                     <i class="fab fa-cc-paypal"></i>
                     <p>COD</p>
-                    <!-- <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/visa.svg" alt=""> -->
-                    <!-- <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/cash.svg" alt="">
-                    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/internet-banking.svg" alt=""> -->
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Nhập email để nhận voucher" style="font-size: 16px">
+                    <button class="btn btn-submit">Đăng kí</button>
                 </div>
             </div>
             <div class="col l-2-4">
