@@ -4,7 +4,7 @@ class Database {
     const HOST = 'localhost';
     const USERNAME = 'root';
     const PASSWORD = '';
-    const DB_NAME = 'store_dev';
+    const DB_NAME = 'clean_shop';
 
     public function connect() {
         $host = self::HOST;

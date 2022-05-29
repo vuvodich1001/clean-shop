@@ -70,7 +70,7 @@
                                 <tr>
                                     <td class="detail-img"><img src="./public/admin/uploads/<?php echo explode(',', $orderDetail['main_image'])[0] ?>" alt="">
                                         <div class="detail-action">
-                                            <p>Sách <?php echo $orderDetail['title'] ?></p>
+                                            <p style="max-width: 420px;"><?php echo $orderDetail['title'] ?></p>
                                             <?php if ($order['status'] == 'Giao hàng thành công') : ?>
                                                 <button class="btn-account-action btn-review" book-id="<?php echo $orderDetail['book_id'] ?>">Viết nhận xét</button>
                                                 <a href="book/detail/<?php echo $orderDetail['book_id'] ?>" class="btn-account-action">Mua lại</a>

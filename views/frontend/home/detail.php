@@ -6,7 +6,7 @@
             <div class="breadcrumb">
                 <ul>
                     <li class="breadcrumb-item"><a href="">Home/</a></li>
-                    <li class="breadcrumb-item">Book Detail</li>
+                    <li class="breadcrumb-item">Product Detail</li>
                 </ul>
             </div>
         </div>
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="col l-3">
+        <div class="col l-5">
             <div class="book-detail-content">
                 <p class="detail-name"><?php echo $book['title']; ?></p>
                 <div class="detail-sale">
@@ -61,9 +61,11 @@
                     <?php endif ?>
                     <span> Đã bán <?php echo empty($quantitySaled) ? 0 : $quantitySaled ?></span>
                 </div>
-                <p class="detail-author"><strong>Tác giả: </strong><?php echo $book['author']; ?></p>
+                <!-- <p class="detail-author"><strong>Tác giả: </strong><?php echo $book['author']; ?></p> -->
                 <p class="detail-price"><strong>Giá:</strong>
                     <?php echo number_format($book['price'], 0, '.', '.'); ?> ₫</p>
+                <p class="detail-price"><strong>Ngày sản xuất:</strong>
+                    <?php echo date('d-m-Y', strtotime($book['publish_date'])); ?></p>
                 <!-- <p class="detail-description"><strong>Số lượng đã bán: </strong></p> -->
                 <div class="detail-quantity">
                     <strong> Số lượng: </strong>
@@ -75,7 +77,7 @@
             </div>
         </div>
 
-        <div class="col l-4">
+        <!-- <div class="col l-4">
             <h3>Thông tin chi tiết</h3>
             <table class="detail-table">
                 <tr>
@@ -95,12 +97,12 @@
                     <td><?php echo $book['publish_date'] ? date('d/m/Y', strtotime($book['publish_date'])) : '' ?></td>
                 </tr>
             </table>
-        </div>
+        </div> -->
 
     </div>
     <div class="row relate-title">
         <div class="col l-12 book-description">
-            <h2>Mô tả sản phẩm</h2>
+            <h2>Thành phần và sử dụng</h2>
             <div><?php echo $book['description'] ?></div>
         </div>
     </div>

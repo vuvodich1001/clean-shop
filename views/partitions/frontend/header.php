@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookStore</title>
+    <title>CleanShop</title>
     <!-- base url-->
-    <base href="http://localhost/mvc-php/">
+    <base href="http://localhost/clean-shop/">
     <!-- font roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,12 +32,12 @@
                 <div class="nav-logo hide-on-mobile-tablet">
                     <!-- <a href="index.php"><img src="public/frontend/images/logo.png" alt=""></a> -->
                     <a href="">
-                        <h1><i class="fas fa-book-open"></i> BOOKSTORE</h1>
+                        <h1><img src="./public/frontend/images/4EClean.png" alt="" style="width: 180px; height: 180px; object-fit: cover;"></h1>
                     </a>
                 </div>
                 <div class="nav-search">
                     <div class="nav-search-wrap">
-                        <input type="text" id="search" placeholder="Tìm sách bạn muốn mua">
+                        <input type="text" id="search" placeholder="Tìm sản phẩm bạn muốn mua">
                     </div>
                     <button class="btn-search"><i class="fas fa-search"></i></button>
 
@@ -67,9 +67,9 @@
                             <p class="account"> <?php echo $firstName . ' ' . $lastName ?> <i class="account-icon fas fa-sort-down"></i></p>
                         </div>
                         <div class="nav-auth-body">
-                            <a href="http://localhost/mvc-php/account/order" class="btn-account">Đơn hàng của tôi</a>
-                            <a href="http://localhost/mvc-php/account/info" class="btn-account">Tài khoản của tôi</a>
-                            <a href="http://localhost/mvc-php/account/comment" class="btn-account">Nhận xét sản phẩm đã mua</a>
+                            <a href="account/order" class="btn-account">Đơn hàng của tôi</a>
+                            <a href="account/info" class="btn-account">Tài khoản của tôi</a>
+                            <a href="account/comment" class="btn-account">Nhận xét sản phẩm đã mua</a>
                             <a href="index.php?controller=auth&action=customerLogout" class="btn-account">Thoát tài khoản</a>
                         </div>
                     <?php } ?>
@@ -77,13 +77,13 @@
 
                 <div class="nav-cart">
                     <div class="nav-cart-icon">
-                        <a href="http://localhost/mvc-php/cart"><i class="fas fa-shopping-cart"></i><span>Giỏ
+                        <a href="cart"><i class="fas fa-shopping-cart"></i><span>Giỏ
                                 hàng</span></a>
                     </div>
                     <div class="nav-cart-success">
                         <p><i class="nav-cart-success-icon fas fa-check-circle"></i> Thêm vào vào giỏ hàng thành công!
                         </p>
-                        <a href="http://localhost/mvc-php/cart" class="btn btn-view-cart">Xem giỏ hàng và
+                        <a href="cart" class="btn btn-view-cart">Xem giỏ hàng và
                             thanh
                             toán</a>
                         <div class="cart-close">

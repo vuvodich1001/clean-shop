@@ -4,7 +4,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 
-RewriteRule ^book/detail/([(0-9)]+)$ index.php?controller=book&action=bookDetail&id=$1
+RewriteRule ^product/detail/([(0-9)]+)$ index.php?controller=book&action=bookDetail&id=$1
 RewriteRule ^account/order/([(0-9)]+)$ index.php?controller=account&action=orderDetail&order-id=$1
 
 RewriteRule ^([a-zA-Z0-9]+)$ index.php?controller=$1

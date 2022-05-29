@@ -45,7 +45,7 @@ class BookController extends BaseController {
     // }
     // uploads lots of file
     private function insertFile($error, $tempName, $name) {
-        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/admin/uploads/';
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/clean-shop/public/admin/uploads/';
         if ($error == UPLOAD_ERR_OK) {
             $name = basename($name);
             if (!file_exists($uploads_dir . $name))
@@ -55,14 +55,9 @@ class BookController extends BaseController {
 
     public function createBook() {
         $title = $_POST['title'];
-        $author = $_POST['author'];
         $price = $_POST['price'];
         $description = $_POST['description'];
-        $page = $_POST['page'];
-        $height = $_POST['height'];
-        $width = $_POST['width'];
         $publishDate = $_POST['publish-date'];
-        $publisher = $_POST['publisher'];
         $categoryId = $_POST['category'];
         $bookImages = [];
         if (isset($_FILES['images'])) {
@@ -79,15 +74,10 @@ class BookController extends BaseController {
         $data = [
             'category_id' => $categoryId,
             'title' => $title,
-            'author' => $author,
             'main_image' => $bookImages,
             'price' => $price,
             'description' => $description,
-            'page' => $page,
-            'height' => $height,
-            'width' => $width,
             'publish_date' => $publishDate,
-            'publisher' => $publisher
         ];
         $this->bookModel->createBook($data);
         $books = $this->bookModel->getAll();
@@ -150,7 +140,7 @@ class BookController extends BaseController {
 
     public function deleteBook() {
         $id = $_GET['id'];
-        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/mvc-php/public/admin/uploads/';
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/clean-shop/public/admin/uploads/';
         $image = $this->bookModel->getById($id)['main_image'];
         $this->bookModel->deleteBook($id);
         unlink($uploads_dir . $image);

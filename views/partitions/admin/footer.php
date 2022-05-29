@@ -33,7 +33,7 @@
 <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 <script>
     let name = document.querySelector('.action h2');
-    if (name && name.innerText.toLowerCase() == 'book')
+    if (name && name.innerText.toLowerCase() == 'product')
         CKEDITOR.replace('description');
 </script>
 <script src="../public/admin/js/book.js"></script>
