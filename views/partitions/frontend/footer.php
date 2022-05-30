@@ -25,6 +25,7 @@
                 <ul>
                     <li><a href="">Hợp tác UIT</a></li>
                     <li><a href="">Bán hàng cùng bookstore</a></li>
+                    <li> <a href=""><img src="./public/frontend/images/shopee.png" alt="" style="width: 120px; height: 100%;"></a></li>
                 </ul>
             </div>
             <div class="col l-2-4">
@@ -33,7 +34,7 @@
                     <i class="fab fa-cc-paypal"></i>
                     <p>COD</p>
                 </div>
-                <div class="form-group">
+                <div class=" form-group">
                     <input type="text" placeholder="Nhập email để nhận voucher" style="font-size: 16px">
                     <button class="btn btn-submit">Đăng kí</button>
                 </div>

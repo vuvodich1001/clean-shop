@@ -478,6 +478,11 @@ main {
   white-space: nowrap;
 }
 
+.sidebar-popup ul li a:hover {
+  color: var(--main-color);
+  transition: all ease-in-out 0.2s;
+}
+
 .active > a:before {
   display: block;
   content: "";
