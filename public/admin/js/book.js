@@ -91,7 +91,6 @@ function fetchDataBook(type, data = {}, id) {
 
 function createBook() {
   if (formBook) {
-    modalBody.style.top = '-50px';
     btnCreate.addEventListener('click', (e) => {
       modal.classList.add('modal-active');
       btnCreateBook.textContent = 'Create';

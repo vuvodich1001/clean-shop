@@ -28,7 +28,14 @@
         <li class="sidebar-item"><a href="admin/inventory"><i class="fas fa-warehouse"></i>Inventorys</a></li>
         <li class="sidebar-item"><a href="admin/discount"><i class="fas fa-tags"></i>Voucher</a></li> -->
         <?php foreach ($roles as $role) : ?>
-            <li class="sidebar-item"><a href="<?= $role['name'] ?>"> <?php echo $icons[$role['name']] ?> <?= ucfirst($role['name']) ?></a></li>
+            <li class="sidebar-item">
+                <a href="<?= $role['name'] ?>"> 
+                <?php echo $icons[$role['name']] ?> 
+                <?php
+                echo $role['name'] == 'book' ? 'Product' : ucfirst($role['name']); 
+                ?>
+            </a>
+            </li>
         <?php endforeach ?>
         <li class="sidebar-item"><a href="auth/adminLogout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
     </ul>

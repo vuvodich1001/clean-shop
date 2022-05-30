@@ -12,9 +12,9 @@
                 </ul>
             </div>
             <div class="col l-2-4">
-                <h4>Về BookStore</h4>
+                <h4>Về 4EClean</h4>
                 <ul>
-                    <li><a href="home/about">Giới thiệu bookstore</a></li>
+                    <li><a href="home/about">Giới thiệu 4ECleans</a></li>
                     <li><a href="">Chính sách bảo mật</a></li>
                     <li><a href="">Điều khoản sử dụng</a></li>
                     <li><a href="">Chính sách giao hàng</a></li>

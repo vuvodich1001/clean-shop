@@ -169,7 +169,7 @@ nav {
 .auth-content {
   margin: auto;
   position: relative;
-  top: -200px;
+  top: -100px;
   background-color: var(--white-color);
   width: 400px;
   padding: 20px;

@@ -44,7 +44,6 @@ html {
   border-radius: 3px;
   background-color: var(--white-color);
   position: relative;
-  top: -200px;
   animation: slideFromTop ease-in 0.2s;
 }
 
